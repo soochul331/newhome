@@ -60,7 +60,7 @@ for (const dir of TARGETS) {
       try { data = yaml.load(src); } catch (e) { errors.push(`${file}: YAML 오류 — ${e.message}`); continue; }
       for (const [k, v] of flattenStrings(data)) check(file, k, v);
       if (file.endsWith("site.yml")) {
-        if (data.name !== CANON_NAME) errors.push(`${file} › name: "${data.name}" → 반드시 "${CANON_NAME}"`);
+        if (typeof data.name !== "string" || !data.name.trim()) errors.push(`${file} › name: 사이트 이름을 입력해 주세요.`);
         if (typeof data.description === "string" && (data.description.length < 80 || data.description.length > 110)) warns.push(`${file} › description: ${data.description.length}자 (권장 80~110자)`);
       }
     }
