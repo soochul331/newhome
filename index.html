@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>알부남 신목사 · 목회 AI 교육 코치</title>
+  <meta name="description" content="교회사역에 AI를 접목하고 싶은 분들의 두려움과 혼란을 신학적 분별과 현장 실습으로 풀도록 돕는 목회 AI 교육 코치, 알부남 신목사입니다.">
+  <meta name="author" content="알부남 신목사">
+  <meta property="og:title" content="알부남 신목사 · 목회 AI 교육 코치">
+  <meta property="og:description" content="교회사역에 AI를 접목하고 싶은 분들의 두려움과 혼란을 신학적 분별과 현장 실습으로 풀도록 돕습니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #F6F7FB;
+      --color-text: #141B34;
+      --color-accent: #2747D6;
+      --color-text-muted: rgba(20,27,52,.62);
+      --color-text-faint: rgba(20,27,52,.40);
+      --color-border: rgba(20,27,52,.12);
+      --color-surface: #FFFFFF;
+      --color-accent-hover: #1F3AB3;
+      --color-accent-soft: rgba(39,71,214,.10);
+      --color-on-accent: #FFFFFF;
+      --font-display: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+      --font-body: 'Noto Sans KR', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+      --text-h1: 40px; --text-h2: 28px; --text-h3: 21px; --text-body: 17px; --text-small: 15px; --text-label: 13px;
+      --radius-sm: 8px; --radius-md: 14px;
+      --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+      --shadow-card: 0 1px 2px rgba(20,27,52,.04), 0 6px 20px rgba(20,27,52,.06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--color-bg); color: var(--color-text);
+      font: 400 var(--text-body)/1.7 var(--font-body);
+      -webkit-font-smoothing: antialiased; word-break: keep-all;
+    }
+    a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-border); }
+    a:hover { text-decoration-color: var(--color-text); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--space-4); }
+    .wrap-wide { max-width: 1040px; margin: 0 auto; padding: 0 var(--space-4); }
+
+    header.site { border-bottom: 1px solid var(--color-border); background: var(--color-bg); }
+    header.site .wrap-wide { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { font: 500 var(--text-small)/1 var(--font-body); text-decoration: none; }
+    nav a { font: 500 var(--text-label)/1 var(--font-body); letter-spacing: .02em; text-decoration: none; color: var(--color-text-muted); margin-left: var(--space-5); }
+    nav a:hover { color: var(--color-text); }
+
+    h1 { font: 400 var(--text-h1)/1.2 var(--font-display); letter-spacing: -.01em; margin: 0 0 var(--space-4); }
+    h2 { font: 400 var(--text-h2)/1.25 var(--font-display); letter-spacing: -.01em; margin: 0 0 var(--space-4); }
+    h3 { font: 700 var(--text-h3)/1.4 var(--font-body); margin: 0 0 var(--space-2); }
+    p { margin: 0 0 var(--space-4); }
+    .muted { color: var(--color-text-muted); }
+    .label { font: 500 var(--text-label)/1.3 var(--font-body); letter-spacing: .02em; color: var(--color-text-faint); }
+
+    section { padding: var(--space-8) 0; }
+    section + section { border-top: 1px solid var(--color-border); }
+
+    .hero { padding: var(--space-8) 0 var(--space-7); }
+    .hero .lead { font-size: 19px; color: var(--color-text-muted); max-width: 640px; }
+    .actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+
+    .btn {
+      display: inline-block; font: 500 var(--text-label)/1 var(--font-body); letter-spacing: .02em;
+      padding: 15px 22px; border-radius: var(--radius-sm); border: 1px solid transparent;
+      text-decoration: none; cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease;
+    }
+    .btn-primary { background: var(--color-accent); color: var(--color-on-accent); }
+    .btn-primary:hover { background: var(--color-accent-hover); }
+    .btn-secondary { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+    .btn-secondary:hover { border-color: var(--color-text); }
+    .btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+    .question { padding: var(--space-7) 0; text-align: center; }
+    .question blockquote { margin: 0; font-size: 21px; line-height: 1.6; }
+    .question p { margin-top: var(--space-3); }
+
+    .grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(3, 1fr); margin-top: var(--space-5); }
+    .card {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+      padding: var(--space-5); box-shadow: var(--shadow-card);
+    }
+    .card p { margin: 0; color: var(--color-text-muted); }
+
+    dl.evidence { margin: var(--space-5) 0 0; display: grid; gap: var(--space-4); }
+    dl.evidence div { padding: var(--space-4) 0; border-top: 1px solid var(--color-border); }
+    dl.evidence dt { font: 500 var(--text-label)/1.3 var(--font-body); letter-spacing: .02em; color: var(--color-text-faint); margin-bottom: var(--space-2); }
+    dl.evidence dd { margin: 0; }
+
+    ul.posts { list-style: none; padding: 0; margin: var(--space-5) 0 0; }
+    ul.posts li { padding: var(--space-4) 0; border-top: 1px solid var(--color-border); }
+    ul.posts li:last-child { border-bottom: 1px solid var(--color-border); }
+    ul.posts a { display: block; font-weight: 500; text-decoration: none; }
+    ul.posts a:hover { text-decoration: underline; }
+    ul.posts time { display: block; margin-top: 4px; }
+
+    form.contact { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
+    form.contact label { display: grid; gap: var(--space-2); }
+    form.contact input, form.contact textarea {
+      font: 400 var(--text-body)/1.5 var(--font-body); color: var(--color-text);
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+      padding: 12px 14px; width: 100%;
+    }
+    form.contact input:focus, form.contact textarea:focus { outline: 2px solid var(--color-accent); outline-offset: 1px; border-color: transparent; }
+    form.contact textarea { min-height: 140px; resize: vertical; }
+    .hidden { position: absolute; left: -9999px; }
+
+    footer.site { border-top: 1px solid var(--color-border); padding: var(--space-6) 0; color: var(--color-text-muted); font-size: var(--text-small); }
+    footer.site p { margin: 0 0 var(--space-2); }
+
+    @media (max-width: 768px) {
+      :root { --text-h1: 32px; --text-h2: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: var(--space-7) 0; }
+      nav a { margin-left: var(--space-4); }
+      nav a.nav-hide { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "알부남 신목사",
+    "jobTitle": "목회 AI 교육 코치 · 늘푸른진건교회 교육목사",
+    "description": "교회사역에 AI를 접목하고 싶은 사람들의 두려움과 혼란을 신학적 분별과 현장 실습 및 온라인 활동으로 풀도록 돕는 목회 AI 교육 코치",
+    "worksFor": { "@type": "Organization", "name": "늘푸른진건교회", "url": "http://www.egjingeon.com/" },
+    "alumniOf": { "@type": "EducationalOrganization", "name": "총신대학교 신학대학원" },
+    "sameAs": ["https://blog.naver.com/church_ai_lab", "http://www.egjingeon.com/"],
+    "knowsAbout": ["목회 AI", "신학적 분별", "교회교육"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "이런 고민을 하고 계신가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AI를 쓰고는 있지만 어떻게 써야 할지 모르겠다면, 이 자리가 맞습니다. 기본 단계의 활용에 머물러 있어도 괜찮습니다. 천천히 가도 괜찮습니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "무엇을 함께 하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "신학적 분별, 현장 실습, 온라인 활동 세 가지를 함께합니다. 무엇을 맡기고 무엇을 맡기지 않을지 먼저 정하고, 실제 사역 자료로 직접 해 보고, 처치AI랩 블로그로 이어갑니다." }
+      },
+      {
+        "@type": "Question",
+        "name": "알부남 신목사는 누구인가요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "늘푸른진건교회 교육목사이자, 교회를 위한 AI 도구를 직접 만드는 목회 AI 교육 코치입니다. 대한예수교장로회(합동) 목사, 총신대학교 신학대학원 M.Div., AI융합 박사과정 재학 중입니다." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap-wide">
+    <a class="brand" href="#top">알부남 신목사</a>
+    <nav aria-label="페이지 안내">
+      <a href="#together">함께 하는 일</a>
+      <a href="#about">소개</a>
+      <a class="nav-hide" href="#posts">최근 글</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="label">목회 AI 교육 코치</p>
+      <h1>AI에 대한 두려움과 혼란을, 신학적 분별과 현장 실습으로 풉니다.</h1>
+      <p class="lead">교회사역에 AI를 접목하고 싶은 분들을 돕는 코치, 알부남 신목사입니다. 강의실에서는 직접 해 보고, 온라인에서는 연구와 자료를 나눕니다.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contact">문의하기</a>
+        <a class="btn btn-secondary" href="#together">함께 하는 일 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="question" aria-label="나만의 질문">
+    <div class="wrap">
+      <blockquote>AI는 교회를 더 사람답게 만들 수 있는가?</blockquote>
+      <p class="muted">이 홈페이지는 이 질문을 함께 생각하는 자리입니다. 답을 서두르지 않습니다.</p>
+    </div>
+  </section>
+
+  <section id="for-whom">
+    <div class="wrap">
+      <h2>이런 고민을 하고 계신가요?</h2>
+      <p>AI를 쓰고는 있지만 어떻게 써야 할지 모르겠다면, 이 자리가 맞습니다. 기본 단계의 활용에 머물러 있어도 괜찮습니다. 천천히 가도 괜찮습니다.</p>
+    </div>
+    <div class="wrap-wide">
+      <div class="grid">
+        <div class="card">
+          <h3>써도 되는지부터 걱정됩니다</h3>
+          <p>설교와 목회에 AI를 쓰는 것이 신앙적으로 괜찮은지 먼저 분별하고 싶으신 분.</p>
+        </div>
+        <div class="card">
+          <h3>질문 한두 개 던지는 데서 멈춥니다</h3>
+          <p>검색처럼 묻고 답을 받는 정도로만 쓰고 있어서, 그다음 단계가 궁금하신 분.</p>
+        </div>
+        <div class="card">
+          <h3>교회교육에 어떻게 적용할지 막막합니다</h3>
+          <p>중고등부와 어르신 교구 등 실제 현장에 맞는 활용법이 필요하신 분.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="together">
+    <div class="wrap">
+      <h2>무엇을 함께 하나요?</h2>
+      <p>신학적 분별, 현장 실습, 온라인 활동 세 가지를 함께합니다. 셋 중 하나만 있으면 두려움은 풀리지 않습니다. 한 걸음씩 함께 해 보겠습니다.</p>
+    </div>
+    <div class="wrap-wide">
+      <div class="grid">
+        <div class="card">
+          <h3>신학적 분별</h3>
+          <p>무엇을 AI에 맡기고 무엇을 맡기지 않을지 먼저 정합니다. AI는 생각하지 않고 생성합니다. 그 경계를 성경과 신학의 눈으로 함께 봅니다.</p>
+        </div>
+        <div class="card">
+          <h3>현장 실습</h3>
+          <p>설교 준비, 교육 자료, 발표 자료를 실제 사역 자료로 직접 해 봅니다. 제가 만든 목회자용 AI 도구를 그 자리에서 함께 씁니다.</p>
+        </div>
+        <div class="card">
+          <h3>온라인 활동</h3>
+          <p>강의가 끝나도 이어집니다. 처치AI랩 블로그에 연구와 자료를 나누고, 질문을 받습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2>알부남 신목사는 누구인가요?</h2>
+      <p>늘푸른진건교회 교육목사이자, 교회를 위한 AI 도구를 직접 만드는 목회 AI 교육 코치입니다. 교회사역에 AI를 접목하는 일을 돕는 사람으로서, 최종적으로는 교회의 AX(AI 전환) 시대를 준비하고 싶습니다.</p>
+      <dl class="evidence">
+        <div>
+          <dt>경험</dt>
+          <dd><a href="http://www.egjingeon.com/" rel="noopener">늘푸른진건교회</a> 교육목사로 중고등부와 80대 이상 소망교구를 맡고 있습니다. 청소년 사역은 15년 이상 이어 왔습니다. 그래서 교회교육의 현장을 압니다.</dd>
+        </div>
+        <div>
+          <dt>결과물</dt>
+          <dd>목회자용 AI 도구를 직접 만들었습니다. 설교·강의 PPT 디자인 스킬과 발표자 노트 자동 생성 스킬입니다. 써 보고 말씀드립니다.</dd>
+        </div>
+        <div>
+          <dt>공인</dt>
+          <dd>대한예수교장로회(합동) 목사이며, 총신대학교 신학대학원 M.Div.를 마쳤습니다. 지금은 AI융합 박사과정에 재학 중입니다. 신학과 AI를 한 자리에서 공부합니다.</dd>
+        </div>
+        <div>
+          <dt>기록</dt>
+          <dd><a href="https://blog.naver.com/church_ai_lab" rel="noopener">처치AI랩 네이버 블로그</a>에 교회를 위한 AI 연구와 자료를 나누고 있습니다. 과정이 공개되어 있습니다.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="wrap">
+      <h2>최근에는 어떤 글을 썼나요?</h2>
+      <p>처치AI랩 블로그에 교회를 위한 AI 연구와 자료를 나누고 있습니다. 최근 글 두 편입니다.</p>
+      <ul class="posts">
+        <li>
+          <a href="https://blog.naver.com/church_ai_lab/224430033858" rel="noopener">AI 설교, 어디까지 맡겨도 될까요 — "안 쓰면 30년 뒤처진다"는 말을 강의실에서 직접 들었습니다</a>
+          <time class="label" datetime="2026-10-03">2026년 10월 3일</time>
+        </li>
+        <li>
+          <a href="https://blog.naver.com/church_ai_lab/224427751541" rel="noopener">교회를 위한 AI 연구소를 시작합니다</a>
+          <time class="label" datetime="2026-10-01">2026년 10월 1일</time>
+        </li>
+      </ul>
+      <p style="margin-top: var(--space-5);"><a class="btn btn-secondary" href="https://blog.naver.com/church_ai_lab" rel="noopener">블로그 가기</a></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>어떻게 연락하나요?</h2>
+      <p>아래에 문의를 남겨 주시면 확인하고 답을 드립니다. 강의, 교회 교육 세미나, 함께 공부하고 싶은 주제 모두 괜찮습니다.</p>
+      <form class="contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden"><label>사람이시면 비워 두세요 <input name="bot-field"></label></p>
+        <label><span class="label">성함</span><input type="text" name="name" required autocomplete="name"></label>
+        <label><span class="label">이메일</span><input type="email" name="email" required autocomplete="email"></label>
+        <label><span class="label">문의 내용</span><textarea name="message" required></textarea></label>
+        <div><button class="btn btn-primary" type="submit">문의 보내기</button></div>
+      </form>
+      <p class="muted" style="margin-top: var(--space-6);">끝까지 읽어 주셔서 감사합니다.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>알부남 신목사 · 늘푸른진건교회 교육목사</p>
+    <p><a href="http://www.egjingeon.com/" rel="noopener">늘푸른진건교회</a> · <a href="https://blog.naver.com/church_ai_lab" rel="noopener">처치AI랩 블로그</a></p>
+    <p>© 2026 알부남 신목사</p>
+  </div>
+</footer>
+
+</body>
+</html>
