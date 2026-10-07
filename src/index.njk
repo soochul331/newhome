@@ -1,0 +1,5 @@
+---
+layout: base.njk
+permalink: /
+---
+{% for s in home.sections | enabled %}{% include "sections/" ~ s.type ~ ".njk" %}{% endfor %}

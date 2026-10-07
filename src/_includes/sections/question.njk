@@ -1,0 +1,6 @@
+<section class="question" id="{{ s.id or 'question' }}" aria-label="나만의 질문">
+  <div class="wrap">
+    <blockquote>{{ s.quote }}</blockquote>
+    {% if s.note %}<p class="muted">{{ s.note }}</p>{% endif %}
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <div class="wrap">
+    <p class="label"><time datetime="{{ date | isoDate }}">{{ date | dateKo }}</time></p>
+    <h1>{{ title }}</h1>
+    {% if summary %}<p class="lead">{{ summary }}</p>{% endif %}
+  </div>
+</section>
+<section>
+  <div class="wrap prose">
+    {{ content | safe }}
+    <p style="margin-top: var(--space-6);"><a class="btn btn-secondary" href="/#posts">최근 글로 돌아가기</a></p>
+  </div>
+</section>

@@ -1,4 +1,6 @@
 .DS_Store
 node_modules/
 .env
+_site/
 .claude/launch.json
+.netlify/

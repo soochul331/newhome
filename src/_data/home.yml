@@ -1,0 +1,78 @@
+sections:
+  - type: hero
+    id: top
+    enabled: true
+    label: 목회 AI 교육 코치
+    title: AI에 대한 두려움과 혼란을, 신학적 분별과 현장 실습으로 풉니다.
+    lead: 교회사역에 AI를 접목하고 싶은 분들을 돕는 코치, 알부남 신목사입니다. 강의실에서는 직접 해 보고, 온라인에서는 연구와 자료를 나눕니다.
+    primary:
+      label: 문의하기
+      url: '#contact'
+    secondary:
+      label: 함께 하는 일 보기
+      url: '#together'
+  - type: question
+    id: question
+    enabled: true
+    quote: AI는 교회를 더 사람답게 만들 수 있는가?
+    note: 이 홈페이지는 이 질문을 함께 생각하는 자리입니다. 답을 서두르지 않습니다.
+  - type: cards
+    id: for-whom
+    enabled: true
+    faq: true
+    heading: 이런 고민을 하고 계신가요?
+    lead: AI를 쓰고는 있지만 어떻게 써야 할지 모르겠다면, 이 자리가 맞습니다. 기본 단계의 활용에 머물러 있어도 괜찮습니다. 천천히 가도 괜찮습니다.
+    items:
+      - title: 써도 되는지부터 걱정됩니다
+        body: 설교와 목회에 AI를 쓰는 것이 신앙적으로 괜찮은지 먼저 분별하고 싶으신 분.
+      - title: 질문 한두 개 던지는 데서 멈춥니다
+        body: 검색처럼 묻고 답을 받는 정도로만 쓰고 있어서, 그다음 단계가 궁금하신 분.
+      - title: 교회교육에 어떻게 적용할지 막막합니다
+        body: 중고등부와 어르신 교구 등 실제 현장에 맞는 활용법이 필요하신 분.
+  - type: cards
+    id: together
+    enabled: true
+    faq: true
+    heading: 무엇을 함께 하나요?
+    lead: 신학적 분별, 현장 실습, 온라인 활동 세 가지를 함께합니다. 셋 중 하나만 있으면 두려움은 풀리지 않습니다. 한 걸음씩 함께 해 보겠습니다.
+    items:
+      - title: 신학적 분별
+        body: 무엇을 AI에 맡기고 무엇을 맡기지 않을지 먼저 정합니다. AI는 생각하지 않고 생성합니다. 그 경계를 성경과 신학의 눈으로 함께 봅니다.
+      - title: 현장 실습
+        body: 설교 준비, 교육 자료, 발표 자료를 실제 사역 자료로 직접 해 봅니다. 제가 만든 목회자용 AI 도구를 그 자리에서 함께 씁니다.
+      - title: 온라인 활동
+        body: 강의가 끝나도 이어집니다. 처치AI랩 블로그에 연구와 자료를 나누고, 질문을 받습니다.
+  - type: evidence
+    id: about
+    enabled: true
+    faq: true
+    heading: 알부남 신목사는 누구인가요?
+    lead: 늘푸른진건교회 교육목사이자, 교회를 위한 AI 도구를 직접 만드는 목회 AI 교육 코치입니다. 교회사역에 AI를 접목하는 일을 돕는 사람으로서, 최종적으로는 교회의 AX(AI 전환) 시대를 준비하고 싶습니다.
+    items:
+      - kind: 경험
+        body: 늘푸른진건교회 교육목사로 중고등부와 80대 이상 소망교구를 맡고 있습니다. 청소년 사역은 15년 이상 이어 왔습니다. 그래서 교회교육의 현장을 압니다.
+        link_label: 늘푸른진건교회
+        link_url: http://www.egjingeon.com/
+      - kind: 결과물
+        body: 목회자용 AI 도구를 직접 만들었습니다. 설교·강의 PPT 디자인 스킬과 발표자 노트 자동 생성 스킬입니다. 써 보고 말씀드립니다.
+      - kind: 공인
+        body: 대한예수교장로회(합동) 목사이며, 총신대학교 신학대학원 M.Div.를 마쳤습니다. 지금은 AI융합 박사과정에 재학 중입니다. 신학과 AI를 한 자리에서 공부합니다.
+      - kind: 기록
+        body: 처치AI랩 네이버 블로그에 교회를 위한 AI 연구와 자료를 나누고 있습니다. 과정이 공개되어 있습니다.
+        link_label: 처치AI랩 네이버 블로그
+        link_url: https://blog.naver.com/church_ai_lab
+  - type: posts
+    id: posts
+    enabled: true
+    heading: 최근에는 어떤 글을 썼나요?
+    lead: 처치AI랩 블로그에 교회를 위한 AI 연구와 자료를 나누고 있습니다.
+    count: 3
+    more_label: 블로그 가기
+    more_url: https://blog.naver.com/church_ai_lab
+  - type: contact
+    id: contact
+    enabled: true
+    heading: 어떻게 연락하나요?
+    lead: 아래에 문의를 남겨 주시면 확인하고 답을 드립니다. 강의, 교회 교육 세미나, 함께 공부하고 싶은 주제 모두 괜찮습니다.
+    form_enabled: true
+    closing: 끝까지 읽어 주셔서 감사합니다.

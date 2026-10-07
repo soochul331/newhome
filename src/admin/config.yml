@@ -1,0 +1,205 @@
+# 알부남 신목사 홈페이지 — 관리자 설정 (Decap CMS)
+backend:
+  name: github
+  repo: soochul331/newhome
+  branch: main
+  commit_messages:
+    create: '관리자: {{collection}} "{{slug}}" 추가'
+    update: '관리자: {{collection}} "{{slug}}" 수정'
+    delete: '관리자: {{collection}} "{{slug}}" 삭제'
+    uploadMedia: '관리자: 이미지 {{path}} 추가'
+    deleteMedia: '관리자: 이미지 {{path}} 삭제'
+    openAuthoring: '관리자: {{message}}'
+
+# 로컬 테스트용(localhost에서 decap-server가 떠 있을 때만 작동)
+local_backend: true
+
+# 저장 = 초안, 발행 눌러야 공개
+publish_mode: editorial_workflow
+
+locale: ko
+site_url: https://newhome-shin.netlify.app
+display_url: https://newhome-shin.netlify.app
+
+media_folder: src/media
+public_folder: /media
+
+collections:
+  # ───────── 설정 파일(단일 파일) ─────────
+  - name: settings
+    label: 사이트 설정
+    description: 사이트 이름·바이라인·메타 정보·링크. 색과 글꼴은 여기서 바꿀 수 없습니다(디자인 일관성 보호).
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: 기본 정보
+        file: src/_data/site.yml
+        fields:
+          - { label: 사이트 이름(이름 표기), name: name, widget: string, hint: '항상 "알부남 신목사"로 씁니다.' }
+          - { label: 바이라인(푸터 첫 줄), name: byline, widget: string }
+          - { label: 브라우저 탭 제목, name: title_tag, widget: string, hint: '30자 안팎, 키워드 하나 포함' }
+          - { label: 메타 설명(검색 결과 요약), name: description, widget: text, hint: '80~110자' }
+          - { label: 사이트 주소, name: url, widget: string }
+          - { label: 직함(구조화 데이터용), name: job_title, widget: string }
+          - { label: 소속 기관, name: organization, widget: string }
+          - { label: 출신 학교, name: alumni, widget: string }
+          - { label: 키워드 3개, name: keywords, widget: list, field: { label: 키워드, name: keyword, widget: string } }
+          - label: 링크(푸터·소개)
+            name: links
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { label: 이름, name: label, widget: string }
+              - { label: 주소, name: url, widget: string }
+          - { label: 저작권 문구, name: copyright, widget: string }
+
+      - name: navigation
+        label: 메뉴
+        file: src/_data/navigation.yml
+        fields:
+          - label: 메뉴 항목 (끌어서 순서 변경)
+            name: items
+            widget: list
+            summary: '{{fields.label}} → {{fields.url}}'
+            fields:
+              - { label: 이름, name: label, widget: string }
+              - { label: 링크, name: url, widget: string, hint: '홈 섹션은 /#together 처럼, 페이지는 /lecture/ 처럼, 외부는 https://… 로 씁니다.' }
+              - { label: 표시, name: visible, widget: boolean, default: true }
+              - { label: 모바일에서 숨김, name: hide_on_mobile, widget: boolean, default: false, required: false }
+
+      - name: home
+        label: 홈 화면
+        file: src/_data/home.yml
+        fields:
+          - label: 섹션 (끌어서 순서 변경 · 종류별 추가)
+            name: sections
+            widget: list
+            summary: '{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}'
+            types:
+              - label: 히어로(첫 화면)
+                name: hero
+                fields:
+                  - { label: 앵커 id, name: id, widget: string, default: top }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 작은 라벨, name: label, widget: string, required: false }
+                  - { label: 큰 제목(H1), name: title, widget: string, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 코치' }
+                  - { label: 부제, name: lead, widget: text, required: false }
+                  - label: 주 버튼(강조색, 한 화면에 하나)
+                    name: primary
+                    widget: object
+                    required: false
+                    fields:
+                      - { label: 글자, name: label, widget: string, required: false, hint: '동사로 끝나는 존댓말. 느낌표 금지' }
+                      - { label: 링크, name: url, widget: string, required: false }
+                  - label: 보조 버튼
+                    name: secondary
+                    widget: object
+                    required: false
+                    fields:
+                      - { label: 글자, name: label, widget: string, required: false }
+                      - { label: 링크, name: url, widget: string, required: false }
+              - label: 나만의 질문
+                name: question
+                fields:
+                  - { label: 앵커 id, name: id, widget: string, default: question }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 질문 한 줄, name: quote, widget: string }
+                  - { label: 덧붙이는 말, name: note, widget: string, required: false }
+              - label: 카드 묶음(질문형 제목 + 카드 최대 3개)
+                name: cards
+                fields:
+                  - { label: 앵커 id, name: id, widget: string }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
+                  - { label: 소제목(질문형), name: heading, widget: string, hint: '예: 무엇을 함께 하나요?' }
+                  - { label: 첫 문장 직답, name: lead, widget: text, hint: '첫 문장이 바로 답이어야 합니다.' }
+                  - label: 카드
+                    name: items
+                    widget: list
+                    max: 3
+                    summary: '{{fields.title}}'
+                    fields:
+                      - { label: 카드 제목, name: title, widget: string }
+                      - { label: 카드 본문(두세 줄), name: body, widget: text }
+              - label: 소개·증거
+                name: evidence
+                fields:
+                  - { label: 앵커 id, name: id, widget: string, default: about }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
+                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 첫 문장 직답, name: lead, widget: text }
+                  - label: 증거 항목
+                    name: items
+                    widget: list
+                    summary: '{{fields.kind}}'
+                    fields:
+                      - { label: 구분(경험·결과물·공인·기록), name: kind, widget: string }
+                      - { label: 내용(사실만), name: body, widget: text, hint: '증거표에 없는 경력·수치·수상은 쓰지 않습니다.' }
+                      - { label: 링크 글자(본문 안의 단어와 같아야 함), name: link_label, widget: string, required: false }
+                      - { label: 링크 주소, name: link_url, widget: string, required: false }
+              - label: 최근 글 목록
+                name: posts
+                fields:
+                  - { label: 앵커 id, name: id, widget: string, default: posts }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 첫 문장 직답, name: lead, widget: text, required: false }
+                  - { label: 보여줄 글 수, name: count, widget: number, default: 3, value_type: int, min: 1, max: 10 }
+                  - { label: 더 보기 버튼 글자, name: more_label, widget: string, required: false }
+                  - { label: 더 보기 링크, name: more_url, widget: string, required: false }
+              - label: 문의
+                name: contact
+                fields:
+                  - { label: 앵커 id, name: id, widget: string, default: contact }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 첫 문장 직답, name: lead, widget: text, required: false }
+                  - { label: 문의 양식 표시, name: form_enabled, widget: boolean, default: true }
+                  - { label: 마무리 말, name: closing, widget: string, default: 끝까지 읽어 주셔서 감사합니다. }
+              - label: 자유 글 섹션
+                name: richtext
+                fields:
+                  - { label: 앵커 id, name: id, widget: string }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 소제목(질문형), name: heading, widget: string, required: false }
+                  - { label: 본문, name: body, widget: markdown }
+
+  # ───────── 페이지 ─────────
+  - name: pages
+    label: 페이지
+    label_singular: 페이지
+    description: 강의 안내, 자료실처럼 홈 외의 페이지를 만듭니다. 메뉴에 넣으려면 "메뉴"에서 링크를 추가하세요.
+    folder: src/pages
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} ({{permalink}})'
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 주소(permalink), name: permalink, widget: string, hint: '영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/', pattern: ['^/[a-z0-9-]+/$', '형식: /영문소문자-하이픈/ 예) /lecture/'] }
+      - { label: 메타 설명, name: description, widget: text, hint: '80~110자' }
+      - { label: 본문, name: body, widget: markdown }
+
+  # ───────── 글·소식 ─────────
+  - name: posts
+    label: 글·소식
+    label_singular: 글
+    description: 홈 "최근 글"에 보이는 항목입니다. 네이버 블로그 글이면 링크만, 직접 쓰는 글이면 본문을 채웁니다.
+    folder: src/posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    summary: '{{date}} · {{title}}'
+    sortable_fields: [date, title]
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 날짜, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
+      - { label: 외부 링크(네이버 블로그 글 주소), name: external_url, widget: string, required: false, hint: '있으면 제목을 누를 때 이 주소로 갑니다. 없으면 아래 본문으로 페이지가 만들어집니다.' }
+      - { label: 요약 한 줄, name: summary, widget: string, required: false }
+      - { label: 본문(직접 쓰는 글일 때), name: body, widget: markdown, required: false }

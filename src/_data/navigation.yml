@@ -1,0 +1,17 @@
+items:
+  - label: 함께 하는 일
+    url: /#together
+    visible: true
+    hide_on_mobile: false
+  - label: 소개
+    url: /#about
+    visible: true
+    hide_on_mobile: false
+  - label: 최근 글
+    url: /#posts
+    visible: true
+    hide_on_mobile: true
+  - label: 문의
+    url: /#contact
+    visible: true
+    hide_on_mobile: false

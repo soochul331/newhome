@@ -1,0 +1,18 @@
+{
+  "name": "newhome",
+  "version": "0.2.0",
+  "private": true,
+  "description": "알부남 신목사 홈페이지 — Eleventy + Decap CMS",
+  "type": "module",
+  "scripts": {
+    "lint": "node scripts/lint-content.js",
+    "build": "npm run lint && eleventy",
+    "dev": "eleventy --serve --port 8080",
+    "cms": "decap-server"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "decap-server": "^3.2.0",
+    "js-yaml": "^4.1.0"
+  }
+}

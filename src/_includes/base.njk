@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.title_tag }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="author" content="{{ site.name }}">
+  {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
+  <meta property="og:title" content="{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.title_tag }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": {{ site.name | dump | safe }},
+    "jobTitle": {{ site.job_title | dump | safe }},
+    "description": {{ site.description | dump | safe }},
+    "worksFor": { "@type": "Organization", "name": {{ site.organization | dump | safe }}, "url": {{ site.links[0].url | dump | safe }} },
+    "alumniOf": { "@type": "EducationalOrganization", "name": {{ site.alumni | dump | safe }} },
+    "sameAs": [{% for l in site.links %}{{ l.url | dump | safe }}{% if not loop.last %}, {% endif %}{% endfor %}],
+    "knowsAbout": [{% for k in site.keywords %}{{ k | dump | safe }}{% if not loop.last %}, {% endif %}{% endfor %}]
+  }
+  </script>
+  {% if page.url == '/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {%- set faqs = [] -%}
+      {%- for s in home.sections | enabled %}{% if s.faq and s.heading and s.lead %}{% set faqs = (faqs.push(s), faqs) %}{% endif %}{% endfor -%}
+      {%- for s in faqs %}
+      { "@type": "Question", "name": {{ s.heading | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ s.lead | dump | safe }} } }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap-wide">
+    <a class="brand" href="/">{{ site.name }}</a>
+    <nav aria-label="페이지 안내">
+      {% for item in navigation.items | visible %}<a href="{{ item.url }}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label }}</a>{% endfor %}
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+{{ content | safe }}
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>{{ site.byline }}</p>
+    <p>{% for l in site.links %}<a href="{{ l.url }}" rel="noopener">{{ l.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    <p>{{ site.copyright }}</p>
+  </div>
+</footer>
+
+</body>
+</html>

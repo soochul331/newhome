@@ -1,0 +1,18 @@
+<section id="{{ s.id }}">
+  <div class="wrap">
+    <h2>{{ s.heading }}</h2>
+    {% if s.lead %}<p>{{ s.lead }}</p>{% endif %}
+  </div>
+  {% if s.items and s.items.length %}
+  <div class="wrap-wide">
+    <div class="grid">
+      {% for c in s.items %}
+      <div class="card">
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</section>
