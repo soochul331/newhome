@@ -1,4 +1,5 @@
-<section class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
+{% set typography = s.typography %}
+<section {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap">
     <h2>{{ s.heading | br | safe }}</h2>
     {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
@@ -7,7 +8,8 @@
   <div class="wrap-wide">
     <div class="grid">
       {% for c in s.items %}
-      <div class="card">
+      {% set typography = c.typography or s.typography %}
+      <div class="card" {% include "text-layout.njk" %}>
         <h3>{{ c.title | br | safe }}</h3>
         <p>{{ c.body | br | safe }}</p>
       </div>

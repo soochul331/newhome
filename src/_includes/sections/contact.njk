@@ -1,4 +1,5 @@
-<section class="tone-{{ s._tone or 'light' }}" id="{{ s.id or 'contact' }}">
+{% set typography = s.typography %}
+<section {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id or 'contact' }}">
   <div class="wrap">
     <h2>{{ s.heading | br | safe }}</h2>
     {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}

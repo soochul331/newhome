@@ -1,0 +1,6 @@
+[data-text-layout] .card { min-width: 0; }
+[data-text-layout] h1,
+[data-text-layout] h2,
+[data-text-layout] h3,
+[data-text-layout] blockquote { min-width: 0; }
+[data-fit-overflow] { overflow-wrap: anywhere; }

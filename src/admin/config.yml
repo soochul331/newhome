@@ -85,6 +85,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string, default: top }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 작은 라벨, name: label, widget: text, required: false }
                   - { label: 큰 제목(H1), name: title, widget: text, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트' }
@@ -108,6 +117,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string, default: question }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 질문 한 줄, name: quote, widget: text }
                   - { label: 덧붙이는 말, name: note, widget: text, required: false }
@@ -116,6 +134,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
                   - { label: 소제목(질문형), name: heading, widget: text, hint: '예: 무엇을 함께 하나요?' }
@@ -128,11 +155,29 @@ collections:
                     fields:
                       - { label: 카드 제목, name: title, widget: text }
                       - { label: 카드 본문(두세 줄), name: body, widget: text }
+                      - label: 글자 크기와 줄 맞춤
+                        name: typography
+                        widget: object
+                        required: false
+                        collapsed: true
+                        fields:
+                          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
               - label: 소개·증거
                 name: evidence
                 fields:
                   - { label: 앵커 id, name: id, widget: string, default: about }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
                   - { label: 소제목(질문형), name: heading, widget: text }
@@ -151,6 +196,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string, default: posts }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 소제목(질문형), name: heading, widget: text }
                   - { label: 첫 문장 직답, name: lead, widget: text, required: false }
@@ -162,6 +216,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string, default: contact }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 소제목(질문형), name: heading, widget: text }
                   - { label: 첫 문장 직답, name: lead, widget: text, required: false }
@@ -172,6 +235,15 @@ collections:
                 fields:
                   - { label: 앵커 id, name: id, widget: string }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 글자 크기와 줄 맞춤
+                    name: typography
+                    widget: object
+                    required: false
+                    collapsed: true
+                    fields:
+                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 소제목(질문형), name: heading, widget: text, required: false }
                   - { label: 본문, name: body, widget: markdown }
@@ -193,6 +265,15 @@ collections:
       - { label: 주소(permalink), name: permalink, widget: string, hint: '영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/', pattern: ['^/[a-z0-9-]+/$', '형식: /영문소문자-하이픈/ 예) /lecture/'] }
       - { label: 메타 설명, name: description, widget: text, hint: '80~110자' }
       - { label: 본문, name: body, widget: markdown }
+      - label: 글자 크기와 줄 맞춤
+        name: typography
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
 
   # ───────── 글·소식 ─────────
   - name: posts
@@ -213,3 +294,12 @@ collections:
       - { label: 외부 링크(네이버 블로그 글 주소), name: external_url, widget: string, required: false, hint: '있으면 제목을 누를 때 이 주소로 갑니다. 없으면 아래 본문으로 페이지가 만들어집니다.' }
       - { label: 요약 한 줄, name: summary, widget: text, required: false }
       - { label: 본문(직접 쓰는 글일 때), name: body, widget: markdown, required: false }
+      - label: 글자 크기와 줄 맞춤
+        name: typography
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
+          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
+          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }

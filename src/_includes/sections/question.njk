@@ -1,4 +1,5 @@
-<section class="question tone-{{ s._tone or 'light' }}" id="{{ s.id or 'question' }}" aria-label="나만의 질문">
+{% set typography = s.typography %}
+<section {% include "text-layout.njk" %} class="question tone-{{ s._tone or 'light' }}" id="{{ s.id or 'question' }}" aria-label="나만의 질문">
   <div class="wrap">
     <blockquote>{{ s.quote | br | safe }}</blockquote>
     {% if s.note %}<p class="muted">{{ s.note | br | safe }}</p>{% endif %}

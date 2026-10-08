@@ -1,14 +1,14 @@
 ---
 layout: base.njk
 ---
-<section class="hero tone-parchment">
+<section {% include "text-layout.njk" %} class="hero tone-parchment">
   <div class="wrap">
     <p class="label"><time datetime="{{ date | isoDate }}">{{ date | dateKo }}</time></p>
     <h1>{{ title | br | safe }}</h1>
     {% if summary %}<p class="lead">{{ summary | br | safe }}</p>{% endif %}
   </div>
 </section>
-<section class="tone-light">
+<section {% include "text-layout.njk" %} class="tone-light">
   <div class="wrap prose">
     {{ content | safe }}
     <p style="margin-top: var(--space-6);"><a class="btn btn-secondary" href="/#posts">최근 글로 돌아가기</a></p>
