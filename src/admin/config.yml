@@ -1,4 +1,4 @@
-# 알부남 신목사 홈페이지 — 관리자 설정 (Decap CMS)
+# 신수철 목사 (Church AI Lab 디렉터) 홈페이지 — 관리자 설정 (Decap CMS)
 backend:
   name: github
   repo: soochul331/newhome

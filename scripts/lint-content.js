@@ -8,8 +8,8 @@ const ROOT = path.resolve(new URL(".", import.meta.url).pathname, "..");
 const TARGETS = ["src/_data", "src/pages", "src/posts"];
 
 const BANNED = ["지금 바로", "마감 임박", "서두르세요", "혁명적", "완벽한", "국내 최초", "유일한", "뒤처집니다", "안 하면 큰일", "축복받은 가격", "은혜로운 할인"];
-const NAME_VARIANTS = ["신 목사", "신목사님", "알부남 목사", "알부남님"];
-const CANON_NAME = "알부남 신목사";
+const NAME_VARIANTS = ["알부남", "신목사", "신 목사님", "신수철목사"];
+const CANON_NAME = "신수철 목사";
 const AI_PERSON = ["AI가 생각합니다", "AI가 알고 있습니다", "AI가 느낍니다", "AI가 믿습니다"];
 
 const errors = [];
@@ -37,7 +37,7 @@ function flattenStrings(obj, prefix = "") {
 
 function check(file, where, text) {
   for (const b of BANNED) if (text.includes(b)) errors.push(`${file} › ${where}: 금지 표현 "${b}"`);
-  for (const v of NAME_VARIANTS) if (text.includes(v) && !text.includes(CANON_NAME + v.replace("알부남 ", "").replace("신 목사", ""))) errors.push(`${file} › ${where}: 이름 표기 오류 "${v}" → "${CANON_NAME}"`);
+  for (const v of NAME_VARIANTS) if (text.includes(v)) errors.push(`${file} › ${where}: 이름 표기 오류 "${v}" → "${CANON_NAME}"`);
   for (const a of AI_PERSON) if (text.includes(a)) errors.push(`${file} › ${where}: AI를 사람처럼 말함 "${a}"`);
   const bangs = (text.match(/!/g) || []).length;
   if (bangs >= 2) errors.push(`${file} › ${where}: 느낌표 ${bangs}개 (최대 1개)`);

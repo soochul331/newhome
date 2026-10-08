@@ -51,7 +51,7 @@ sections:
     id: about
     enabled: true
     faq: true
-    heading: 알부남 신목사는 누구인가요?
+    heading: 신수철 목사는 누구인가요?
     lead: 늘푸른진건교회 교육목사이자, 교회를 위한 AI 도구를 직접 만드는 교회AI 컨설턴트입니다. 교회사역에 AI를 접목하는 일을 돕는
       사람으로서, 최종적으로는 교회의 AX(AI 전환) 시대를 준비하고 싶습니다.
     items:

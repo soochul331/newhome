@@ -2,7 +2,7 @@
   "name": "newhome",
   "version": "0.2.0",
   "private": true,
-  "description": "알부남 신목사 홈페이지 — Eleventy + Decap CMS",
+  "description": "신수철 목사 홈페이지 — Eleventy + Decap CMS",
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-content.js",

@@ -2,7 +2,7 @@
 
 사용:
   python3 scripts/og/make_og.py                       # src/assets/og.png 생성
-  python3 scripts/og/make_og.py --name "알부남 신목사" --out /tmp/og-alt.png
+  python3 scripts/og/make_og.py --name "신수철 목사" --out /tmp/og-alt.png
 디자인: DESIGN.md 3색(배경 #F6F7FB · 글자 #141B34 · 강조 #2747D6), 제목 Black Han Sans · 본문 Noto Sans KR.
 강조색은 '성장 — 천천히 그러나 꾸준히'를 뜻하는 오르는 막대 하나에만 쓴다.
 """
