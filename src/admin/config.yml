@@ -129,7 +129,7 @@ collections:
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 질문 한 줄, name: quote, widget: text }
                   - { label: 덧붙이는 말, name: note, widget: text, required: false }
-              - label: 카드 묶음(질문형 제목 + 카드 최대 3개)
+              - label: 카드 묶음(질문형 제목 + 카드 최대 4개)
                 name: cards
                 fields:
                   - { label: 앵커 id, name: id, widget: string }
@@ -150,9 +150,10 @@ collections:
                   - label: 카드
                     name: items
                     widget: list
-                    max: 3
+                    max: 4
                     summary: '{{fields.title}}'
                     fields:
+                      - { label: 단계 표시(제목 위), name: step, widget: string, required: false, hint: '예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다.' }
                       - { label: 카드 제목, name: title, widget: text }
                       - { label: 카드 본문(두세 줄), name: body, widget: text }
                       - label: 글자 크기와 줄 맞춤

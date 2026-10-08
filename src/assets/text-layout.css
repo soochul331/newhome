@@ -4,3 +4,15 @@
 [data-text-layout] h3,
 [data-text-layout] blockquote { min-width: 0; }
 [data-fit-overflow] { overflow-wrap: anywhere; }
+.card .card-step {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #677080;
+}
+.tone-dark .card .card-step { color: #677080; }
+.grid.grid-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 734px) {
+  .grid.grid-four { grid-template-columns: minmax(0, 1fr); }
+}

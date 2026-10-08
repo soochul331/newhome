@@ -6,10 +6,11 @@
   </div>
   {% if s.items and s.items.length %}
   <div class="wrap-wide">
-    <div class="grid">
+    <div class="grid{% if s.items.length == 4 %} grid-four{% endif %}">
       {% for c in s.items %}
       {% set typography = c.typography or s.typography %}
       <div class="card" {% include "text-layout.njk" %}>
+        {% if c.step %}<div class="card-step">{{ c.step | escape }}</div>{% endif %}
         <h3>{{ c.title | br | safe }}</h3>
         <p>{{ c.body | br | safe }}</p>
       </div>
