@@ -1,7 +1,7 @@
 <section id="{{ s.id or 'contact' }}">
   <div class="wrap">
-    <h2>{{ s.heading }}</h2>
-    {% if s.lead %}<p>{{ s.lead }}</p>{% endif %}
+    <h2>{{ s.heading | br | safe }}</h2>
+    {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
     {% if s.form_enabled %}
     <form class="contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
       <input type="hidden" name="form-name" value="contact">
@@ -12,6 +12,6 @@
       <div><button class="btn btn-primary" type="submit">문의 보내기</button></div>
     </form>
     {% endif %}
-    {% if s.closing %}<p class="muted" style="margin-top: var(--space-6);">{{ s.closing }}</p>{% endif %}
+    {% if s.closing %}<p class="muted" style="margin-top: var(--space-6);">{{ s.closing | br | safe }}</p>{% endif %}
   </div>
 </section>
