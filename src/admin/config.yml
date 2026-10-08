@@ -53,6 +53,8 @@ collections:
               - { label: 이름, name: label, widget: string }
               - { label: 주소, name: url, widget: string }
           - { label: 저작권 문구, name: copyright, widget: string }
+          - { label: 링크 공유 이미지(카톡 미리보기), name: og_image, widget: image, required: false, choose_url: true, hint: '가로 1200 × 세로 630 PNG·JPG 권장. 비우면 기본 이미지(/assets/og.png)를 씁니다. 바꾼 뒤에는 카카오 공유 디버거에서 캐시를 지워야 카톡에 새 이미지가 보입니다.' }
+          - { label: 공유 이미지 설명(대체 텍스트), name: og_image_alt, widget: string, required: false }
 
       - name: navigation
         label: 메뉴

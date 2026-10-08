@@ -4,3 +4,4 @@ node_modules/
 _site/
 .claude/launch.json
 .netlify/
+scripts/og/fonts/
