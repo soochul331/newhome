@@ -1,4 +1,4 @@
-<section id="{{ s.id or 'posts' }}">
+<section class="tone-{{ s._tone or 'light' }}" id="{{ s.id or 'posts' }}">
   <div class="wrap">
     <h2>{{ s.heading }}</h2>
     {% set shown = collections.posts.slice(0, s.count or 3) %}

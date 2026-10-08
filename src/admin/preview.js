@@ -4,6 +4,16 @@
     if (!r.ok) throw new Error('미리보기 자료를 불러오지 못했습니다.');
     return r.json();
   });
+  const DEFAULT_TONE = { hero: 'light', question: 'dark', evidence: 'dark' };
+  function assignTones(sections) { // scripts/tones.js 와 같은 규칙
+    let lastLight = 'parchment';
+    return (sections || []).map(s => {
+      let tone = s.tone && s.tone !== 'auto' ? s.tone : DEFAULT_TONE[s.type];
+      if (!tone) tone = lastLight === 'light' ? 'parchment' : 'light';
+      if (tone !== 'dark') lastLight = tone;
+      return { ...s, _tone: tone };
+    });
+  }
   const markdown = window.markdownit({ html: false, linkify: true });
   function environment(templates) {
     const Loader = nunjucks.Loader.extend({ getSource(name) {
@@ -40,7 +50,7 @@
             context.page.url = value.permalink || '/preview/';
             content = env.render(name === 'pages' ? 'page.njk' : 'post.njk', context);
           } else {
-            content = (context.home.sections || []).filter(s => s.enabled !== false).map(s => {
+            content = assignTones((context.home.sections || []).filter(s => s.enabled !== false)).map(s => {
               if (s.type === 'richtext') s.body = markdown.render(s.body || '');
               return env.render('sections/' + s.type + '.njk', { ...context, s });
             }).join('');

@@ -1,4 +1,4 @@
-<section class="hero" id="{{ s.id or 'hero' }}">
+<section class="hero tone-{{ s._tone or 'light' }}" id="{{ s.id or 'hero' }}">
   <div class="wrap">
     {% if s.label %}<p class="label">{{ s.label }}</p>{% endif %}
     <h1>{{ s.title }}</h1>

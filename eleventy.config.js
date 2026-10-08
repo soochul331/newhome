@@ -1,4 +1,5 @@
 import yaml from "js-yaml";
+import { assignTones } from "./scripts/tones.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
@@ -17,6 +18,7 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("isoDate", (d) => toDate(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("visible", (items) => (items || []).filter((i) => i.visible !== false));
+  eleventyConfig.addFilter("toned", (items) => assignTones(items));
   eleventyConfig.addFilter("enabled", (items) => (items || []).filter((i) => i.enabled !== false));
 
   eleventyConfig.addCollection("posts", (api) =>
