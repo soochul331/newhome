@@ -6,6 +6,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addWatchTarget("src/assets");
+  eleventyConfig.addPassthroughCopy({ "node_modules/nunjucks/browser/nunjucks.min.js": "admin/vendor/nunjucks.min.js" });
+  eleventyConfig.addPassthroughCopy({ "node_modules/markdown-it/dist/markdown-it.min.js": "admin/vendor/markdown-it.min.js" });
   eleventyConfig.ignores.add("src/admin/**");
 
   const toDate = (d) => (d instanceof Date ? d : new Date(d));
