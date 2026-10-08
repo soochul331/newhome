@@ -30,13 +30,13 @@ collections:
     label: 사이트 설정
     description: 사이트 이름·바이라인·메타 정보·링크. 색과 글꼴은 여기서 바꿀 수 없습니다(디자인 일관성 보호).
     editor:
-      preview: false
+      preview: true
     files:
       - name: site
         label: 기본 정보
         file: src/_data/site.yml
         fields:
-          - { label: 사이트 이름(이름 표기), name: name, widget: string, hint: '항상 "알부남 신목사"로 씁니다.' }
+          - { label: 사이트 이름(이름 표기), name: name, widget: string, hint: '홈페이지 상단에 표시할 이름을 입력하세요.' }
           - { label: 바이라인(푸터 첫 줄), name: byline, widget: string }
           - { label: 브라우저 탭 제목, name: title_tag, widget: string, hint: '30자 안팎, 키워드 하나 포함' }
           - { label: 메타 설명(검색 결과 요약), name: description, widget: text, hint: '80~110자' }
