@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.title_tag }}{% endif %}</title>
-  <meta name="description" content="{{ description or site.description }}">
-  <meta name="author" content="{{ site.name }}">
+  <title>{% if title %}{{ title | oneline }} · {{ site.name | oneline }}{% else %}{{ site.title_tag | oneline }}{% endif %}</title>
+  <meta name="description" content="{{ (description or site.description) | oneline }}">
+  <meta name="author" content="{{ site.name | oneline }}">
   {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
-  <meta property="og:title" content="{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.title_tag }}{% endif %}">
-  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:title" content="{% if title %}{{ title | oneline }} · {{ site.name | oneline }}{% else %}{{ site.title_tag | oneline }}{% endif %}">
+  <meta property="og:description" content="{{ (description or site.description) | oneline }}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
-  <meta property="og:site_name" content="{{ site.title_tag }}">
+  <meta property="og:site_name" content="{{ site.title_tag | oneline }}">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   {%- set ogimg = og_image or site.og_image or '/assets/og.png' %}
   <meta property="og:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}{% else %}{{ site.url }}{{ ogimg }}{% endif %}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ site.og_image_alt or site.title_tag }}">
+  <meta property="og:image:alt" content="{{ (site.og_image_alt or site.title_tag) | oneline }}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,11 +30,11 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": {{ site.name | dump | safe }},
-    "jobTitle": {{ site.job_title | dump | safe }},
-    "description": {{ site.description | dump | safe }},
-    "worksFor": { "@type": "Organization", "name": {{ site.organization | dump | safe }}, "url": {{ site.links[0].url | dump | safe }} },
-    "alumniOf": { "@type": "EducationalOrganization", "name": {{ site.alumni | dump | safe }} },
+    "name": {{ site.name | oneline | dump | safe }},
+    "jobTitle": {{ site.job_title | oneline | dump | safe }},
+    "description": {{ site.description | oneline | dump | safe }},
+    "worksFor": { "@type": "Organization", "name": {{ site.organization | oneline | dump | safe }}, "url": {{ site.links[0].url | dump | safe }} },
+    "alumniOf": { "@type": "EducationalOrganization", "name": {{ site.alumni | oneline | dump | safe }} },
     "sameAs": [{% for l in site.links %}{{ l.url | dump | safe }}{% if not loop.last %}, {% endif %}{% endfor %}],
     "knowsAbout": [{% for k in site.keywords %}{{ k | dump | safe }}{% if not loop.last %}, {% endif %}{% endfor %}]
   }
@@ -48,7 +48,7 @@
       {%- set faqs = [] -%}
       {%- for s in home.sections | enabled %}{% if s.faq and s.heading and s.lead %}{% set faqs = (faqs.push(s), faqs) %}{% endif %}{% endfor -%}
       {%- for s in faqs %}
-      { "@type": "Question", "name": {{ s.heading | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ s.lead | dump | safe }} } }{% if not loop.last %},{% endif %}
+      { "@type": "Question", "name": {{ s.heading | oneline | dump | safe }}, "acceptedAnswer": { "@type": "Answer", "text": {{ s.lead | oneline | dump | safe }} } }{% if not loop.last %},{% endif %}
       {%- endfor %}
     ]
   }
@@ -60,9 +60,9 @@
 
 <header class="site">
   <div class="wrap-wide">
-    <a class="brand" href="/">{{ site.name }}</a>
+    <a class="brand" href="/">{{ site.name | br | safe }}</a>
     <nav aria-label="페이지 안내">
-      {% for item in navigation.items | visible %}<a href="{{ item.url }}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label }}</a>{% endfor %}
+      {% for item in navigation.items | visible %}<a href="{{ item.url }}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endfor %}
     </nav>
   </div>
 </header>
@@ -73,9 +73,9 @@
 
 <footer class="site">
   <div class="wrap">
-    <p>{{ site.byline }}</p>
-    <p>{% for l in site.links %}<a href="{{ l.url }}" rel="noopener">{{ l.label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
-    <p>{{ site.copyright }}</p>
+    <p>{{ site.byline | br | safe }}</p>
+    <p>{% for l in site.links %}<a href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    <p>{{ site.copyright | br | safe }}</p>
   </div>
 </footer>
 

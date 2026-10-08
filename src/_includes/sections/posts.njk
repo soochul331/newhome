@@ -1,18 +1,18 @@
 <section class="tone-{{ s._tone or 'light' }}" id="{{ s.id or 'posts' }}">
   <div class="wrap">
-    <h2>{{ s.heading }}</h2>
+    <h2>{{ s.heading | br | safe }}</h2>
     {% set shown = collections.posts.slice(0, s.count or 3) %}
-    {% if s.lead %}<p>{{ s.lead }}{% if shown.length %} 최근 글 {{ shown.length }}편입니다.{% endif %}</p>{% endif %}
+    {% if s.lead %}<p>{{ s.lead | br | safe }}{% if shown.length %} 최근 글 {{ shown.length }}편입니다.{% endif %}</p>{% endif %}
     {% if shown.length %}
     <ul class="posts">
       {% for p in shown %}
       <li>
-        {% if p.data.external_url %}<a href="{{ p.data.external_url }}" rel="noopener">{{ p.data.title }}</a>{% else %}<a href="{{ p.url }}">{{ p.data.title }}</a>{% endif %}
+        {% if p.data.external_url %}<a href="{{ p.data.external_url }}" rel="noopener">{{ p.data.title | br | safe }}</a>{% else %}<a href="{{ p.url }}">{{ p.data.title | br | safe }}</a>{% endif %}
         <time class="label" datetime="{{ p.date | isoDate }}">{{ p.date | dateKo }}</time>
       </li>
       {% endfor %}
     </ul>
     {% endif %}
-    {% if s.more_label %}<p style="margin-top: var(--space-5);"><a class="btn btn-secondary" href="{{ s.more_url }}" rel="noopener">{{ s.more_label }}</a></p>{% endif %}
+    {% if s.more_label %}<p style="margin-top: var(--space-5);"><a class="btn btn-secondary" href="{{ s.more_url }}" rel="noopener">{{ s.more_label | br | safe }}</a></p>{% endif %}
   </div>
 </section>

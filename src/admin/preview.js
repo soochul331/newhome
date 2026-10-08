@@ -21,6 +21,9 @@
       return { src: templates[name], path: name, noCache: true };
     }});
     const env = new nunjucks.Environment(new Loader(), { autoescape: true });
+    const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    env.addFilter('br', v => esc(String(v == null ? '' : v).replace(/\r\n?/g, '\n').trim()).replace(/\n/g, '<br>'));
+    env.addFilter('oneline', v => String(v == null ? '' : v).replace(/\s*[\r\n]+\s*/g, ' ').trim());
     env.addFilter('enabled', a => (a || []).filter(x => x.enabled !== false));
     env.addFilter('visible', a => (a || []).filter(x => x.visible !== false));
     env.addFilter('isoDate', d => new Date(d).toISOString().slice(0, 10));

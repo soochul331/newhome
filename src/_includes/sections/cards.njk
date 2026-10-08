@@ -1,15 +1,15 @@
 <section class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap">
-    <h2>{{ s.heading }}</h2>
-    {% if s.lead %}<p>{{ s.lead }}</p>{% endif %}
+    <h2>{{ s.heading | br | safe }}</h2>
+    {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
   </div>
   {% if s.items and s.items.length %}
   <div class="wrap-wide">
     <div class="grid">
       {% for c in s.items %}
       <div class="card">
-        <h3>{{ c.title }}</h3>
-        <p>{{ c.body }}</p>
+        <h3>{{ c.title | br | safe }}</h3>
+        <p>{{ c.body | br | safe }}</p>
       </div>
       {% endfor %}
     </div>

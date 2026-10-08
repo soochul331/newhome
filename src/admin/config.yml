@@ -36,26 +36,26 @@ collections:
         label: 기본 정보
         file: src/_data/site.yml
         fields:
-          - { label: 사이트 이름(이름 표기), name: name, widget: string, hint: '홈페이지 상단에 표시할 이름을 입력하세요.' }
-          - { label: 바이라인(푸터 첫 줄), name: byline, widget: string }
-          - { label: 브라우저 탭 제목, name: title_tag, widget: string, hint: '30자 안팎, 키워드 하나 포함' }
+          - { label: 사이트 이름(이름 표기), name: name, widget: text, hint: '홈페이지 상단에 표시할 이름을 입력하세요.' }
+          - { label: 바이라인(푸터 첫 줄), name: byline, widget: text }
+          - { label: 브라우저 탭 제목, name: title_tag, widget: text, hint: '30자 안팎, 키워드 하나 포함' }
           - { label: 메타 설명(검색 결과 요약), name: description, widget: text, hint: '80~110자' }
           - { label: 사이트 주소, name: url, widget: string }
-          - { label: 직함(구조화 데이터용), name: job_title, widget: string }
-          - { label: 소속 기관, name: organization, widget: string }
-          - { label: 출신 학교, name: alumni, widget: string }
+          - { label: 직함(구조화 데이터용), name: job_title, widget: text }
+          - { label: 소속 기관, name: organization, widget: text }
+          - { label: 출신 학교, name: alumni, widget: text }
           - { label: 키워드 3개, name: keywords, widget: list, field: { label: 키워드, name: keyword, widget: string } }
           - label: 링크(푸터·소개)
             name: links
             widget: list
             summary: '{{fields.label}}'
             fields:
-              - { label: 이름, name: label, widget: string }
+              - { label: 이름, name: label, widget: text }
               - { label: 주소, name: url, widget: string }
-          - { label: 저작권 문구, name: copyright, widget: string }
+          - { label: 저작권 문구, name: copyright, widget: text }
           - { label: 화면 테마, name: theme, widget: select, default: classic, required: false, options: [ { label: '기본(브랜드 디자인)', value: classic }, { label: '애플 스타일', value: apple } ], hint: '애플 스타일: 넓은 구획이 밝음·어두움으로 번갈아 나오고, 알약 모양 버튼을 씁니다. 색은 브랜드 3색 그대로입니다.' }
           - { label: 링크 공유 이미지(카톡 미리보기), name: og_image, widget: image, required: false, choose_url: true, hint: '가로 1200 × 세로 630 PNG·JPG 권장. 비우면 기본 이미지(/assets/og.png)를 씁니다. 바꾼 뒤에는 카카오 공유 디버거에서 캐시를 지워야 카톡에 새 이미지가 보입니다.' }
-          - { label: 공유 이미지 설명(대체 텍스트), name: og_image_alt, widget: string, required: false }
+          - { label: 공유 이미지 설명(대체 텍스트), name: og_image_alt, widget: text, required: false }
 
       - name: navigation
         label: 메뉴
@@ -66,7 +66,7 @@ collections:
             widget: list
             summary: '{{fields.label}} → {{fields.url}}'
             fields:
-              - { label: 이름, name: label, widget: string }
+              - { label: 이름, name: label, widget: text }
               - { label: 링크, name: url, widget: string, hint: '홈 섹션은 /#together 처럼, 페이지는 /lecture/ 처럼, 외부는 https://… 로 씁니다.' }
               - { label: 표시, name: visible, widget: boolean, default: true }
               - { label: 모바일에서 숨김, name: hide_on_mobile, widget: boolean, default: false, required: false }
@@ -86,22 +86,22 @@ collections:
                   - { label: 앵커 id, name: id, widget: string, default: top }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 작은 라벨, name: label, widget: string, required: false }
-                  - { label: 큰 제목(H1), name: title, widget: string, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트' }
+                  - { label: 작은 라벨, name: label, widget: text, required: false }
+                  - { label: 큰 제목(H1), name: title, widget: text, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트' }
                   - { label: 부제, name: lead, widget: text, required: false }
                   - label: 주 버튼(강조색, 한 화면에 하나)
                     name: primary
                     widget: object
                     required: false
                     fields:
-                      - { label: 글자, name: label, widget: string, required: false, hint: '동사로 끝나는 존댓말. 느낌표 금지' }
+                      - { label: 글자, name: label, widget: text, required: false, hint: '동사로 끝나는 존댓말. 느낌표 금지' }
                       - { label: 링크, name: url, widget: string, required: false }
                   - label: 보조 버튼
                     name: secondary
                     widget: object
                     required: false
                     fields:
-                      - { label: 글자, name: label, widget: string, required: false }
+                      - { label: 글자, name: label, widget: text, required: false }
                       - { label: 링크, name: url, widget: string, required: false }
               - label: 나만의 질문
                 name: question
@@ -109,8 +109,8 @@ collections:
                   - { label: 앵커 id, name: id, widget: string, default: question }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 질문 한 줄, name: quote, widget: string }
-                  - { label: 덧붙이는 말, name: note, widget: string, required: false }
+                  - { label: 질문 한 줄, name: quote, widget: text }
+                  - { label: 덧붙이는 말, name: note, widget: text, required: false }
               - label: 카드 묶음(질문형 제목 + 카드 최대 3개)
                 name: cards
                 fields:
@@ -118,7 +118,7 @@ collections:
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
-                  - { label: 소제목(질문형), name: heading, widget: string, hint: '예: 무엇을 함께 하나요?' }
+                  - { label: 소제목(질문형), name: heading, widget: text, hint: '예: 무엇을 함께 하나요?' }
                   - { label: 첫 문장 직답, name: lead, widget: text, hint: '첫 문장이 바로 답이어야 합니다.' }
                   - label: 카드
                     name: items
@@ -126,7 +126,7 @@ collections:
                     max: 3
                     summary: '{{fields.title}}'
                     fields:
-                      - { label: 카드 제목, name: title, widget: string }
+                      - { label: 카드 제목, name: title, widget: text }
                       - { label: 카드 본문(두세 줄), name: body, widget: text }
               - label: 소개·증거
                 name: evidence
@@ -135,14 +135,14 @@ collections:
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
                   - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
-                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 소제목(질문형), name: heading, widget: text }
                   - { label: 첫 문장 직답, name: lead, widget: text }
                   - label: 증거 항목
                     name: items
                     widget: list
                     summary: '{{fields.kind}}'
                     fields:
-                      - { label: 구분(경험·결과물·공인·기록), name: kind, widget: string }
+                      - { label: 구분(경험·결과물·공인·기록), name: kind, widget: text }
                       - { label: 내용(사실만), name: body, widget: text, hint: '증거표에 없는 경력·수치·수상은 쓰지 않습니다.' }
                       - { label: 링크 글자(본문 안의 단어와 같아야 함), name: link_label, widget: string, required: false }
                       - { label: 링크 주소, name: link_url, widget: string, required: false }
@@ -152,10 +152,10 @@ collections:
                   - { label: 앵커 id, name: id, widget: string, default: posts }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 소제목(질문형), name: heading, widget: text }
                   - { label: 첫 문장 직답, name: lead, widget: text, required: false }
                   - { label: 보여줄 글 수, name: count, widget: number, default: 3, value_type: int, min: 1, max: 10 }
-                  - { label: 더 보기 버튼 글자, name: more_label, widget: string, required: false }
+                  - { label: 더 보기 버튼 글자, name: more_label, widget: text, required: false }
                   - { label: 더 보기 링크, name: more_url, widget: string, required: false }
               - label: 문의
                 name: contact
@@ -163,17 +163,17 @@ collections:
                   - { label: 앵커 id, name: id, widget: string, default: contact }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: string }
+                  - { label: 소제목(질문형), name: heading, widget: text }
                   - { label: 첫 문장 직답, name: lead, widget: text, required: false }
                   - { label: 문의 양식 표시, name: form_enabled, widget: boolean, default: true }
-                  - { label: 마무리 말, name: closing, widget: string, default: 끝까지 읽어 주셔서 감사합니다. }
+                  - { label: 마무리 말, name: closing, widget: text, default: 끝까지 읽어 주셔서 감사합니다. }
               - label: 자유 글 섹션
                 name: richtext
                 fields:
                   - { label: 앵커 id, name: id, widget: string }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: string, required: false }
+                  - { label: 소제목(질문형), name: heading, widget: text, required: false }
                   - { label: 본문, name: body, widget: markdown }
 
   # ───────── 페이지 ─────────
@@ -189,7 +189,7 @@ collections:
     slug: '{{slug}}'
     summary: '{{title}} ({{permalink}})'
     fields:
-      - { label: 제목, name: title, widget: string }
+      - { label: 제목, name: title, widget: text }
       - { label: 주소(permalink), name: permalink, widget: string, hint: '영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/', pattern: ['^/[a-z0-9-]+/$', '형식: /영문소문자-하이픈/ 예) /lecture/'] }
       - { label: 메타 설명, name: description, widget: text, hint: '80~110자' }
       - { label: 본문, name: body, widget: markdown }
@@ -208,8 +208,8 @@ collections:
     summary: '{{date}} · {{title}}'
     sortable_fields: [date, title]
     fields:
-      - { label: 제목, name: title, widget: string }
+      - { label: 제목, name: title, widget: text }
       - { label: 날짜, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
       - { label: 외부 링크(네이버 블로그 글 주소), name: external_url, widget: string, required: false, hint: '있으면 제목을 누를 때 이 주소로 갑니다. 없으면 아래 본문으로 페이지가 만들어집니다.' }
-      - { label: 요약 한 줄, name: summary, widget: string, required: false }
+      - { label: 요약 한 줄, name: summary, widget: text, required: false }
       - { label: 본문(직접 쓰는 글일 때), name: body, widget: markdown, required: false }

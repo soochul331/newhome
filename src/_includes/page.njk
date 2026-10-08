@@ -3,8 +3,8 @@ layout: base.njk
 ---
 <section class="hero tone-parchment">
   <div class="wrap">
-    <h1>{{ title }}</h1>
-    {% if description %}<p class="lead">{{ description }}</p>{% endif %}
+    <h1>{{ title | br | safe }}</h1>
+    {% if description %}<p class="lead">{{ description | br | safe }}</p>{% endif %}
   </div>
 </section>
 <section class="tone-light">

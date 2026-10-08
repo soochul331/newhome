@@ -1,12 +1,12 @@
 <section class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap">
-    <h2>{{ s.heading }}</h2>
-    {% if s.lead %}<p>{{ s.lead }}</p>{% endif %}
+    <h2>{{ s.heading | br | safe }}</h2>
+    {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
     <dl class="evidence">
       {% for e in s.items %}
       <div>
-        <dt>{{ e.kind }}</dt>
-        <dd>{% if e.link_url and e.link_label %}{{ e.body | replace(e.link_label, '<a href="' ~ e.link_url ~ '" rel="noopener">' ~ e.link_label ~ '</a>') | safe }}{% else %}{{ e.body }}{% endif %}</dd>
+        <dt>{{ e.kind | br | safe }}</dt>
+        <dd>{% if e.link_url and e.link_label %}{{ e.body | br | replace(e.link_label, '<a href="' ~ e.link_url ~ '" rel="noopener">' ~ e.link_label ~ '</a>') | safe }}{% else %}{{ e.body | br | safe }}{% endif %}</dd>
       </div>
       {% endfor %}
     </dl>
