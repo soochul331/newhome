@@ -5,13 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>관리자 · 신수철 목사 (Church AI Lab 디렉터)</title>
+  <link rel="stylesheet" href="/admin/workspace.css">
+  <script src="/admin/workspace.js" defer></script>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script src="/admin/vendor/nunjucks.min.js"></script>
-  <script src="/admin/vendor/markdown-it.min.js"></script>
-  <script src="/assets/text-layout.js"></script>
-  <script src="/admin/text-scale.js"></script>
-  <script src="/admin/preview.js"></script>
+  <aside class="sidebar" aria-label="관리자 메뉴">
+    <div class="brand">Church AI Lab<span>홈페이지 관리자</span></div>
+    <button id="menu-toggle" aria-expanded="true" aria-controls="workspace-menu">메뉴 접기</button>
+    <div id="workspace-menu">
+      <nav id="navigation" aria-label="편집할 항목"><p>메뉴를 불러오는 중입니다.</p></nav>
+      <a class="site-link" href="/" target="_blank" rel="noopener">홈페이지 보기 ↗</a>
+      <p class="help">항목을 선택하면 오른쪽에서 편집합니다.<br>게시 버튼 한 번으로 저장·발행합니다.<br>반영까지 잠시 걸릴 수 있습니다.</p>
+    </div>
+  </aside>
+  <main class="workspace" aria-label="편집 작업 공간">
+    <iframe id="editor" title="홈페이지 콘텐츠 편집기"></iframe>
+  </main>
+  <noscript>관리자를 사용하려면 자바스크립트를 켜 주세요.</noscript>
 </body>
 </html>

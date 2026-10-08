@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #202634; }
+body { display: flex; background: #fff; }
+.sidebar { width: 220px; flex-shrink: 0; background: #f5f6f8; border-right: 1px solid #dfe3e9; padding: 28px 16px; overflow-y: auto; }
+.brand { font-size: 18px; font-weight: 700; padding: 0 12px 24px; }
+.brand span { display: block; font-size: 12px; font-weight: 400; color: #606a79; margin-top: 8px; }
+nav h2 { font-size: 11px; color: #667080; margin: 24px 12px 8px; }
+nav a, .site-link { display: block; padding: 11px 12px; margin: 3px 0; border-radius: 8px; color: #374151; text-decoration: none; font-size: 14px; }
+nav a:hover, .site-link:hover { background: #e7eaf0; }
+nav a[aria-current="page"] { color: #213ed3; background: #e5eaff; font-weight: 700; }
+a:focus-visible, button:focus-visible { outline: 3px solid #2947df; outline-offset: 2px; }
+.site-link { margin-top: 28px; border-top: 1px solid #dfe3e9; border-radius: 0; padding-top: 20px; }
+.help { font-size: 12px; line-height: 1.8; color: #697386; padding: 0 12px; }
+.workspace { flex: 1; min-width: 0; height: 100%; }
+iframe { width: 100%; height: 100%; border: 0; display: block; }
+#menu-toggle { display: none; }
+#workspace-menu[hidden] { display: none; }
+@media (max-width: 760px) {
+  body { flex-direction: column; }
+  .sidebar { width: 100%; padding: 10px 16px; border-right: 0; border-bottom: 1px solid #dfe3e9; max-height: 42vh; }
+  .brand { display: inline-block; padding: 0; font-size: 14px; }
+  .brand span { display: none; }
+  #menu-toggle { display: block; float: right; border: 1px solid #cbd2dd; background: white; border-radius: 6px; padding: 6px 10px; }
+  nav { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+  nav h2 { width: 100%; margin: 10px 4px 0; }
+  nav a { padding: 7px 10px; margin: 0; }
+  .site-link { margin: 6px 0 0; padding: 8px 4px; }
+  .help { display: none; }
+  .workspace { flex: 1; min-height: 0; }
+}

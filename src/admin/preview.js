@@ -69,7 +69,7 @@
           html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
             .replace('<head>', '<head><base href="' + location.origin + '/"><style>a,button,input,textarea{pointer-events:none}html{scroll-behavior:auto}</style>');
           return h('div', {},
-            h('p', { style: { margin:0, padding:'10px', background:'#eaf0ff', fontSize:'13px' } }, '실시간 미리보기 · 입력 즉시 반영 · 공개하려면 저장 후 게시하세요'),
+            h('p', { style: { margin:0, padding:'10px', background:'#eaf0ff', fontSize:'13px' } }, '실시간 미리보기 · 입력 즉시 반영 · 게시 버튼 한 번으로 저장·발행 · 배포 후 홈페이지에 반영됩니다'),
             h('div', { style:{ padding:'8px', display:'flex', gap:'10px' } },
               h('button', { type:'button', onClick:() => this.setState({ viewport:'desktop' }), 'aria-pressed':this.state.viewport === 'desktop' }, 'PC'),
               h('button', { type:'button', onClick:() => this.setState({ viewport:'mobile' }), 'aria-pressed':this.state.viewport === 'mobile' }, '휴대폰 (375px)')),

@@ -14,8 +14,8 @@ backend:
 # 로컬 테스트용(localhost에서 decap-server가 떠 있을 때만 작동)
 local_backend: true
 
-# 저장 = 초안, 발행 눌러야 공개
-publish_mode: editorial_workflow
+# 한 번 저장하면 main에 반영되어 홈페이지 배포가 시작됩니다.
+publish_mode: simple
 
 locale: ko
 site_url: https://newhome-shin.netlify.app
