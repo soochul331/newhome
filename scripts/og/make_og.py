@@ -3,7 +3,8 @@
 사용:
   python3 scripts/og/make_og.py                       # src/assets/og.png 생성
   python3 scripts/og/make_og.py --name "신수철 목사" --out /tmp/og-alt.png
-디자인: DESIGN.md 3색(배경 #F6F7FB · 글자 #141B34 · 강조 #2747D6), 제목 Black Han Sans · 본문 Noto Sans KR.
+디자인: DESIGN.md 3색(배경 #F6F7FB · 글자 #141B34 · 강조 #2747D6).
+제목 글꼴: --style apple(기본, 현재 공개 테마) = Noto Sans KR 700·촘촘한 자간 / --style classic = Black Han Sans.
 강조색은 '성장 — 천천히 그러나 꾸준히'를 뜻하는 오르는 막대 하나에만 쓴다.
 """
 import argparse, os, urllib.request
@@ -33,17 +34,27 @@ def noto(px, weight):
     except Exception: pass
     return f
 
-def render(out, label, lines, name, role, url, S=2):
+def draw_tracked(d, xy, text, font, fill, tracking):
+    """자간(tracking, px)을 적용해 왼쪽 정렬·세로 가운데(lm)로 그린다."""
+    x, y = xy
+    for ch in text:
+        d.text((x, y), ch, font=font, fill=fill, anchor="lm")
+        x += font.getlength(ch) + tracking
+
+def render(out, label, lines, name, role, url, style="apple", S=2):
     W, H = 1200 * S, 630 * S
     im = Image.new("RGB", (W, H), BG); d = ImageDraw.Draw(im)
     X, R = 80 * S, 1120 * S
     # 라벨
     d.text((X, (72 + 14) * S), label, font=noto(28 * S, 500), fill=MUTED, anchor="lm")
     # 제목(나만의 질문)
-    h1 = ImageFont.truetype(os.path.join(FONTS, "BlackHanSans-Regular.ttf"), 76 * S)
-    lh, top = 90, 140
+    if style == "classic":
+        h1, track, lh = ImageFont.truetype(os.path.join(FONTS, "BlackHanSans-Regular.ttf"), 76 * S), 0, 90
+    else:  # apple: 굵은 고딕 + 음수 자간(-0.03em)
+        h1, track, lh = noto(70 * S, 700), -0.03 * 70 * S, 88
+    top = 140
     for i, ln in enumerate(lines):
-        d.text((X, (top + lh * i + lh / 2) * S), ln, font=h1, fill=TEXT, anchor="lm")
+        draw_tracked(d, (X, (top + lh * i + lh / 2) * S), ln, h1, TEXT, track)
     # 성장 막대 — 유일한 강조 요소
     bw, gap, btop, bh = 30, 14, 150, 230
     x0 = 1120 - (5 * bw + 4 * gap)
@@ -66,11 +77,12 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(HERE, "..", "..", "src", "assets", "og.png"))
     ap.add_argument("--label", default="Church AI Lab · 교회AI 컨설턴트")
-    ap.add_argument("--lines", default="AI는 교회를|더 사람답게|만들 수 있는가?")
+    ap.add_argument("--lines", default="AI 시대, 교회는|무엇을 맡기고|무엇을 지켜야 할까요?")
+    ap.add_argument("--style", default="apple", choices=["apple", "classic"])
     ap.add_argument("--name", default="신수철 목사")
     ap.add_argument("--role", default="늘푸른진건교회 교육목사 · Church AI Lab 디렉터")
     ap.add_argument("--url", default="newhome-shin.netlify.app")
     a = ap.parse_args()
     ensure_fonts()
-    p = render(a.out, a.label, a.lines.split("|"), a.name, a.role, a.url)
+    p = render(a.out, a.label, a.lines.split("|"), a.name, a.role, a.url, a.style)
     print(os.path.normpath(p), os.path.getsize(p) // 1024, "KB")
