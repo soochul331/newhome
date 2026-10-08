@@ -83,7 +83,7 @@ collections:
                   - { label: 앵커 id, name: id, widget: string, default: top }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - { label: 작은 라벨, name: label, widget: string, required: false }
-                  - { label: 큰 제목(H1), name: title, widget: string, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 코치' }
+                  - { label: 큰 제목(H1), name: title, widget: string, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트' }
                   - { label: 부제, name: lead, widget: text, required: false }
                   - label: 주 버튼(강조색, 한 화면에 하나)
                     name: primary
