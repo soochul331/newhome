@@ -1,4 +1,5 @@
 import yaml from "js-yaml";
+import { assignTones } from "./scripts/tones.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
@@ -17,6 +18,7 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("isoDate", (d) => toDate(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("visible", (items) => (items || []).filter((i) => i.visible !== false));
+  eleventyConfig.addFilter("toned", (items) => assignTones(items));
   // 관리자에서 Enter로 넣은 줄바꿈을 화면에 그대로 보이게(<br>), 메타 태그는 한 줄로
   const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   eleventyConfig.addFilter("br", (v) => esc(String(v ?? "").replace(/\r\n?/g, "\n").trim()).replace(/\n/g, "<br>"));

@@ -1,4 +1,4 @@
-<section id="{{ s.id }}">
+<section class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap prose">
     {% if s.heading %}<h2>{{ s.heading | br | safe }}</h2>{% endif %}
     {{ s.body | safe }}
