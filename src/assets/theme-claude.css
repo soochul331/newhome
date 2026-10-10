@@ -1,0 +1,97 @@
+/* Claude reference: claude/DESIGN.md. Korean serif substitutes licensed display fonts. */
+.theme-claude {
+  --canvas:#faf9f5; --parchment:#f5f0e8; --ink:#141413; --ink-80:#3d3d3a;
+  --ink-muted:#6c6a64; --hairline:#e6dfd8; --accent:#a9583e; --accent-press:#934a33;
+  --accent-focus:#a9583e; --tile-dark:#181715; --on-dark:#faf9f5; --on-dark-muted:#ccc7bd;
+  --font-display:'Noto Serif KR', 'Batang', Georgia, serif;
+  --font-text:'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  font:400 17px/1.8 var(--font-text); letter-spacing:-.015em;
+}
+.theme-claude .wrap { max-width:860px; padding:0 28px; }
+.theme-claude .wrap-wide { max-width:1240px; padding:0 40px; }
+.theme-claude header.site { position:relative; background:var(--canvas); backdrop-filter:none; -webkit-backdrop-filter:none; }
+.theme-claude header.site .wrap-wide { height:80px; }
+.theme-claude .brand { color:var(--ink); font-family:Georgia,'Noto Serif KR',serif; font-size:25px; font-weight:400; letter-spacing:-.04em; }
+.theme-claude nav { gap:28px; }
+.theme-claude nav a { color:var(--ink-80); font:500 14px/1.5 var(--font-text); }
+.theme-claude nav a:last-child { padding:9px 17px; background:#efe9de; border-radius:8px; margin-top:-9px; margin-bottom:-9px; }
+.theme-claude .preview-notice { max-width:1160px; margin:0 auto; padding:12px 0; border-top:1px solid var(--hairline); display:flex; justify-content:space-between; font-size:12px; color:var(--ink-muted); }
+.theme-claude .preview-notice div { display:flex; gap:20px; }
+.theme-claude .preview-notice a { color:var(--ink-muted); text-decoration:underline; text-underline-offset:4px; }
+.theme-claude h1, .theme-claude h2, .theme-claude .question blockquote { font-family:var(--font-display); font-weight:400; letter-spacing:-.035em; }
+.theme-claude h1 { font-size:clamp(32px,3.1vw,44px); line-height:1.65; }
+.theme-claude h2 { font-size:clamp(28px,3vw,40px); line-height:1.5; }
+.theme-claude h3 { font:500 22px/1.55 var(--font-text); letter-spacing:-.025em; }
+.theme-claude main > section { padding:96px 0; }
+.theme-claude .claude-hero { padding:72px 0 104px !important; text-align:left; }
+.theme-claude .hero-layout { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.85fr); gap:72px; align-items:center; }
+.theme-claude .hero-copy { min-width:0; }
+.theme-claude .hero-eyebrow { color:var(--ink-muted); font-size:13px; margin:0 0 24px; }
+.theme-claude .hero h1 { margin:0; }
+.theme-claude .hero h1 br { display:none; }
+.theme-claude .hero .lead { margin:28px 0 0; font:400 17px/1.9 var(--font-text); letter-spacing:-.015em; color:var(--ink-80); max-width:560px; }
+.theme-claude .hero .lead br { display:none; }
+.theme-claude .actions { justify-content:flex-start; gap:12px; margin-top:32px; }
+.theme-claude .btn { border-radius:8px; font:500 14px/1.3 var(--font-text); padding:13px 22px; min-height:46px; transition:background-color .2s; }
+.theme-claude .btn:active { transform:none; }
+.theme-claude .btn-primary { background:#a9583e; color:white; }
+.theme-claude .btn-primary:hover { background:#934a33; }
+.theme-claude .btn-secondary { background:var(--canvas); border:1px solid #d4ccc0; color:var(--ink); }
+.theme-claude .btn-secondary:hover { background:#efe9de; }
+.theme-claude .learning-journal { background:#efe9de; padding:32px; border-radius:16px; }
+.theme-claude .journal-top { display:flex; justify-content:space-between; color:var(--ink-muted); font-size:12px; }
+.theme-claude .journal-heading { font:400 29px/1.6 var(--font-display); letter-spacing:-.03em; margin:26px 0; }
+.theme-claude .learning-journal ol { list-style:none; padding:0; margin:0; }
+.theme-claude .learning-journal li { display:flex; gap:20px; align-items:baseline; padding:17px 0; border-top:1px solid #dcd3c5; }
+.theme-claude .journal-number { font:400 24px/1.2 Georgia,serif; color:#a9583e; }
+.theme-claude .journal-title { font-size:16px; font-weight:500; }
+.theme-claude .learning-journal li p { font-size:13px; color:#6c6a64; margin:4px 0 0; }
+.theme-claude .journal-note { color:#6c6a64; font-size:12px; margin:20px 0 0; }
+.theme-claude .question { background:#181715; text-align:left; border-radius:16px; max-width:1160px; margin:0 auto 48px; padding:72px 64px; }
+.theme-claude .question .wrap { max-width:none; padding:0; }
+.theme-claude .question blockquote { font-size:clamp(28px,3vw,40px); line-height:1.6; max-width:940px; margin:0; color:#faf9f5; }
+.theme-claude .question p { margin:28px 0 0; max-width:900px; font-size:17px; color:#ccc7bd; }
+.theme-claude main > section > .wrap > h2 + p { font-size:17px; line-height:1.9; margin-top:24px; color:var(--ink-muted); }
+.theme-claude #for-whom { background:var(--canvas); }
+.theme-claude .grid { gap:24px; margin-top:48px; }
+.theme-claude .card, .theme-claude .tone-light .card { background:#efe9de; border:0; border-radius:12px; padding:32px; }
+.theme-claude .card .card-step { color:#87432e; margin-bottom:20px; font-size:13px; font-weight:500; }
+.theme-claude .card p { color:#3d3d3a; font-size:17px; line-height:1.8; }
+.theme-claude .card h3 { margin-bottom:16px; }
+.theme-claude #together { background:#f5f0e8; }
+.theme-claude #together .card { background:var(--canvas); }
+.theme-claude #about { background:var(--canvas); color:var(--ink); }
+.theme-claude #about > .wrap > h2 + p { color:var(--ink-muted); }
+.theme-claude #about dl.evidence dt { color:#87432e; font-weight:500; }
+.theme-claude #about dl.evidence dd { color:var(--ink-80); }
+.theme-claude #about dl.evidence div { border-top-color:var(--hairline); }
+.theme-claude #about a { color:#87432e; }
+.theme-claude #posts { background:#f5f0e8; }
+.theme-claude ul.posts a { font-weight:500; font-size:19px; }
+.theme-claude ul.posts a::after { color:#a9583e; }
+.theme-claude #contact { background:var(--canvas); }
+.theme-claude form.contact { max-width:600px; margin:48px auto 0; }
+.theme-claude form.contact input, .theme-claude form.contact textarea { border:1px solid #d4ccc0; border-radius:8px; background:#f5f0e8; }
+.theme-claude footer.site { background:#181715; color:#b3aea4; border:0; padding:56px 0; font-size:13px; }
+.theme-claude footer.site p:first-child, .theme-claude footer.site a { color:#faf9f5; }
+@media (max-width: 1199px) { .theme-claude .preview-notice { margin:0 40px; } .theme-claude .question { margin:0 40px 32px; } .theme-claude .hero-layout { gap:40px; } }
+@media (max-width: 767px) {
+ .theme-claude header.site .wrap-wide { height:68px; padding:0 24px; }
+ .theme-claude .brand { font-size:22px; }
+ .theme-claude nav a:not(:last-child) { display:none; }
+ .theme-claude nav { gap:0; }
+ .theme-claude .preview-notice { margin:0 24px; font-size:11px; }
+ .theme-claude .preview-notice div { gap:14px; }
+ .theme-claude .wrap, .theme-claude .wrap-wide { padding:0 24px; }
+ .theme-claude main > section { padding:64px 0; }
+ .theme-claude .claude-hero { padding:48px 0 64px !important; }
+ .theme-claude .hero-layout { grid-template-columns:minmax(0,1fr); gap:40px; }
+ .theme-claude h1 { font-size:32px; line-height:1.65; }
+ .theme-claude .hero .lead { font-size:17px; }
+ .theme-claude .learning-journal { padding:28px; }
+ .theme-claude .question { margin:0 16px 0; padding:40px 24px; border-radius:12px; }
+ .theme-claude .question blockquote { font-size:28px; }
+ .theme-claude .grid, .theme-claude .grid.grid-four, .theme-claude dl.evidence { grid-template-columns:minmax(0,1fr); }
+ .theme-claude .card { padding:28px; }
+}
+@media(prefers-reduced-motion:reduce) { .theme-claude * { transition:none; scroll-behavior:auto; } }

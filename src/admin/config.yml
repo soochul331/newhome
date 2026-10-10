@@ -53,7 +53,18 @@ collections:
               - { label: 이름, name: label, widget: text }
               - { label: 주소, name: url, widget: string }
           - { label: 저작권 문구, name: copyright, widget: text }
-          - { label: 화면 테마, name: theme, widget: select, default: classic, required: false, options: [ { label: '기본(브랜드 디자인)', value: classic }, { label: '애플 스타일', value: apple } ], hint: '애플 스타일: 넓은 구획이 밝음·어두움으로 번갈아 나오고, 알약 모양 버튼을 씁니다. 색은 브랜드 3색 그대로입니다.' }
+          - label: 화면 테마
+            name: theme
+            widget: select
+            default: notion
+            required: false
+            options:
+              - { label: '기본(브랜드 디자인)', value: classic }
+              - { label: 'Apple 스타일', value: apple }
+              - { label: 'Tesla 스타일', value: tesla }
+              - { label: 'Claude 스타일', value: claude }
+              - { label: 'Notion 스타일', value: notion }
+            hint: '선택하면 오른쪽 미리보기에 반영됩니다. 게시 버튼으로 저장하면 홈페이지에 적용됩니다.'
           - { label: 링크 공유 이미지(카톡 미리보기), name: og_image, widget: image, required: false, choose_url: true, hint: '가로 1200 × 세로 630 PNG·JPG 권장. 비우면 기본 이미지(/assets/og.png)를 씁니다. 바꾼 뒤에는 카카오 공유 디버거에서 캐시를 지워야 카톡에 새 이미지가 보입니다.' }
           - { label: 공유 이미지 설명(대체 텍스트), name: og_image_alt, widget: text, required: false }
 

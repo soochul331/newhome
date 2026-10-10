@@ -1,0 +1,110 @@
+/* Reference: notion/DESIGN.md. Shared homepage content, local comparison route. */
+.theme-notion {
+ --canvas:#fff; --parchment:#f6f5f4; --ink:#191918; --ink-80:#31302e; --ink-muted:#615d59;
+ --hairline:#e6e6e6; --accent:#0075de; --accent-press:#005bab; --accent-focus:#0075de;
+ --font-display:'Inter','Noto Sans KR',system-ui,sans-serif; --font-text:var(--font-display);
+ background:#fff; font:400 17px/1.75 var(--font-text); letter-spacing:-.02em;
+}
+.theme-notion .wrap { max-width:960px; padding:0 28px; }
+.theme-notion .wrap-wide { max-width:1200px; padding:0 40px; }
+.theme-notion header.site { background:rgba(255,255,255,.96); border-bottom:1px solid #efefed; backdrop-filter:blur(10px); }
+.theme-notion header.site .wrap-wide { height:64px; max-width:none; padding:0 32px; }
+.theme-notion .brand { font:700 20px/1.3 var(--font-text); letter-spacing:-.055em; color:var(--ink); }
+.theme-notion nav { gap:24px; }
+.theme-notion nav a { color:#31302e; font:500 14px/1.3 var(--font-text); }
+.theme-notion .preview-notice { display:flex; justify-content:space-between; align-items:center; max-width:1120px; margin:0 auto; padding:14px 0; font-size:12px; color:var(--ink-muted); }
+.theme-notion .preview-notice div { display:flex; gap:20px; }
+.theme-notion .preview-notice a { color:var(--ink-muted); text-decoration:underline; text-underline-offset:3px; }
+.theme-notion h1 { font:700 clamp(32px,3.8vw,52px)/1.35 var(--font-display); letter-spacing:-.055em; }
+.theme-notion h2 { font:700 clamp(28px,3vw,40px)/1.35 var(--font-display); letter-spacing:-.045em; }
+.theme-notion h3 { font:600 22px/1.5 var(--font-display); letter-spacing:-.035em; }
+.theme-notion main > section { padding:88px 0; }
+.theme-notion .notion-hero { padding:64px 0 88px !important; background:white; text-align:center; }
+.theme-notion .notion-eyebrow { color:#615d59; font-size:13px; margin:0 0 24px; }
+.theme-notion .hero h1 { max-width:1010px; margin:0 auto; }
+.theme-notion .hero .lead { max-width:730px; margin:24px auto 0; font:400 18px/1.8 var(--font-text); color:#615d59; letter-spacing:-.02em; }
+.theme-notion .actions { margin-top:28px; gap:12px; }
+.theme-notion .btn { min-height:44px; border-radius:9999px; font:500 15px/1.4 var(--font-text); padding:11px 22px; gap:12px; letter-spacing:-.02em; }
+.theme-notion .btn-primary { background:#0075de; color:white; }
+.theme-notion .btn-primary:hover { background:#005bab; }
+.theme-notion .btn-secondary { border:1px solid #e6e6e6; background:white; color:#191918; box-shadow:0 2px 4px #00000008; }
+.theme-notion .notion-workspace { margin:56px auto 0; display:grid; grid-template-columns:210px minmax(0,1fr); border:1px solid #e6e6e6; border-radius:12px; overflow:hidden; text-align:left; background:white; box-shadow:0 4px 18px #00000005; }
+.theme-notion .notion-sidebar { background:#f6f5f4; padding:22px 16px; }
+.theme-notion .workspace-name { font-size:14px; font-weight:600; display:flex; align-items:center; gap:8px; margin:0 0 28px; }
+.theme-notion .workspace-icon { width:24px; height:24px; border:1px solid #31302e; border-radius:4px; display:grid; place-items:center; font:700 18px/1 Georgia,serif; background:white; color:black; }
+.theme-notion .workspace-caption { font-size:11px; color:#615d59; margin:0 8px 8px; }
+.theme-notion .notion-sidebar a { display:flex; align-items:center; gap:10px; color:#615d59; font-size:13px; padding:9px 10px; border-radius:5px; }
+.theme-notion .notion-sidebar .sidebar-current { background:#e9e7e4; color:#31302e; font-weight:500; }
+.theme-notion .notion-document { padding:22px 28px 28px; min-width:0; }
+.theme-notion .document-path { font-size:11px; color:#615d59; margin-bottom:26px; display:flex; gap:10px; }
+.theme-notion .document-title-row { display:flex; align-items:center; gap:14px; }
+.theme-notion .document-title-row h2 { font-size:25px; letter-spacing:-.04em; }
+.theme-notion .document-icon { font-size:26px; line-height:1; color:#31302e; }
+.theme-notion .document-intro { font-size:13px; margin:12px 0 22px; color:#615d59; }
+.theme-notion .document-tabs { display:flex; justify-content:space-between; align-items:center; font-size:12px; border-bottom:1px solid #e6e6e6; margin-bottom:16px; padding:0 0 10px; }
+.theme-notion .document-tabs span { font-weight:500; }
+.theme-notion .document-tabs a { color:#615d59; }
+.theme-notion .notion-board { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; list-style:none; margin:0; padding:0; }
+.theme-notion .notion-board li { border:1px solid #e6e6e6; border-radius:8px; padding:14px 12px; display:flex; flex-direction:column; min-height:170px; }
+.theme-notion .board-stage { align-self:flex-start; font-size:10px; padding:3px 6px; border-radius:4px; background:#e8e7e5; color:#31302e; white-space:normal; }
+.theme-notion .stage-1 { background:#e8def1; color:#391c57; }
+.theme-notion .stage-2 { background:#f7e8d8; color:#793400; }
+.theme-notion .stage-3 { background:#e0eeee; color:#245653; }
+.theme-notion .stage-4 { background:#dfebf7; color:#264a6c; }
+.theme-notion .notion-board h3 { font-size:14px; font-weight:600; line-height:1.6; margin:14px 0 20px; }
+.theme-notion .board-page-label { color:#615d59; font-size:10px; margin-top:auto; }
+.theme-notion .tone-dark { background:#f6f5f4; color:var(--ink); }
+.theme-notion .tone-dark p, .theme-notion .tone-dark .muted { color:#615d59; }
+.theme-notion .tone-dark a { color:#005bab; }
+.theme-notion .question { background:#f6f5f4; text-align:left; }
+.theme-notion .question .wrap { border-left:3px solid #31302e; padding-left:28px; max-width:900px; }
+.theme-notion .question blockquote { color:#191918; font:700 clamp(26px,2.8vw,36px)/1.5 var(--font-display); letter-spacing:-.04em; margin:0; }
+.theme-notion .question p { max-width:none; margin:20px 0 0; font-size:17px; line-height:1.85; }
+.theme-notion main > section > .wrap > h2, .theme-notion main > section > .wrap > h2 + p { text-align:left; }
+.theme-notion main > section > .wrap > h2 + p { max-width:none; font-size:17px; color:#615d59; margin:20px 0 0; }
+.theme-notion #for-whom { background:#fff; }
+.theme-notion #for-whom .wrap, .theme-notion #together .wrap { max-width:1200px; padding:0 40px; }
+.theme-notion .grid { gap:20px; margin-top:40px; }
+.theme-notion .card, .theme-notion .tone-light .card { background:#fff; border:1px solid #e6e6e6; border-radius:12px; padding:28px; }
+.theme-notion .card p { color:#615d59; font-size:17px; line-height:1.8; }
+.theme-notion .card .card-step { display:inline-block; color:#31302e; background:#f6f5f4; padding:3px 8px; border-radius:4px; font-size:12px; margin-bottom:20px; }
+.theme-notion .card h3 { margin-bottom:14px; }
+.theme-notion #together { background:#f6f5f4; }
+.theme-notion #about { background:#fff; }
+.theme-notion #about dl.evidence dt { color:#615d59; font-weight:500; }
+.theme-notion #about dl.evidence dd { color:#31302e; }
+.theme-notion dl.evidence div { border-color:#e6e6e6; }
+.theme-notion #posts { background:#f6f5f4; }
+.theme-notion ul.posts a { font-size:19px; font-weight:600; letter-spacing:-.02em; }
+.theme-notion #contact { background:#fff; }
+.theme-notion form.contact { max-width:650px; }
+.theme-notion form.contact input, .theme-notion form.contact textarea { border:1px solid #ddd; border-radius:4px; background:#fff; }
+.theme-notion form.contact > div { text-align:left; }
+.theme-notion footer.site { background:#f6f5f4; border:0; color:#615d59; font-size:13px; }
+@media(max-width:1199px) { .theme-notion .preview-notice { margin:0 40px; } .theme-notion .notion-board { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:767px) {
+ .theme-notion header.site .wrap-wide { padding:0 24px; }
+ .theme-notion nav a:not(:last-child) { display:none; }
+ .theme-notion .brand { font-size:18px; }
+ .theme-notion .preview-notice { margin:0 24px; font-size:11px; }
+ .theme-notion .preview-notice div { gap:14px; }
+ .theme-notion .wrap, .theme-notion .wrap-wide, .theme-notion #for-whom .wrap, .theme-notion #together .wrap { padding:0 24px; }
+ .theme-notion main > section { padding:56px 0; }
+ .theme-notion .notion-hero { padding:40px 0 56px !important; text-align:left; }
+ .theme-notion h1 { font-size:32px; line-height:1.5; }
+ .theme-notion .hero .lead { font-size:17px; }
+ .theme-notion .actions { justify-content:flex-start; }
+ .theme-notion .notion-workspace { grid-template-columns:minmax(0,1fr); margin-top:36px; }
+ .theme-notion .notion-sidebar { display:none; }
+ .theme-notion .notion-document { padding:20px; }
+ .theme-notion .document-path { margin-bottom:20px; }
+ .theme-notion .document-title-row { gap:10px; }
+ .theme-notion .document-title-row h2 { font-size:22px; }
+ .theme-notion .notion-board { grid-template-columns:minmax(0,1fr); }
+ .theme-notion .notion-board li { min-height:auto; }
+ .theme-notion .grid, .theme-notion .grid.grid-four, .theme-notion dl.evidence { grid-template-columns:minmax(0,1fr); }
+ .theme-notion .question .wrap { margin:0 24px; padding:0 0 0 20px; }
+ .theme-notion .question blockquote { font-size:26px; }
+ .theme-notion .card { padding:24px; }
+}
+@media(prefers-reduced-motion:reduce) { .theme-notion * { scroll-behavior:auto; transition:none; } }

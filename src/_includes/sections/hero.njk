@@ -1,14 +1,3 @@
-{% set typography = s.typography %}
-<section {% include "text-layout.njk" %} class="hero tone-{{ s._tone or 'light' }}" id="{{ s.id or 'hero' }}">
-  <div class="wrap">
-    {% if s.label %}<p class="label">{{ s.label | br | safe }}</p>{% endif %}
-    <h1>{{ s.title | br | safe }}</h1>
-    {% if s.lead %}<p class="lead">{{ s.lead | br | safe }}</p>{% endif %}
-    {% if s.primary.label or s.secondary.label %}
-    <div class="actions">
-      {% if s.primary.label %}<a class="btn btn-primary" href="{{ s.primary.url }}">{{ s.primary.label | br | safe }}</a>{% endif %}
-      {% if s.secondary.label %}<a class="btn btn-secondary" href="{{ s.secondary.url }}">{{ s.secondary.label | br | safe }}</a>{% endif %}
-    </div>
-    {% endif %}
-  </div>
-</section>
+{% if site.theme == 'notion' %}{% include "sections/hero-notion.njk" %}
+{% elif site.theme == 'claude' %}{% include "sections/hero-claude.njk" %}
+{% else %}{% include "sections/hero-default.njk" %}{% endif %}

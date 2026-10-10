@@ -23,7 +23,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   {%- set theme = site.theme or 'classic' %}
-  {% if theme == 'apple' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  {% if theme == 'tesla' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme-apple.css">
+  <link rel="stylesheet" href="/assets/theme-tesla.css">
+  {% elif theme == 'claude' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme-apple.css">
+  <link rel="stylesheet" href="/assets/theme-claude.css">
+  {% elif theme == 'notion' %}<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/theme-apple.css">
+  <link rel="stylesheet" href="/assets/theme-notion.css">
+  {% elif theme == 'apple' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme-apple.css">{% else %}<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css">{% endif %}
   <script type="application/ld+json">
@@ -61,13 +70,16 @@
 
 <header class="site">
   <div class="wrap-wide">
-    <a class="brand" href="/">{{ site.name | br | safe }}</a>
+    <a class="brand" href="/">{% if theme == 'tesla' or theme == 'claude' or theme == 'notion' %}{{ site.title_tag | oneline }}{% else %}{{ site.name | br | safe }}{% endif %}</a>
     <nav aria-label="페이지 안내">
-      {% for item in navigation.items | visible %}<a href="{{ item.url }}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endfor %}
+      {% for item in navigation.items | visible %}<a href="{% if design_preview and (theme == 'tesla' or theme == 'claude' or theme == 'notion') and (item.url.startsWith('#') or item.url.startsWith('/#')) %}/{{ theme }}-preview/{{ item.url | replace('/#', '#') }}{% else %}{{ item.url }}{% endif %}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endfor %}
     </nav>
   </div>
 </header>
 
+{% if design_preview and theme == 'tesla' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Tesla 스타일 미리보기</span><a href="/">현재 홈페이지 ↗</a></aside>{% endif %}
+{% if design_preview and theme == 'claude' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Claude 스타일 미리보기</span><div><a href="/">현재 홈페이지</a><a href="/tesla-preview/">Tesla 디자인 ↗</a></div></aside>{% endif %}
+{% if design_preview and theme == 'notion' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Notion 스타일 미리보기</span><div><a href="/">현재 홈페이지</a><a href="/tesla-preview/">Tesla</a><a href="/claude-preview/">Claude</a></div></aside>{% endif %}
 <main id="top">
 {{ content | safe }}
 </main>

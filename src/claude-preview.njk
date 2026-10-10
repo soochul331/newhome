@@ -1,0 +1,7 @@
+---
+layout: base.njk
+permalink: /claude-preview/
+robots: noindex, nofollow
+design_preview: true
+---
+{% for s in home.sections | enabled | toned %}{% include "sections/" ~ s.type ~ ".njk" %}{% endfor %}

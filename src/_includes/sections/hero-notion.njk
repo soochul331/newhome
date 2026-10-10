@@ -1,0 +1,33 @@
+{% set typography = s.typography %}
+<section {% include "text-layout.njk" %} class="hero notion-hero" id="{{ s.id or 'hero' }}">
+  <div class="wrap-wide">
+    <p class="notion-eyebrow">{{ site.name | oneline }}</p>
+    <h1>{{ s.title | oneline }}</h1>
+    {% if s.lead %}<p class="lead">{{ s.lead | oneline }}</p>{% endif %}
+    <div class="actions">
+      {% if s.primary.label %}<a class="btn btn-primary" href="{{ s.primary.url }}">{{ s.primary.label | br | safe }} <span aria-hidden="true">↗</span></a>{% endif %}
+      {% if s.secondary.label %}<a class="btn btn-secondary" href="{{ s.secondary.url }}">{{ s.secondary.label | br | safe }}</a>{% endif %}
+    </div>
+    <div class="notion-workspace" aria-label="학습 과정 안내">
+      <aside class="notion-sidebar">
+        <p class="workspace-name"><span aria-hidden="true" class="workspace-icon">C</span> {{ site.title_tag | oneline }}</p>
+        <p class="workspace-caption">함께 배우는 공간</p>
+        <a href="#for-whom" class="sidebar-current"><span aria-hidden="true">▤</span> 네 단계 학습</a>
+        <a href="#together"><span aria-hidden="true">↗</span> 함께 하는 일</a>
+        <a href="#about"><span aria-hidden="true">○</span> 신수철 목사 소개</a>
+        <a href="#posts"><span aria-hidden="true">▤</span> 최근 글</a>
+      </aside>
+      <div class="notion-document">
+        <div class="document-path">{{ site.title_tag | oneline }} <span aria-hidden="true">/</span> 네 단계 학습</div>
+        <div class="document-title-row"><span class="document-icon" aria-hidden="true">↗</span><h2>한 걸음씩, 나만의 AI까지.</h2></div>
+        <p class="document-intro">천천히 하나씩 경험하며 나만의 AI 에이전트를 만들어 갑니다.</p>
+        <div class="document-tabs"><span>학습 과정</span><a href="#for-whom">자세히 보기 ↗</a></div>
+        <ol class="notion-board">
+          {% for group in home.sections %}{% if group.id == 'for-whom' and group.enabled != false %}{% for card in group.items %}
+          <li>{% if card.step %}<span class="board-stage stage-{{ loop.index }}">{{ card.step | oneline }}</span>{% endif %}<h3>{{ card.title | oneline }}</h3><span class="board-page-label">0{{ loop.index }} · 함께 배우기</span></li>
+          {% endfor %}{% endif %}{% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

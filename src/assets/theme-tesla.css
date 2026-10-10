@@ -1,0 +1,103 @@
+/* Local comparison page only. Reference: tesla/DESIGN.md.
+   Korean body copy stays 17px; Universal Sans is not bundled/licensed.
+   The existing Apple theme provides base template compatibility. */
+.theme-tesla {
+  --ink: #171a20; --ink-80: #393c41; --ink-muted: #5c5e62;
+  --canvas: #fff; --parchment: #f4f4f4; --accent: #3e6ae1;
+  --accent-press: #3457b1; --accent-focus: #3e6ae1;
+  --font-display: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif;
+  --font-text: var(--font-display);
+  font-weight: 400; letter-spacing: normal; color: var(--ink);
+}
+.theme-tesla header.site {
+  position: absolute; inset: 0 0 auto; background: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.theme-tesla header.site .wrap-wide { max-width: none; height: 72px; padding: 0 48px; }
+.theme-tesla .brand { color: var(--ink); font-size: 18px; font-weight: 500; letter-spacing: .05em; }
+.theme-tesla nav { gap: 8px; }
+.theme-tesla nav a { color: var(--ink); font-size: 14px; font-weight: 500; padding: 10px 16px; border-radius: 4px; transition: background-color .33s; }
+.theme-tesla nav a:hover { background: rgba(23,26,32,.06); }
+.theme-tesla .preview-notice { position: absolute; top: 78px; right: 48px; z-index: 2; display:flex; gap: 14px; align-items: center; font-size: 12px; color: #5c5e62; }
+.theme-tesla .preview-notice a { color: #393c41; text-decoration: underline; text-underline-offset: 3px; }
+.theme-tesla .wrap { max-width: 860px; padding: 0 32px; }
+.theme-tesla .wrap-wide { max-width: 1200px; padding: 0 40px; }
+.theme-tesla h1, .theme-tesla h2, .theme-tesla h3, .theme-tesla .question blockquote { font-weight: 500; letter-spacing: normal; }
+.theme-tesla h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.4; }
+.theme-tesla h2 { font-size: clamp(26px, 2.8vw, 36px); line-height: 1.4; }
+.theme-tesla h3 { font-size: 21px; line-height: 1.5; }
+.theme-tesla main > section { padding: 104px 0; }
+.theme-tesla .hero {
+  min-height: 100svh; padding: 142px 0 52px !important;
+  background: #e3e5e4 url('/assets/tesla/chapel-hero.png') center 60% / cover no-repeat;
+  display: flex; text-align: center;
+}
+.theme-tesla .hero .wrap { max-width: 1100px; width:100%; display:flex; flex-direction:column; align-items:center; }
+.theme-tesla .hero h1 { max-width: 1000px; }
+.theme-tesla .hero .lead { max-width: 760px; margin: 20px auto 0; font-size: 17px; line-height: 1.7; letter-spacing: normal; color: #393c41; }
+.theme-tesla .hero .actions { margin-top: auto; padding-top: 180px; }
+.theme-tesla .actions { gap: 24px; }
+.theme-tesla .btn { min-width: 240px; min-height: 44px; border: 0; border-radius: 4px; font-size: 14px; font-weight: 500; letter-spacing: normal; transition: background-color .33s, color .33s; }
+.theme-tesla .btn:active { transform: none; }
+.theme-tesla .btn-primary { background:#3e6ae1; color:white; }
+.theme-tesla .btn-primary:hover { background:#3457b1; }
+.theme-tesla .btn-secondary, .theme-tesla .tone-dark .btn-secondary { background:#fff; color:#393c41; }
+.theme-tesla .btn-secondary:hover { background:#eee; }
+.theme-tesla .tone-dark { background:#fff; color:var(--ink); }
+.theme-tesla .tone-dark p, .theme-tesla .tone-dark .muted { color:#393c41; }
+.theme-tesla .tone-dark a { color:#393c41; }
+.theme-tesla a { color: #393c41; }
+.theme-tesla .question { min-height: 76svh; display:flex; align-items:center; }
+.theme-tesla .question .wrap { max-width: 1100px; }
+.theme-tesla .question blockquote { max-width: 980px; color:#171a20; font-size:clamp(28px, 3vw, 40px); line-height:1.5; }
+.theme-tesla .question p { margin-top:32px; max-width:800px; font-size:17px; }
+.theme-tesla main > section > .wrap > h2 + p { margin-top:24px; font-size:17px; color:#5c5e62; line-height:1.8; }
+.theme-tesla #for-whom { min-height:100svh; background:#f4f4f4; }
+.theme-tesla .grid { margin-top:64px; gap:48px 56px; }
+.theme-tesla .card, .theme-tesla .tone-light .card { border:0; border-radius:0; box-shadow:none; padding:24px 0; background:transparent; }
+.theme-tesla .card h3 { margin-bottom:16px; }
+.theme-tesla .card p { color:#5c5e62; line-height:1.8; }
+.theme-tesla .card .card-step { color:#5c5e62; font-size:13px; margin-bottom:20px; letter-spacing:.025em; font-weight:400; }
+.theme-tesla #together { background:#fff; min-height:78svh; display:flex; flex-direction:column; justify-content:center; }
+.theme-tesla #together .wrap-wide { width:100%; }
+.theme-tesla #about { background:#171a20; color:#fff; min-height:90svh; }
+.theme-tesla #about > .wrap > h2 + p { color:#d0d1d2; }
+.theme-tesla dl.evidence { gap:32px 56px; }
+.theme-tesla dl.evidence div { border:0; padding:16px 0; }
+.theme-tesla dl.evidence dt { color:#a2a3a5; font-size:13px; font-weight:400; letter-spacing:normal; margin-bottom:14px; }
+.theme-tesla dl.evidence dd, .theme-tesla dl.evidence a { color:white; }
+.theme-tesla #posts { background:#fff; }
+.theme-tesla ul.posts li { border:0; padding:24px 0; }
+.theme-tesla ul.posts li:last-child { border:0; }
+.theme-tesla ul.posts a { font-weight:500; letter-spacing:normal; }
+.theme-tesla ul.posts a::after { color:#5c5e62; }
+.theme-tesla #contact { background:#f4f4f4; }
+.theme-tesla form.contact { max-width:600px; margin:48px auto 0; }
+.theme-tesla form.contact input, .theme-tesla form.contact textarea { background:#fff; border:1px solid #d0d1d2; border-radius:4px; }
+.theme-tesla form.contact > div { text-align:left; }
+.theme-tesla footer.site { border:0; background:white; color:#5c5e62; font-size:13px; text-align:center; }
+.theme-tesla footer.site p:first-child { font-weight:400; }
+@media (max-width: 767px) {
+  .theme-tesla header.site .wrap-wide { height:64px; padding:0 20px; }
+  .theme-tesla .brand { font-size:15px; }
+  .theme-tesla nav { gap:0; }
+  .theme-tesla nav a { padding:10px 8px; font-size:13px; }
+  .theme-tesla nav a:not(:last-child) { display:none; }
+  .theme-tesla .preview-notice { top:72px; left:20px; right:20px; justify-content:space-between; font-size:11px; }
+  .theme-tesla .wrap, .theme-tesla .wrap-wide { padding:0 24px; }
+  .theme-tesla main > section { padding:72px 0; }
+  .theme-tesla .hero { min-height:100svh; padding:128px 0 32px !important; background-position:64% center; }
+  .theme-tesla .hero h1 { font-size:28px; line-height:1.5; }
+  .theme-tesla .hero .lead { font-size:17px; line-height:1.7; }
+  .theme-tesla .hero .lead br { display:none; }
+  .theme-tesla .hero .actions { padding-top:170px; width:100%; gap:12px; }
+  .theme-tesla .hero .btn { width:100%; }
+  .theme-tesla .grid, .theme-tesla .grid.grid-four, .theme-tesla dl.evidence { grid-template-columns:minmax(0,1fr); gap:16px; }
+  .theme-tesla .grid { margin-top:40px; }
+  .theme-tesla .card { padding:20px 0; }
+  .theme-tesla .question { min-height:75svh; }
+  .theme-tesla .question blockquote { font-size:28px; }
+  .theme-tesla #for-whom, .theme-tesla #about, .theme-tesla #together { min-height:auto; }
+  .theme-tesla .actions { flex-direction:column; }
+}
+@media (prefers-reduced-motion: reduce) { .theme-tesla *, .theme-tesla { scroll-behavior:auto; transition:none; } }

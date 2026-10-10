@@ -1,1 +1,1 @@
-data-text-layout data-title-scale="{{ typography.title_scale or 100 }}" data-body-scale="{{ typography.body_scale or 100 }}" data-auto-fit="{% if typography.auto_fit == false %}false{% else %}true{% endif %}"
+data-text-layout data-title-scale="{{ typography.title_scale or 100 }}" data-body-scale="{{ typography.body_scale or 100 }}" data-auto-fit="{% if typography.auto_fit == false or site.theme == 'tesla' or site.theme == 'claude' or site.theme == 'notion' %}false{% else %}true{% endif %}"
