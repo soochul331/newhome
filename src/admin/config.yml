@@ -18,8 +18,8 @@ local_backend: true
 publish_mode: simple
 
 locale: ko
-site_url: https://newhome-shin.netlify.app
-display_url: https://newhome-shin.netlify.app
+site_url: https://churchailab.org
+display_url: https://churchailab.org
 
 media_folder: src/media
 public_folder: /media
