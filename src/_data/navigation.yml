@@ -3,6 +3,10 @@ items:
     url: /#together
     visible: true
     hide_on_mobile: false
+  - label: 설교shorts제작기
+    url: /sermon-shorts/
+    visible: true
+    hide_on_mobile: false
   - label: 소개
     url: /#about
     visible: true
