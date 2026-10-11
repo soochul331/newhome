@@ -91,7 +91,40 @@
     doc.querySelectorAll('main [data-document-body] img').forEach((el,i)=>list.push({key:'document-image-'+i,el,path:[],area:'document',kind:'image'}));
     return list;
   }
+  // Structural keys are computed before wrapping so they survive text changes.
+  function textTargets(doc) {
+    const existing = [...doc.querySelectorAll('[data-canvas-text]')];
+    if (existing.length) return existing.map(el => ({el,key:el.dataset.canvasText,kind:'text'}));
+    const walker = doc.createTreeWalker(doc.body,4);
+    const nodes = [];
+    while(walker.nextNode()) {
+      const node=walker.currentNode;
+      if(!node.textContent.trim() || node.parentElement.closest('script,style,textarea,select,option,svg,noscript')) continue;
+      const parts=[];
+      const root=node.parentElement.closest('header.site,footer.site,main > section') || doc.body;
+      let current=node;
+      while(current!==root) { parts.unshift([...current.parentNode.childNodes].indexOf(current)); current=current.parentNode; }
+      const scope=root.id || root.tagName.toLowerCase();
+      nodes.push({node,key:'canvas-'+doc.body.className+'-'+scope+'-'+parts.join('-')});
+    }
+    return nodes.map(({node,key})=>{
+      const el=doc.createElement('span'); el.dataset.canvasText=key;
+      node.replaceWith(el); el.append(node);
+      return {el,key,kind:'text'};
+    });
+  }
+  function canvasAppearance(doc) {
+    try { return JSON.parse(doc.body.dataset.canvasAppearance || '[]'); } catch (_) { return []; }
+  }
   function apply(doc) {
+    const appearances=canvasAppearance(doc);
+    let homeAppearance={};
+    try { homeAppearance=JSON.parse(doc.body.dataset.homeCanvasAppearance || '{}'); } catch (_) {}
+    textTargets(doc).forEach(target=>(target.el.closest('header.site,footer.site') ? [homeAppearance,...appearances] : appearances).forEach(appearance=>{
+      const value=appearance?.canvasTexts?.[target.key];
+      if(value && typeof value.text==='string') target.el.textContent=value.text;
+      style(target,appearance?.[target.key]);
+    }));
     chromeTargets(doc).forEach(target=> {
       try {
         let raw;
@@ -110,7 +143,7 @@
       });
     });
   }
-  global.VisualLayout = { targets, references, chromeTargets, style, reset, styleKey, apply, fonts };
+  global.VisualLayout = { targets, references, chromeTargets, style, reset, styleKey, apply, fonts, textTargets };
   if (global.document.readyState === 'loading') global.document.addEventListener('DOMContentLoaded', () => apply(global.document));
   else apply(global.document);
 })(window);

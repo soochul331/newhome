@@ -94,7 +94,7 @@
       const env = window.HomePreview.environment(context.templates);
       const markdown = window.markdownit({html:false,linkify:true});
       if (['home','site','navigation'].includes(this.mode)) context[this.mode] = clone(this.draft);
-      context.page = {url:'/'};
+      context.page = {url:['pages','posts'].includes(this.mode) ? '/document-preview/' : '/'};
       let content;
       if (this.mode === 'pages' || this.mode === 'posts') {
         Object.assign(context,this.draft,{content:markdown.render(this.draft.body || '')});
@@ -114,12 +114,13 @@
       if(!doc?.body) return;
       const sections = this.mode === 'home' ? this.draft.sections || [] : [];
       const enabled = sections.map((s,i) => ({s,i})).filter(x => x.s.enabled !== false);
+      window.VisualLayout.apply(doc);
       this.bound = [];
-      doc.addEventListener('click', e => { if (e.target.closest('a,button') && (!e.target.closest('[contenteditable]') || e.target.closest('[data-document-body]'))) e.preventDefault(); },true);
+      doc.addEventListener('click', e => { if (e.target.closest('a,button')) e.preventDefault(); },true);
       doc.addEventListener('submit', e => e.preventDefault());
       const bind = target => {
         const owner = target.index != null ? this.draft.sections[target.index] : this.draft;
-        if (['text','richtext'].includes(target.kind) && typeof get(owner,target.path) !== 'string') return;
+        if (['text','richtext'].includes(target.kind) && typeof get(owner,target.path) !== 'string' && target.initialText === undefined) return;
         target.el.dataset.editable = target.key;
         this.bound.push(target);
         target.el.addEventListener('click',e => { e.stopPropagation(); this.select(target); });
@@ -129,7 +130,7 @@
           target.el.setAttribute('contenteditable','plaintext-only');
           target.el.setAttribute('role','textbox');
           target.el.setAttribute('aria-label',(target.label || target.key)+' 직접 편집');
-          target.el.addEventListener('focus',() => { if (target.kind === 'text') target.el.innerText = get(owner,target.path); this.select(target); });
+          target.el.addEventListener('focus',() => { if (target.kind === 'text') target.el.innerText = get(owner,target.path) ?? target.initialText; this.select(target); });
           target.el.addEventListener('input',() => {
             this.record();
             let value = target.el.innerText.replace(/\r/g,'');
@@ -141,6 +142,7 @@
             set(owner,target.path,value);
             this.bound.filter(x => x !== target && x.index === target.index && JSON.stringify(x.path) === JSON.stringify(target.path)).forEach(x => { x.el.innerText = value; });
             this.syncDraft();
+            this.setState({selected:{...target,values:{...(appearanceOf(this.draft,target)[window.VisualLayout.styleKey(target)] || {})}}});
           });
         }
       };
@@ -183,11 +185,11 @@
         add('body','[data-document-body]',['body'],'본문','richtext');
         doc.querySelectorAll('[data-document-body] img').forEach((el,i)=>bind({key:'document-image-'+i,el,path:[],kind:'image',label:'본문 이미지 '+(i+1)}));
       }
-      // Other visible regions are entry points to their own normal CMS drafts.
-      [['header .brand','site'],['header nav','navigation'],['footer','site'],['main','home']].forEach(([selector,mode]) => {
-        if (mode === this.mode || (mode === 'home' && ['pages','posts'].includes(this.mode))) return;
-        const el = doc.querySelector(selector);
-        if (el) { el.dataset.editable = 'region'; el.addEventListener('click',e => { e.preventDefault(); location.hash = '#/collections/settings/entries/'+mode; }); }
+      // Every remaining visible text node belongs to this canvas draft.
+      window.VisualLayout.textTargets(doc).forEach(target=>{
+        if(target.el.closest('[contenteditable]')) return;
+        const path=['appearance','canvasTexts',target.key,'text'];
+        bind({...target,path,initialText:target.el.textContent,label:'선택한 텍스트'});
       });
       window.VisualLayout.apply(doc);
       this.stop = window.TextLayout.observe(doc);
@@ -252,13 +254,15 @@
             h('button',{type:'button',style:{...btn,background:'#0075de',color:'white'},disabled:!this.state.html,onClick:this.publish},'변경사항 게시')),
           h('div',{style:{display:'flex',flex:1,minHeight:0}},
             h('div',{style:{flex:1,overflow:'auto',display:'flex',justifyContent:'center'}},this.state.html ? h('iframe',{title:'홈페이지 직접 편집',srcDoc:this.state.html,sandbox:'allow-same-origin',onLoad:this.mountFrame,style:{border:0,background:'white',width:this.state.viewport === 'mobile' ? 375 : '100%',height:'100%',maxWidth:'100%'}}) : h('p',{},this.state.error || '편집 화면을 불러오는 중…')),
-            h('aside',{style:{width:300,padding:20,overflow:'auto',background:'white',borderLeft:'1px solid #ddd'}},
+            h('aside',{style:{width:420,minWidth:320,maxWidth:'55vw',flexShrink:0,resize:'horizontal',padding:24,overflow:'auto',background:'white',borderLeft:'1px solid #ddd'}},
               h('div',{style:{display:'flex',gap:8,marginBottom:16}},h('button',{type:'button',style:btn,onClick:()=>this.setState({panel:'selection'})},'선택 요소'),h('button',{type:'button',style:btn,disabled:!this.state.html,onClick:()=>this.setState({panel:'settings'})},'영역 설정')),
               this.state.panel === 'settings' ? h('div',{},...[...controls].filter(([name])=>name!=='appearance').map(([name,control]) => {
                 const widgetName = control.props.field.get('widget').replace(/^canvas/,'');
                 const widget = CMS.getWidget(widgetName);
                 return h('div',{key:name,style:{marginBottom:20}},h('label',{htmlFor:control.props.forID+'-canvas'},control.props.field.get('label')),h(widget.control,{...control.props,forID:control.props.forID+'-canvas',field:control.props.field.set('widget',widgetName),value:control.props.value,onChange:value=>{ this.record(); this.draft[name]=clone(value); control.props.onChange(value); this.refresh(); }}));
-              })) : selected ? h('div',{},h('h3',{},['text','richtext'].includes(selected.kind) ? '글자 서식' : '객체 크기'),h('p',{},targetLabel(selected)),
+              })) : selected ? h('div',{},h('h3',{},['text','richtext'].includes(selected.kind) ? '텍스트 편집' : '객체 크기'),h('p',{},targetLabel(selected)),
+                ['text','richtext'].includes(selected.kind) ? h('label',{style:{display:'grid',gap:8,marginBottom:24}},selected.kind==='richtext' ? '본문 (마크다운)' : '내용',h('textarea',{'aria-label':'선택한 텍스트 내용',value:get(owner,selected.path) ?? selected.initialText ?? '',style:{...btn,width:'100%',minHeight:180,resize:'vertical',fontSize:17,lineHeight:1.7,boxSizing:'border-box'},onChange:e=>{this.record();set(owner,selected.path,e.target.value);this.syncDraft();if(selected.kind==='richtext') selected.el.innerHTML=window.markdownit({html:false,linkify:true}).render(e.target.value);else this.bound.filter(x=>x.index===selected.index && JSON.stringify(x.path)===JSON.stringify(selected.path)).forEach(x=>{x.el.innerText=e.target.value;});this.setState({selected:{...selected}});}})) : null,
+
                 linkPath ? h('label',{style:{display:'grid',gap:6,marginBottom:16}},'링크 주소',h('input',{'aria-label':'링크 주소',value:get(owner,linkPath) || '',style:{...btn,width:'100%',boxSizing:'border-box'},onChange:e=>{this.record();set(owner,linkPath,e.target.value);this.syncDraft();this.setState({status:'링크를 초안에 반영했습니다.'});}})) : null,
 
                 selected.index != null && this.bound.some(x=>x.index===selected.index && x.key==='section') ? h('button',{type:'button',style:btn,onClick:() => this.select(this.bound.find(x => x.index === selected.index && x.key === 'section'))},'구획 크기 선택') : null,
