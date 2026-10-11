@@ -30,6 +30,7 @@
     env.addFilter('dateKo', d => new Date(d).toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', timeZone:'UTC' }));
     return env;
   }
+  window.HomePreview = { ready, environment, assignTones };
   function preview(name) {
     return createClass({
       getInitialState() { return { base: null, error: '', overflow:0, viewport:'desktop' }; },
@@ -41,6 +42,7 @@
       componentWillUnmount() { this.alive = false; if (this.stopLayout) this.stopLayout(); },
       fitPreview(event) {
         if (this.stopLayout) this.stopLayout();
+        if (window.VisualLayout) window.VisualLayout.apply(event.target.contentDocument);
         this.stopLayout = window.TextLayout.observe(event.target.contentDocument, count => {
           if (this.alive && count !== this.state.overflow) this.setState({ overflow:count });
         });

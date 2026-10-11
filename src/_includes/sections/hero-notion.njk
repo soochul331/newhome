@@ -1,5 +1,5 @@
 {% set typography = s.typography %}
-<section {% include "text-layout.njk" %} class="hero notion-hero" id="{{ s.id or 'hero' }}">
+<section data-appearance="{{ s.appearance | dump }}" {% include "text-layout.njk" %} class="hero notion-hero" id="{{ s.id or 'hero' }}">
   <div class="wrap-wide">
     <p class="notion-eyebrow">{{ site.name | oneline }}</p>
     <h1>{{ s.title | oneline }}</h1>
@@ -24,7 +24,7 @@
         <div class="document-tabs"><span>학습 과정</span><a href="#for-whom">자세히 보기 ↗</a></div>
         <ol class="notion-board">
           {% for group in home.sections %}{% if group.id == 'for-whom' and group.enabled != false %}{% for card in group.items %}
-          <li>{% if card.step %}<span class="board-stage stage-{{ loop.index }}">{{ card.step | oneline }}</span>{% endif %}<h3>{{ card.title | oneline }}</h3><span class="board-page-label">0{{ loop.index }} · 함께 배우기</span></li>
+          <li data-item-appearance="{{ card.appearance | dump }}">{% if card.step %}<span class="board-stage stage-{{ loop.index }}">{{ card.step | oneline }}</span>{% endif %}<h3>{{ card.title | oneline }}</h3><span class="board-page-label">0{{ loop.index }} · 함께 배우기</span></li>
           {% endfor %}{% endif %}{% endfor %}
         </ol>
       </div>

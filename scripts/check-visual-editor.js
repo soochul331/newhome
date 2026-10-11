@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import nunjucks from 'nunjucks';
+import markdownit from 'markdown-it';
+import yaml from 'js-yaml';
+const base = JSON.parse(fs.readFileSync('_site/admin/preview-data.json','utf8'));
+const window = { markdownit, document:{readyState:'loading',addEventListener(){}} };
+const sandbox = {window, nunjucks, fetch:async()=>({ok:true,json:async()=>base}), CMS:{registerPreviewTemplate(){},registerPreviewStyle(){}},createClass:x=>x};
+vm.runInNewContext(fs.readFileSync('src/admin/preview.js','utf8'),sandbox);
+vm.runInNewContext(fs.readFileSync('src/assets/visual-layout.js','utf8'),{window});
+const env = window.HomePreview.environment(base.templates);
+for (const theme of ['classic','apple','tesla','claude','notion']) {
+  const s = {type:'cards',id:'fixture',heading:'제목 <script>',items:[{title:'카드',body:'본문',appearance:{title:{font:'serif',color:'#2747d6',size:42},box:{width:90}}}],appearance:{heading:{size:36}}};
+  const html = env.render('sections/cards.njk',{...base,site:{...base.site,theme},s});
+  assert.ok(html.includes('제목 &lt;script&gt;'));
+  assert.ok(html.includes('data-item-appearance="{&quot;title&quot;'));
+  assert.ok(html.includes('&quot;width&quot;:90'));
+  assert.ok(!html.includes('contenteditable'));
+}
+const image = env.render('sections/image.njk',{s:{id:'image',src:'/media/test.png',alt:'설명',appearance:{'image-0':{width:60}}}});
+assert.ok(image.includes('/media/test.png'));
+assert.ok(image.includes('alt="설명"'));
+const target = {kind:'text',el:{style:{},dataset:{}}};
+window.VisualLayout.style(target,{font:'serif',color:'#2747d6',size:999,weight:'700',align:'center'});
+assert.equal(target.el.dataset.visualSize,100);
+assert.equal(target.el.style.color,'#2747d6');
+const unsafe = {kind:'text',el:{style:{},dataset:{}}};
+window.VisualLayout.style(unsafe,{font:'url(https://example.com)',color:'red;background:url(x)',size:'NaN',align:'expression(x)'});
+assert.deepEqual(unsafe.el.style,{});
+assert.equal(window.VisualLayout.styleKey({kind:'text',path:['items',3,'title']}),'title');
+assert.equal(window.VisualLayout.styleKey({kind:'box',path:['items',1]}),'box');
+const config = yaml.load(fs.readFileSync('src/admin/config.yml','utf8'));
+const sections = config.collections[0].files.find(f=>f.name==='home').fields[0];
+assert.equal(sections.widget,'visualsections');
+assert.ok(sections.types.every(t=>t.fields.some(f=>f.name==='appearance')));
+assert.ok(sections.types.some(t=>t.name==='image'));
+console.log('Visual editor: all themes, safe appearance metadata, per-card persistence and image rendering passed');

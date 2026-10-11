@@ -1,5 +1,5 @@
 {% set typography = s.typography %}
-<section {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
+<section data-appearance="{{ s.appearance | dump }}" {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap prose">
     {% if s.heading %}<h2>{{ s.heading | br | safe }}</h2>{% endif %}
     {{ s.body | safe }}

@@ -18,6 +18,7 @@
       const scope = el.closest('[data-text-layout]');
       const isTitle = i < headings.length;
       const size = defaults[i] * scale(scope.dataset[isTitle ? 'titleScale' : 'bodyScale']);
+      if (el.dataset.visualSize) { el.style.fontSize = 'min(' + el.dataset.visualSize + 'px, 12vw)'; return; }
       el.style.fontSize = size + 'px';
       if (!isTitle || scope.dataset.autoFit === 'false') return;
       el.style.whiteSpace = 'nowrap'; // Explicit <br> still starts a new line.

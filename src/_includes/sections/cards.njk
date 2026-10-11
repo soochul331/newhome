@@ -1,5 +1,5 @@
 {% set typography = s.typography %}
-<section {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
+<section data-appearance="{{ s.appearance | dump }}" {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap">
     <h2>{{ s.heading | br | safe }}</h2>
     {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
@@ -9,7 +9,7 @@
     <div class="grid{% if s.items.length == 4 %} grid-four{% endif %}">
       {% for c in s.items %}
       {% set typography = c.typography or s.typography %}
-      <div class="card" {% include "text-layout.njk" %}>
+      <div data-item-appearance="{{ c.appearance | dump }}" class="card" {% include "text-layout.njk" %}>
         {% if c.step %}<div class="card-step">{{ c.step | escape }}</div>{% endif %}
         <h3>{{ c.title | br | safe }}</h3>
         <p>{{ c.body | br | safe }}</p>

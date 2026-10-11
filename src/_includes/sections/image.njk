@@ -1,0 +1,9 @@
+<section data-appearance="{{ s.appearance | dump }}" class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
+  <div class="wrap">
+    {% if s.heading %}<h2>{{ s.heading | br | safe }}</h2>{% endif %}
+    <figure style="margin: 24px 0;">
+      <img src="{{ s.src }}" alt="{{ s.alt }}" loading="lazy" style="display:block;max-width:100%;height:auto;margin-inline:auto;">
+      {% if s.caption %}<figcaption>{{ s.caption | br | safe }}</figcaption>{% endif %}
+    </figure>
+  </div>
+</section>

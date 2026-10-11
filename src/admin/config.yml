@@ -88,12 +88,13 @@ collections:
         fields:
           - label: 섹션 (끌어서 순서 변경 · 종류별 추가)
             name: sections
-            widget: list
+            widget: visualsections
             summary: '{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}'
             types:
               - label: 히어로(첫 화면)
                 name: hero
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string, default: top }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -126,6 +127,7 @@ collections:
               - label: 나만의 질문
                 name: question
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string, default: question }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -143,6 +145,7 @@ collections:
               - label: 카드 묶음(질문형 제목 + 카드 최대 4개)
                 name: cards
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -164,6 +167,7 @@ collections:
                     max: 4
                     summary: '{{fields.title}}'
                     fields:
+                      - { label: 카드 서식, name: appearance, widget: visualappearance, required: false }
                       - { label: 단계 표시(제목 위), name: step, widget: string, required: false, hint: '예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다.' }
                       - { label: 카드 제목, name: title, widget: text }
                       - { label: 카드 본문(두세 줄), name: body, widget: text }
@@ -179,6 +183,7 @@ collections:
               - label: 소개·증거
                 name: evidence
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string, default: about }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -199,6 +204,7 @@ collections:
                     widget: list
                     summary: '{{fields.kind}}'
                     fields:
+                      - { label: 항목 서식, name: appearance, widget: visualappearance, required: false }
                       - { label: 구분(경험·결과물·공인·기록), name: kind, widget: text }
                       - { label: 내용(사실만), name: body, widget: text, hint: '증거표에 없는 경력·수치·수상은 쓰지 않습니다.' }
                       - { label: 링크 글자(본문 안의 단어와 같아야 함), name: link_label, widget: string, required: false }
@@ -206,6 +212,7 @@ collections:
               - label: 최근 글 목록
                 name: posts
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string, default: posts }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -226,6 +233,7 @@ collections:
               - label: 문의
                 name: contact
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string, default: contact }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤
@@ -242,9 +250,20 @@ collections:
                   - { label: 첫 문장 직답, name: lead, widget: text, required: false }
                   - { label: 문의 양식 표시, name: form_enabled, widget: boolean, default: true }
                   - { label: 마무리 말, name: closing, widget: text, default: 끝까지 읽어 주셔서 감사합니다. }
+              - label: 이미지 구획
+                name: image
+                fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
+                  - { label: 앵커 id, name: id, widget: string, default: image }
+                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - { label: 제목, name: heading, widget: text, required: false }
+                  - { label: 이미지, name: src, widget: image, choose_url: true }
+                  - { label: 이미지 설명(대체 텍스트), name: alt, widget: string }
+                  - { label: 아래 설명, name: caption, widget: text, required: false }
               - label: 자유 글 섹션
                 name: richtext
                 fields:
+                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
                   - { label: 앵커 id, name: id, widget: string }
                   - { label: 표시, name: enabled, widget: boolean, default: true }
                   - label: 글자 크기와 줄 맞춤

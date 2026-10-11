@@ -1,5 +1,5 @@
 {% set typography = s.typography %}
-<section {% include "text-layout.njk" %} class="hero claude-hero" id="{{ s.id or 'hero' }}">
+<section data-appearance="{{ s.appearance | dump }}" {% include "text-layout.njk" %} class="hero claude-hero" id="{{ s.id or 'hero' }}">
   <div class="wrap-wide hero-layout">
     <div class="hero-copy">
       <p class="hero-eyebrow">{{ site.name | oneline }}</p>
@@ -15,7 +15,7 @@
       <p class="journal-heading">분별에서 시작해,<br>나만의 도구까지.</p>
       <ol>
         {% for group in home.sections %}{% if group.id == 'for-whom' and group.enabled != false %}{% for card in group.items %}
-        <li><span class="journal-number">0{{ loop.index }}</span><div><span class="journal-title">{{ card.title | oneline }}</span>{% if card.step %}<p>{{ card.step | oneline }}</p>{% endif %}</div></li>
+        <li data-item-appearance="{{ card.appearance | dump }}"><span class="journal-number">0{{ loop.index }}</span><div><span class="journal-title">{{ card.title | oneline }}</span>{% if card.step %}<p>{{ card.step | oneline }}</p>{% endif %}</div></li>
         {% endfor %}{% endif %}{% endfor %}
       </ol>
       <p class="journal-note">천천히, 한 걸음씩 함께합니다.</p>
