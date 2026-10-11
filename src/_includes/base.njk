@@ -91,6 +91,7 @@
     <p>{% for l in site.links %}<a data-item-appearance="{{ l.appearance | dump }}" href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
     <p>{{ site.copyright | br | safe }}</p>
   </div>
+  <div class="wrap"><a href="/admin/" class="admin-shortcut">관리자</a></div>
 </footer>
 
 <script src="/assets/visual-layout.js" defer></script>
