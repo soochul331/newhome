@@ -4,7 +4,7 @@
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('workspace-menu');
   const validRoute = hash => /^#\/(?:collections(?:\/[^?#]*)?|workflow|media)?$/.test(hash);
-  const route = () => validRoute(location.hash) ? location.hash : '#/';
+  const route = () => validRoute(location.hash) && location.hash !== '#/' ? location.hash : '#/collections/settings/entries/home';
   let stopPending = () => {};
   editor.src = '/admin/editor.html' + route();
   function highlight(hash) {
@@ -44,7 +44,7 @@
       });
       const timer = setTimeout(() => observer.disconnect(), 10000);
       stopPending = () => { observer.disconnect(); clearTimeout(timer); };
-      observer.observe(win.document.body, { childList: true, subtree: true });
+      observer.observe(win.document, { childList: true, subtree: true });
       win.location.hash = entry[1];
     } else win.location.hash = link.hash;
   });

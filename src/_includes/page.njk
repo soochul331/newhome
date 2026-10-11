@@ -9,6 +9,6 @@ layout: base.njk
 </section>
 <section {% include "text-layout.njk" %} class="tone-light">
   <div class="wrap prose">
-    {{ content | safe }}
+    <div data-document-body>{{ content | safe }}</div>
   </div>
 </section>

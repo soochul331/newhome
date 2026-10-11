@@ -10,6 +10,7 @@
     add('title', 'h1', ['title']);
     add('heading', ':scope > .wrap > h2', ['heading']);
     add('caption', 'figcaption', ['caption']);
+    add('body', '[data-document-body]', ['body'], 'richtext');
     add('quote', 'blockquote', ['quote']);
     add('label', ':scope > .wrap > .label', ['label']);
     add('lead', '.lead, :scope > .wrap > p:not(.label):not(.muted)', ['lead']);
@@ -49,13 +50,14 @@
   const number = (v, min, max) => Number.isFinite(Number(v)) ? Math.max(min, Math.min(max, Number(v))) : null;
   function style(target, values = {}) {
     const el = target.el;
+    if (target.kind === 'richtext') el.querySelectorAll('h1,h2,h3,h4,p,li,blockquote').forEach(node => style({el:node,kind:'text'},values));
     if (fonts[values.font]) el.style.fontFamily = fonts[values.font];
     if (/^#[0-9a-f]{6}$/i.test(values.color || '')) el.style.color = values.color;
     const size = number(values.size, 13, 100);
     if (values.size && size) { el.dataset.visualSize = size; el.style.fontSize = 'min(' + size + 'px, 12vw)'; }
     if (['left','center','right'].includes(values.align)) el.style.textAlign = values.align;
     if (['400','500','600','700'].includes(String(values.weight))) el.style.fontWeight = values.weight;
-    if (target.kind !== 'text') {
+    if (!['text','richtext'].includes(target.kind)) {
       const width = number(values.width, 25, 100), height = number(values.height, 0, 1000), padding = number(values.padding, 0, 160);
       if (values.width && width) { el.style.width = width + '%'; el.style.maxWidth = '100%'; }
       if (values.height && height) el.style.minHeight = height + 'px';
@@ -63,19 +65,52 @@
       if (target.kind === 'image') { el.style.height = 'auto'; el.style.objectFit = 'contain'; }
     }
   }
-  function styleKey(target) { return target.path?.[0] === 'items' ? (target.kind === 'box' ? 'box' : target.path[2]) : target.key; }
+  function reset(target) {
+    const nodes=target.kind==='richtext' ? [target.el,...target.el.querySelectorAll('h1,h2,h3,h4,p,li,blockquote')] : [target.el];
+    nodes.forEach(el=>{ ['font-family','font-size','color','font-weight','text-align','width','max-width','min-height','padding'].forEach(p=>el.style.removeProperty(p)); delete el.dataset.visualSize; });
+  }
+  function styleKey(target) { return ['items','links'].includes(target.path?.[0]) ? (target.kind === 'box' ? 'box' : target.path[2]) : target.key; }
+  function chromeTargets(doc) {
+    const list = [];
+    const add = (key,selector,path,area,kind='text') => { const el=doc.querySelector(selector); if(el) list.push({key,el,path,area,kind}); };
+    add('header-box','header',[],'site','box');
+    add('footer-box','footer',[],'site','box');
+    add('navigation-box','header nav',[],'navigation','box');
+    add('hero-box','main > section:first-child',[],'document','box');
+    add('body-box','main > section:last-child',[],'document','box');
+    add('brand','header .brand',[], 'site');
+    add('name','.notion-eyebrow,.hero-eyebrow',[],'site');
+    add('byline','footer .wrap > p:first-child',[],'site');
+    add('copyright','footer .wrap > p:last-child',[],'site');
+    doc.querySelectorAll('[data-site-title]').forEach(el=>list.push({key:'brand',el,path:[],area:'site',kind:'text'}));
+    doc.querySelectorAll('footer a').forEach((el,i)=>list.push({key:'link-'+i,el,path:['links',i,'label'],area:'site',kind:'text'}));
+    doc.querySelectorAll('header nav a').forEach(el=>list.push({key:'nav-'+el.dataset.navIndex,el,path:['items',Number(el.dataset.navIndex),'label'],area:'navigation',kind:'text'}));
+    add('title','main > section h1',[],'document');
+    add('description','main > section .lead',[],'document');
+    add('body','main > section [data-document-body]',[],'document','richtext');
+    doc.querySelectorAll('main [data-document-body] img').forEach((el,i)=>list.push({key:'document-image-'+i,el,path:[],area:'document',kind:'image'}));
+    return list;
+  }
   function apply(doc) {
+    chromeTargets(doc).forEach(target=> {
+      try {
+        let raw;
+        if (['items','links'].includes(target.path[0])) raw=target.el.dataset.itemAppearance;
+        else raw=target.area==='site' ? doc.body.dataset.siteAppearance : target.area==='navigation' ? doc.querySelector('header nav')?.dataset.appearance : doc.querySelector('main')?.dataset.appearance;
+        style(target,(JSON.parse(raw || '{}') || {})[styleKey(target)]);
+      } catch (_) {}
+    });
     doc.querySelectorAll('main > section[data-appearance]').forEach(section => {
       [...targets(section), ...references(section)].forEach(target => {
-        const owner = target.path?.[0] === 'items' ? target.el.closest('[data-item-appearance]') : section;
+        const owner = ['items','links'].includes(target.path?.[0]) ? target.el.closest('[data-item-appearance]') : section;
         try {
-          const raw = owner?.dataset[target.path?.[0] === 'items' ? 'itemAppearance' : 'appearance'];
+          const raw = owner?.dataset[['items','links'].includes(target.path?.[0]) ? 'itemAppearance' : 'appearance'];
           style(target, (JSON.parse(raw || '{}') || {})[styleKey(target)]);
         } catch (_) {}
       });
     });
   }
-  global.VisualLayout = { targets, references, style, styleKey, apply, fonts };
+  global.VisualLayout = { targets, references, chromeTargets, style, reset, styleKey, apply, fonts };
   if (global.document.readyState === 'loading') global.document.addEventListener('DOMContentLoaded', () => apply(global.document));
   else apply(global.document);
 })(window);

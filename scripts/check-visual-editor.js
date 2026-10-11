@@ -31,8 +31,30 @@ assert.deepEqual(unsafe.el.style,{});
 assert.equal(window.VisualLayout.styleKey({kind:'text',path:['items',3,'title']}),'title');
 assert.equal(window.VisualLayout.styleKey({kind:'box',path:['items',1]}),'box');
 const config = yaml.load(fs.readFileSync('src/admin/config.yml','utf8'));
-const sections = config.collections[0].files.find(f=>f.name==='home').fields[0];
-assert.equal(sections.widget,'visualsections');
+const sections = config.collections[0].files.find(f=>f.name==='home').fields.find(f=>f.name==='sections');
+assert.equal(sections.widget,'canvaslist');
 assert.ok(sections.types.every(t=>t.fields.some(f=>f.name==='appearance')));
 assert.ok(sections.types.some(t=>t.name==='image'));
 console.log('Visual editor: all themes, safe appearance metadata, per-card persistence and image rendering passed');
+
+for(const collection of config.collections) for(const entry of collection.files || [collection]) {
+  const canvas=entry.fields[0];
+  assert.equal(canvas.widget,'visualcanvas');
+  assert.deepEqual(canvas.fieldnames,entry.fields.slice(1).map(f=>f.name));
+  assert.ok(entry.fields.slice(1).every(f=>f.widget.startsWith('canvas')));
+}
+// Values registered for the canvas must retain optional and falsy field data.
+const registered={};
+const cms={registerEventListener(){},getWidget:name=>registered[name] || {control:()=>null},registerWidget:(name,control,preview,schema)=>{registered[name]={control,preview,schema};}};
+vm.runInNewContext(fs.readFileSync('src/admin/visual-editor.js','utf8'),{CMS:cms,createClass:x=>x,window:{},h:()=>null});
+const values={enabled:false,count:0,label:'',optional:undefined,items:[{label:'메뉴',visible:false}]};
+for(const [name,value] of Object.entries(values)) registered.canvastext.control.componentDidMount.call({props:{field:{get:()=>name},value}});
+const actual=registered.visualcanvas.control.read.call({props:{field:{get:()=>({toArray:()=>Object.keys(values)})}}});
+assert.deepEqual(JSON.parse(JSON.stringify(actual)),JSON.parse(JSON.stringify(values)));
+assert.equal(actual.optional,undefined);
+console.log('Default canvas: all CMS entries covered; empty, optional and boolean values preserved');
+
+let cleared=false;
+registered.canvastext.control.componentDidMount.call({props:{field:{get:()=> 'summary'},value:'추가한 요약',onChange:value=>{assert.equal(value,undefined);cleared=true;}}});
+registered.visualcanvas.control.syncDraft.call({draft:{},props:{field:{get:()=>({toArray:()=>['summary']})}}});
+assert.equal(cleared,true,'Undo must clear newly added optional fields in the real CMS draft');

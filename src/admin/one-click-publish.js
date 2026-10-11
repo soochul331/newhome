@@ -18,5 +18,5 @@
     pending = false;
     clearTimeout(timer);
     item.click();
-  }).observe(document.body, { childList: true, subtree: true });
+  }).observe(document, { childList: true, subtree: true });
 })();

@@ -10,7 +10,7 @@ layout: base.njk
 </section>
 <section {% include "text-layout.njk" %} class="tone-light">
   <div class="wrap prose">
-    {{ content | safe }}
+    <div data-document-body>{{ content | safe }}</div>
     <p style="margin-top: var(--space-6);"><a class="btn btn-secondary" href="/#posts">최근 글로 돌아가기</a></p>
   </div>
 </section>

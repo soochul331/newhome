@@ -41,6 +41,7 @@
       },
       componentWillUnmount() { this.alive = false; if (this.stopLayout) this.stopLayout(); },
       fitPreview(event) {
+        if (!event.target.contentDocument?.body) return;
         if (this.stopLayout) this.stopLayout();
         if (window.VisualLayout) window.VisualLayout.apply(event.target.contentDocument);
         this.stopLayout = window.TextLayout.observe(event.target.contentDocument, count => {

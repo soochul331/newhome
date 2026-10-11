@@ -9,7 +9,14 @@ export default class {
       items: collection.files ? collection.files.map(file => ({
         label: file.label,
         route: `#/collections/${collection.name}/entries/${file.name}`
-      })) : [{ label: collection.label + ' 목록', route: `#/collections/${collection.name}`, collection: true }]
+      })) : [
+        ...fs.readdirSync(collection.folder).filter(name=>name.endsWith('.md')).map(name=>{
+          const raw=fs.readFileSync(`${collection.folder}/${name}`,'utf8');
+          const data=yaml.load(raw.match(/^---\s*\n([\s\S]*?)\n---/)?.[1] || '') || {};
+          return {label:data.title || name,route:`#/collections/${collection.name}/entries/${name.replace(/\.md$/,'')}`};
+        }),
+        { label: collection.label + ' 추가·목록', route: `#/collections/${collection.name}`, collection: true }
+      ]
     })));
   }
 }

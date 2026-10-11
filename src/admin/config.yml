@@ -1,286 +1,768 @@
-# 신수철 목사 (Church AI Lab 디렉터) 홈페이지 — 관리자 설정 (Decap CMS)
 backend:
   name: github
   repo: soochul331/newhome
   branch: main
   commit_messages:
-    create: '관리자: {{collection}} "{{slug}}" 추가'
-    update: '관리자: {{collection}} "{{slug}}" 수정'
-    delete: '관리자: {{collection}} "{{slug}}" 삭제'
-    uploadMedia: '관리자: 이미지 {{path}} 추가'
-    deleteMedia: '관리자: 이미지 {{path}} 삭제'
-    openAuthoring: '관리자: {{message}}'
-
-# 로컬 테스트용(localhost에서 decap-server가 떠 있을 때만 작동)
+    create: "관리자: {{collection}} \"{{slug}}\" 추가"
+    update: "관리자: {{collection}} \"{{slug}}\" 수정"
+    delete: "관리자: {{collection}} \"{{slug}}\" 삭제"
+    uploadMedia: "관리자: 이미지 {{path}} 추가"
+    deleteMedia: "관리자: 이미지 {{path}} 삭제"
+    openAuthoring: "관리자: {{message}}"
 local_backend: true
-
-# 한 번 저장하면 main에 반영되어 홈페이지 배포가 시작됩니다.
 publish_mode: simple
-
 locale: ko
 site_url: https://churchailab.org
 display_url: https://churchailab.org
-
 media_folder: src/media
 public_folder: /media
-
 collections:
-  # ───────── 설정 파일(단일 파일) ─────────
   - name: settings
     label: 사이트 설정
-    description: 사이트 이름·바이라인·메타 정보·링크. 색과 글꼴은 여기서 바꿀 수 없습니다(디자인 일관성 보호).
+    description: 홈·기본 정보·메뉴를 화면에서 선택해 편집합니다.
     editor:
-      preview: true
+      preview: false
     files:
       - name: site
         label: 기본 정보
         file: src/_data/site.yml
         fields:
-          - { label: 사이트 이름(이름 표기), name: name, widget: text, hint: '홈페이지 상단에 표시할 이름을 입력하세요.' }
-          - { label: 바이라인(푸터 첫 줄), name: byline, widget: text }
-          - { label: 브라우저 탭 제목, name: title_tag, widget: text, hint: '30자 안팎, 키워드 하나 포함' }
-          - { label: 메타 설명(검색 결과 요약), name: description, widget: text, hint: '80~110자' }
-          - { label: 사이트 주소, name: url, widget: string }
-          - { label: 직함(구조화 데이터용), name: job_title, widget: text }
-          - { label: 소속 기관, name: organization, widget: text }
-          - { label: 출신 학교, name: alumni, widget: text }
-          - { label: 키워드 3개, name: keywords, widget: list, field: { label: 키워드, name: keyword, widget: string } }
+          - label: 화면 편집
+            name: _canvas
+            widget: visualcanvas
+            required: false
+            mode: site
+            fieldnames:
+              - name
+              - byline
+              - title_tag
+              - description
+              - url
+              - job_title
+              - organization
+              - alumni
+              - keywords
+              - links
+              - copyright
+              - theme
+              - og_image
+              - og_image_alt
+              - appearance
+          - label: 사이트 이름(이름 표기)
+            name: name
+            widget: canvastext
+            hint: 홈페이지 상단에 표시할 이름을 입력하세요.
+          - label: 바이라인(푸터 첫 줄)
+            name: byline
+            widget: canvastext
+          - label: 브라우저 탭 제목
+            name: title_tag
+            widget: canvastext
+            hint: 30자 안팎, 키워드 하나 포함
+          - label: 메타 설명(검색 결과 요약)
+            name: description
+            widget: canvastext
+            hint: 80~110자
+          - label: 사이트 주소
+            name: url
+            widget: canvasstring
+          - label: 직함(구조화 데이터용)
+            name: job_title
+            widget: canvastext
+          - label: 소속 기관
+            name: organization
+            widget: canvastext
+          - label: 출신 학교
+            name: alumni
+            widget: canvastext
+          - label: 키워드 3개
+            name: keywords
+            widget: canvaslist
+            field:
+              label: 키워드
+              name: keyword
+              widget: string
           - label: 링크(푸터·소개)
             name: links
-            widget: list
-            summary: '{{fields.label}}'
+            widget: canvaslist
+            summary: "{{fields.label}}"
             fields:
-              - { label: 이름, name: label, widget: text }
-              - { label: 주소, name: url, widget: string }
-          - { label: 저작권 문구, name: copyright, widget: text }
+              - label: 이름
+                name: label
+                widget: text
+              - label: 주소
+                name: url
+                widget: string
+              - label: 링크 서식
+                name: appearance
+                widget: visualappearance
+                required: false
+          - label: 저작권 문구
+            name: copyright
+            widget: canvastext
           - label: 화면 테마
             name: theme
-            widget: select
+            widget: canvasselect
             default: notion
             required: false
             options:
-              - { label: '기본(브랜드 디자인)', value: classic }
-              - { label: 'Apple 스타일', value: apple }
-              - { label: 'Tesla 스타일', value: tesla }
-              - { label: 'Claude 스타일', value: claude }
-              - { label: 'Notion 스타일', value: notion }
-            hint: '선택하면 오른쪽 미리보기에 반영됩니다. 게시 버튼으로 저장하면 홈페이지에 적용됩니다.'
-          - { label: 링크 공유 이미지(카톡 미리보기), name: og_image, widget: image, required: false, choose_url: true, hint: '가로 1200 × 세로 630 PNG·JPG 권장. 비우면 기본 이미지(/assets/og.png)를 씁니다. 바꾼 뒤에는 카카오 공유 디버거에서 캐시를 지워야 카톡에 새 이미지가 보입니다.' }
-          - { label: 공유 이미지 설명(대체 텍스트), name: og_image_alt, widget: text, required: false }
-
+              - label: 기본(브랜드 디자인)
+                value: classic
+              - label: Apple 스타일
+                value: apple
+              - label: Tesla 스타일
+                value: tesla
+              - label: Claude 스타일
+                value: claude
+              - label: Notion 스타일
+                value: notion
+            hint: 선택하면 오른쪽 미리보기에 반영됩니다. 게시 버튼으로 저장하면 홈페이지에 적용됩니다.
+          - label: 링크 공유 이미지(카톡 미리보기)
+            name: og_image
+            widget: canvasimage
+            required: false
+            choose_url: true
+            hint: 가로 1200 × 세로 630 PNG·JPG 권장. 비우면 기본 이미지(/assets/og.png)를 씁니다. 바꾼 뒤에는 카카오 공유 디버거에서 캐시를 지워야 카톡에 새 이미지가 보입니다.
+          - label: 공유 이미지 설명(대체 텍스트)
+            name: og_image_alt
+            widget: canvastext
+            required: false
+          - label: 화면 서식
+            name: appearance
+            widget: canvasvisualappearance
+            required: false
       - name: navigation
         label: 메뉴
         file: src/_data/navigation.yml
         fields:
+          - label: 화면 편집
+            name: _canvas
+            widget: visualcanvas
+            required: false
+            mode: navigation
+            fieldnames:
+              - items
+              - appearance
           - label: 메뉴 항목 (끌어서 순서 변경)
             name: items
-            widget: list
-            summary: '{{fields.label}} → {{fields.url}}'
+            widget: canvaslist
+            summary: "{{fields.label}} → {{fields.url}}"
             fields:
-              - { label: 이름, name: label, widget: text }
-              - { label: 링크, name: url, widget: string, hint: '홈 섹션은 /#together 처럼, 페이지는 /lecture/ 처럼, 외부는 https://… 로 씁니다.' }
-              - { label: 표시, name: visible, widget: boolean, default: true }
-              - { label: 모바일에서 숨김, name: hide_on_mobile, widget: boolean, default: false, required: false }
-
+              - label: 이름
+                name: label
+                widget: text
+              - label: 링크
+                name: url
+                widget: string
+                hint: 홈 섹션은 /#together 처럼, 페이지는 /lecture/ 처럼, 외부는 https://… 로 씁니다.
+              - label: 표시
+                name: visible
+                widget: boolean
+                default: true
+              - label: 모바일에서 숨김
+                name: hide_on_mobile
+                widget: boolean
+                default: false
+                required: false
+              - label: 메뉴 서식
+                name: appearance
+                widget: visualappearance
+                required: false
+          - label: 화면 서식
+            name: appearance
+            widget: canvasvisualappearance
+            required: false
       - name: home
         label: 홈 화면
         file: src/_data/home.yml
         fields:
+          - label: 화면 편집
+            name: _canvas
+            widget: visualcanvas
+            required: false
+            mode: home
+            fieldnames:
+              - sections
+              - appearance
           - label: 섹션 (끌어서 순서 변경 · 종류별 추가)
             name: sections
-            widget: visualsections
-            summary: '{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}'
+            widget: canvaslist
+            summary: "{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}"
             types:
               - label: 히어로(첫 화면)
                 name: hero
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: top }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: top
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 작은 라벨, name: label, widget: text, required: false }
-                  - { label: 큰 제목(H1), name: title, widget: text, hint: '정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트' }
-                  - { label: 부제, name: lead, widget: text, required: false }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 작은 라벨
+                    name: label
+                    widget: text
+                    required: false
+                  - label: 큰 제목(H1)
+                    name: title
+                    widget: text
+                    hint: "정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트"
+                  - label: 부제
+                    name: lead
+                    widget: text
+                    required: false
                   - label: 주 버튼(강조색, 한 화면에 하나)
                     name: primary
                     widget: object
                     required: false
                     fields:
-                      - { label: 글자, name: label, widget: text, required: false, hint: '동사로 끝나는 존댓말. 느낌표 금지' }
-                      - { label: 링크, name: url, widget: string, required: false }
+                      - label: 글자
+                        name: label
+                        widget: text
+                        required: false
+                        hint: 동사로 끝나는 존댓말. 느낌표 금지
+                      - label: 링크
+                        name: url
+                        widget: string
+                        required: false
                   - label: 보조 버튼
                     name: secondary
                     widget: object
                     required: false
                     fields:
-                      - { label: 글자, name: label, widget: text, required: false }
-                      - { label: 링크, name: url, widget: string, required: false }
+                      - label: 글자
+                        name: label
+                        widget: text
+                        required: false
+                      - label: 링크
+                        name: url
+                        widget: string
+                        required: false
               - label: 나만의 질문
                 name: question
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: question }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: question
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 질문 한 줄, name: quote, widget: text }
-                  - { label: 덧붙이는 말, name: note, widget: text, required: false }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 질문 한 줄
+                    name: quote
+                    widget: text
+                  - label: 덧붙이는 말
+                    name: note
+                    widget: text
+                    required: false
               - label: 카드 묶음(질문형 제목 + 카드 최대 4개)
                 name: cards
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
-                  - { label: 소제목(질문형), name: heading, widget: text, hint: '예: 무엇을 함께 하나요?' }
-                  - { label: 첫 문장 직답, name: lead, widget: text, hint: '첫 문장이 바로 답이어야 합니다.' }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 검색 FAQ에 포함
+                    name: faq
+                    widget: boolean
+                    default: true
+                    required: false
+                  - label: 소제목(질문형)
+                    name: heading
+                    widget: text
+                    hint: "예: 무엇을 함께 하나요?"
+                  - label: 첫 문장 직답
+                    name: lead
+                    widget: text
+                    hint: 첫 문장이 바로 답이어야 합니다.
                   - label: 카드
                     name: items
                     widget: list
                     max: 4
-                    summary: '{{fields.title}}'
+                    summary: "{{fields.title}}"
                     fields:
-                      - { label: 카드 서식, name: appearance, widget: visualappearance, required: false }
-                      - { label: 단계 표시(제목 위), name: step, widget: string, required: false, hint: '예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다.' }
-                      - { label: 카드 제목, name: title, widget: text }
-                      - { label: 카드 본문(두세 줄), name: body, widget: text }
+                      - label: 카드 서식
+                        name: appearance
+                        widget: visualappearance
+                        required: false
+                      - label: 단계 표시(제목 위)
+                        name: step
+                        widget: string
+                        required: false
+                        hint: "예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다."
+                      - label: 카드 제목
+                        name: title
+                        widget: text
+                      - label: 카드 본문(두세 줄)
+                        name: body
+                        widget: text
                       - label: 글자 크기와 줄 맞춤
                         name: typography
                         widget: object
                         required: false
                         collapsed: true
                         fields:
-                          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
+                          - label: 제목·질문 크기
+                            name: title_scale
+                            widget: textscale
+                            default: 100
+                            required: false
+                          - label: 설명·본문 크기
+                            name: body_scale
+                            widget: textscale
+                            default: 100
+                            required: false
+                          - label: 제목·질문 한 줄 자동 맞춤
+                            name: auto_fit
+                            widget: autofit
+                            default: true
+                            required: false
+                            hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
               - label: 소개·증거
                 name: evidence
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: about }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: about
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 검색 FAQ에 포함, name: faq, widget: boolean, default: true, required: false }
-                  - { label: 소제목(질문형), name: heading, widget: text }
-                  - { label: 첫 문장 직답, name: lead, widget: text }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 검색 FAQ에 포함
+                    name: faq
+                    widget: boolean
+                    default: true
+                    required: false
+                  - label: 소제목(질문형)
+                    name: heading
+                    widget: text
+                  - label: 첫 문장 직답
+                    name: lead
+                    widget: text
                   - label: 증거 항목
                     name: items
                     widget: list
-                    summary: '{{fields.kind}}'
+                    summary: "{{fields.kind}}"
                     fields:
-                      - { label: 항목 서식, name: appearance, widget: visualappearance, required: false }
-                      - { label: 구분(경험·결과물·공인·기록), name: kind, widget: text }
-                      - { label: 내용(사실만), name: body, widget: text, hint: '증거표에 없는 경력·수치·수상은 쓰지 않습니다.' }
-                      - { label: 링크 글자(본문 안의 단어와 같아야 함), name: link_label, widget: string, required: false }
-                      - { label: 링크 주소, name: link_url, widget: string, required: false }
+                      - label: 항목 서식
+                        name: appearance
+                        widget: visualappearance
+                        required: false
+                      - label: 구분(경험·결과물·공인·기록)
+                        name: kind
+                        widget: text
+                      - label: 내용(사실만)
+                        name: body
+                        widget: text
+                        hint: 증거표에 없는 경력·수치·수상은 쓰지 않습니다.
+                      - label: 링크 글자(본문 안의 단어와 같아야 함)
+                        name: link_label
+                        widget: string
+                        required: false
+                      - label: 링크 주소
+                        name: link_url
+                        widget: string
+                        required: false
               - label: 최근 글 목록
                 name: posts
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: posts }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: posts
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: text }
-                  - { label: 첫 문장 직답, name: lead, widget: text, required: false }
-                  - { label: 보여줄 글 수, name: count, widget: number, default: 3, value_type: int, min: 1, max: 10 }
-                  - { label: 더 보기 버튼 글자, name: more_label, widget: text, required: false }
-                  - { label: 더 보기 링크, name: more_url, widget: string, required: false }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 소제목(질문형)
+                    name: heading
+                    widget: text
+                  - label: 첫 문장 직답
+                    name: lead
+                    widget: text
+                    required: false
+                  - label: 보여줄 글 수
+                    name: count
+                    widget: number
+                    default: 3
+                    value_type: int
+                    min: 1
+                    max: 10
+                  - label: 더 보기 버튼 글자
+                    name: more_label
+                    widget: text
+                    required: false
+                  - label: 더 보기 링크
+                    name: more_url
+                    widget: string
+                    required: false
               - label: 문의
                 name: contact
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: contact }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: contact
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: text }
-                  - { label: 첫 문장 직답, name: lead, widget: text, required: false }
-                  - { label: 문의 양식 표시, name: form_enabled, widget: boolean, default: true }
-                  - { label: 마무리 말, name: closing, widget: text, default: 끝까지 읽어 주셔서 감사합니다. }
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 소제목(질문형)
+                    name: heading
+                    widget: text
+                  - label: 첫 문장 직답
+                    name: lead
+                    widget: text
+                    required: false
+                  - label: 문의 양식 표시
+                    name: form_enabled
+                    widget: boolean
+                    default: true
+                  - label: 마무리 말
+                    name: closing
+                    widget: text
+                    default: 끝까지 읽어 주셔서 감사합니다.
               - label: 이미지 구획
                 name: image
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string, default: image }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
-                  - { label: 제목, name: heading, widget: text, required: false }
-                  - { label: 이미지, name: src, widget: image, choose_url: true }
-                  - { label: 이미지 설명(대체 텍스트), name: alt, widget: string }
-                  - { label: 아래 설명, name: caption, widget: text, required: false }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                    default: image
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
+                  - label: 제목
+                    name: heading
+                    widget: text
+                    required: false
+                  - label: 이미지
+                    name: src
+                    widget: image
+                    choose_url: true
+                  - label: 이미지 설명(대체 텍스트)
+                    name: alt
+                    widget: string
+                  - label: 아래 설명
+                    name: caption
+                    widget: text
+                    required: false
               - label: 자유 글 섹션
                 name: richtext
                 fields:
-                  - { label: 화면 편집 서식, name: appearance, widget: visualappearance, required: false }
-                  - { label: 앵커 id, name: id, widget: string }
-                  - { label: 표시, name: enabled, widget: boolean, default: true }
+                  - label: 화면 편집 서식
+                    name: appearance
+                    widget: visualappearance
+                    required: false
+                  - label: 앵커 id
+                    name: id
+                    widget: string
+                  - label: 표시
+                    name: enabled
+                    widget: boolean
+                    default: true
                   - label: 글자 크기와 줄 맞춤
                     name: typography
                     widget: object
                     required: false
                     collapsed: true
                     fields:
-                      - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-                      - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-                      - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-                  - { label: 구획 색(애플 테마), name: tone, widget: select, default: auto, required: false, options: [ { label: 자동, value: auto }, { label: 흰색, value: light }, { label: 연한 회색, value: parchment }, { label: 어두운 남색, value: dark } ] }
-                  - { label: 소제목(질문형), name: heading, widget: text, required: false }
-                  - { label: 본문, name: body, widget: markdown }
-
-  # ───────── 페이지 ─────────
+                      - label: 제목·질문 크기
+                        name: title_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 설명·본문 크기
+                        name: body_scale
+                        widget: textscale
+                        default: 100
+                        required: false
+                      - label: 제목·질문 한 줄 자동 맞춤
+                        name: auto_fit
+                        widget: autofit
+                        default: true
+                        required: false
+                        hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+                  - label: 구획 색(애플 테마)
+                    name: tone
+                    widget: select
+                    default: auto
+                    required: false
+                    options:
+                      - label: 자동
+                        value: auto
+                      - label: 흰색
+                        value: light
+                      - label: 연한 회색
+                        value: parchment
+                      - label: 어두운 남색
+                        value: dark
+                  - label: 소제목(질문형)
+                    name: heading
+                    widget: text
+                    required: false
+                  - label: 본문
+                    name: body
+                    widget: markdown
+          - label: 화면 서식
+            name: appearance
+            widget: canvasvisualappearance
+            required: false
   - name: pages
+    identifier_field: title
+    editor:
+      preview: false
     label: 페이지
     label_singular: 페이지
     description: 강의 안내, 자료실처럼 홈 외의 페이지를 만듭니다. 메뉴에 넣으려면 "메뉴"에서 링크를 추가하세요.
@@ -289,25 +771,68 @@ collections:
     delete: true
     extension: md
     format: frontmatter
-    slug: '{{slug}}'
-    summary: '{{title}} ({{permalink}})'
+    slug: "{{slug}}"
+    summary: "{{title}} ({{permalink}})"
     fields:
-      - { label: 제목, name: title, widget: text }
-      - { label: 주소(permalink), name: permalink, widget: string, hint: '영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/', pattern: ['^/[a-z0-9-]+/$', '형식: /영문소문자-하이픈/ 예) /lecture/'] }
-      - { label: 메타 설명, name: description, widget: text, hint: '80~110자' }
-      - { label: 본문, name: body, widget: markdown }
+      - label: 화면 편집
+        name: _canvas
+        widget: visualcanvas
+        required: false
+        mode: pages
+        fieldnames:
+          - title
+          - permalink
+          - description
+          - body
+          - typography
+          - appearance
+      - label: 제목
+        name: title
+        widget: canvastext
+      - label: 주소(permalink)
+        name: permalink
+        widget: canvasstring
+        hint: "영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/"
+        pattern:
+          - ^/[a-z0-9-]+/$
+          - "형식: /영문소문자-하이픈/ 예) /lecture/"
+      - label: 메타 설명
+        name: description
+        widget: canvastext
+        hint: 80~110자
+      - label: 본문
+        name: body
+        widget: canvasmarkdown
       - label: 글자 크기와 줄 맞춤
         name: typography
-        widget: object
+        widget: canvasobject
         required: false
         collapsed: true
         fields:
-          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
-
-  # ───────── 글·소식 ─────────
+          - label: 제목·질문 크기
+            name: title_scale
+            widget: textscale
+            default: 100
+            required: false
+          - label: 설명·본문 크기
+            name: body_scale
+            widget: textscale
+            default: 100
+            required: false
+          - label: 제목·질문 한 줄 자동 맞춤
+            name: auto_fit
+            widget: autofit
+            default: true
+            required: false
+            hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+      - label: 화면 서식
+        name: appearance
+        widget: canvasvisualappearance
+        required: false
   - name: posts
+    identifier_field: title
+    editor:
+      preview: false
     label: 글·소식
     label_singular: 글
     description: 홈 "최근 글"에 보이는 항목입니다. 네이버 블로그 글이면 링크만, 직접 쓰는 글이면 본문을 채웁니다.
@@ -316,21 +841,70 @@ collections:
     delete: true
     extension: md
     format: frontmatter
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    summary: '{{date}} · {{title}}'
-    sortable_fields: [date, title]
+    slug: "{{fields.date}}-{{slug}}"
+    summary: "{{date}} · {{title}}"
+    sortable_fields:
+      - date
+      - title
     fields:
-      - { label: 제목, name: title, widget: text }
-      - { label: 날짜, name: date, widget: datetime, date_format: 'YYYY-MM-DD', time_format: false, format: 'YYYY-MM-DD' }
-      - { label: 외부 링크(네이버 블로그 글 주소), name: external_url, widget: string, required: false, hint: '있으면 제목을 누를 때 이 주소로 갑니다. 없으면 아래 본문으로 페이지가 만들어집니다.' }
-      - { label: 요약 한 줄, name: summary, widget: text, required: false }
-      - { label: 본문(직접 쓰는 글일 때), name: body, widget: markdown, required: false }
+      - label: 화면 편집
+        name: _canvas
+        widget: visualcanvas
+        required: false
+        mode: posts
+        fieldnames:
+          - title
+          - date
+          - external_url
+          - summary
+          - body
+          - typography
+          - appearance
+      - label: 제목
+        name: title
+        widget: canvastext
+      - label: 날짜
+        name: date
+        widget: canvasdatetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+      - label: 외부 링크(네이버 블로그 글 주소)
+        name: external_url
+        widget: canvasstring
+        required: false
+        hint: 있으면 제목을 누를 때 이 주소로 갑니다. 없으면 아래 본문으로 페이지가 만들어집니다.
+      - label: 요약 한 줄
+        name: summary
+        widget: canvastext
+        required: false
+      - label: 본문(직접 쓰는 글일 때)
+        name: body
+        widget: canvasmarkdown
+        required: false
       - label: 글자 크기와 줄 맞춤
         name: typography
-        widget: object
+        widget: canvasobject
         required: false
         collapsed: true
         fields:
-          - { label: 제목·질문 크기, name: title_scale, widget: textscale, default: 100, required: false }
-          - { label: 설명·본문 크기, name: body_scale, widget: textscale, default: 100, required: false }
-          - { label: 제목·질문 한 줄 자동 맞춤, name: auto_fit, widget: autofit, default: true, required: false, hint: "Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다." }
+          - label: 제목·질문 크기
+            name: title_scale
+            widget: textscale
+            default: 100
+            required: false
+          - label: 설명·본문 크기
+            name: body_scale
+            widget: textscale
+            default: 100
+            required: false
+          - label: 제목·질문 한 줄 자동 맞춤
+            name: auto_fit
+            widget: autofit
+            default: true
+            required: false
+            hint: Enter로 나눈 줄을 유지합니다. 너무 길면 읽을 수 있는 크기를 유지하며 추가 줄바꿈합니다.
+      - label: 화면 서식
+        name: appearance
+        widget: canvasvisualappearance
+        required: false
