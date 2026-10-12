@@ -3,8 +3,8 @@ items:
     url: /#together
     visible: true
     hide_on_mobile: false
-  - label: 설교shorts제작기
-    url: /sermon-shorts/
+  - label: 직접 만든 AI도구
+    url: /#tools
     visible: true
     hide_on_mobile: false
   - label: 소개

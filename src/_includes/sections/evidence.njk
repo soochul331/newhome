@@ -2,6 +2,7 @@
 <section data-appearance="{{ s.appearance | dump }}" {% include "text-layout.njk" %} class="tone-{{ s._tone or 'light' }}" id="{{ s.id }}">
   <div class="wrap">
     <h2>{{ s.heading | br | safe }}</h2>
+    {% if s.id == "about" %}<img src="/assets/shin-soochul-profile.webp" alt="신수철 목사 프로필" width="150" height="199" loading="lazy" style="width:150px;height:auto;display:block;margin:20px 0;">{% endif %}
     {% if s.lead %}<p>{{ s.lead | br | safe }}</p>{% endif %}
     <dl class="evidence">
       {% for e in s.items %}

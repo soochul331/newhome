@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+<aside class="motion-toolbar" aria-label="페이지 설정"><a href="/motion-preview/#tools">← 직접 만든 AI도구</a><div><button type="button" data-product-motion aria-pressed="true">모션 켜짐</button></div></aside>
+<section class="product-hero studio-wrap">
+  <div class="intro-top"><p>처치AI랩 · 직접 만든 AI도구</p><span>설교 영상 활용</span></div>
+  <h1><span class="title-line"><span>주일의 말씀을,</span></span><span class="title-line"><span>일상의 숏츠로.</span></span></h1>
+  <div class="product-hero-bottom"><div><h2>{{ title }}</h2><p>교회 유튜브의 설교 영상을 세로(숏츠) 영상으로.<br>핵심 메시지를 분석하고 제목과 자막을 확인해 직접 나눕니다.</p><div class="product-actions"><a class="product-primary" href="https://sermonshorts.churchailab.org" target="_blank" rel="noopener">설교 숏츠 제작기 열기 ↗</a><a class="studio-link" href="/#contact">사용 문의하기 ↗</a></div><p class="product-invitation">현재 초대받은 교회에서 사용합니다. 무료 체험은 숏츠 1편입니다.</p></div><div class="product-visual" aria-hidden="true"><div class="video-sheet"><div class="video-screen"><div class="sound-wave">{% for i in range(0,17) %}<i style="--bar:{{ i }};--height:{{ 16 + (i * 13) % 50 }}px"></i>{% endfor %}</div><span class="video-caption">말씀을 나누는<br>또 하나의 방법</span></div><div class="video-timeline"><span></span></div><span class="video-note">화면 구성 예시</span></div></div></div>
+</section>
+<div class="product-details" data-document-body>
+{% set chapters = content.split('<h2>') %}
+{% for chapter in chapters %}{% if not loop.first %}{% set parts = chapter.split('</h2>') %}<section class="product-chapter"><div class="studio-wrap product-chapter-inner"><h2>{{ parts[0] | safe }}</h2><div class="product-prose">{{ parts[1] | safe }}</div></div></section>{% endif %}{% endfor %}
+</div>
+<section class="studio-contact"><div class="studio-wrap"><p>설교 숏츠 제작기</p><h2>함께 나누고 싶은<br>설교의 핵심 메시지부터</h2><a class="contact-link" href="https://sermonshorts.churchailab.org" target="_blank" rel="noopener">도구 열기 ↗</a><a class="contact-link product-inquiry" href="/#contact">사용 문의하기 ↗</a></div></section>

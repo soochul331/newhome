@@ -8,7 +8,7 @@
         {% if s.primary.label %}<a class="btn btn-primary" href="{{ s.primary.url }}">{{ s.primary.label | oneline }}</a>{% endif %}
         {% if s.secondary.label %}<a class="btn btn-secondary" href="{{ s.secondary.url }}">{{ s.secondary.label | oneline }}</a>{% endif %}
       </div>
-      <p class="hero-author">교회AI 컨설턴트 {{ site.name | oneline }}</p>
+      <p class="hero-author">목회AI 컨설턴트 {{ site.name | oneline }}</p>
     </div>
     {% if s.showcase and s.showcase.length %}
     <div class="paper-scene workbench" data-showcase>
@@ -19,9 +19,7 @@
       <div class="showcase-panel" role="tabpanel" id="example-panel-{{ loop.index0 }}" aria-labelledby="example-tab-{{ loop.index0 }}" tabindex="0" {% if not loop.first %}hidden{% endif %}>
         <p class="example-caption">활용 흐름 예시</p>
         <div class="document-preview preview-{{ loop.index0 }}" aria-hidden="true">
-          {% if loop.index0 == 0 %}<svg viewBox="0 0 400 210" fill="none"><rect x="65" y="22" width="228" height="166" rx="3" fill="#E4F1EB" transform="rotate(-7 65 22)"/><rect x="99" y="14" width="228" height="180" rx="3" fill="white" stroke="#D4DED7"/><rect x="119" y="34" width="65" height="8" rx="2" fill="#215B4A"/><rect x="119" y="57" width="184" height="3" fill="#D4DED7"/><rect x="119" y="73" width="102" height="65" rx="3" fill="#92CDBD"/><circle cx="170" cy="96" r="12" fill="#215B4A"/><path d="M145 124c0-18 50-18 50 0" stroke="white" stroke-width="5"/><rect x="233" y="77" width="69" height="5" fill="#D4DED7"/><rect x="233" y="92" width="56" height="5" fill="#D4DED7"/><rect x="233" y="107" width="63" height="5" fill="#D4DED7"/><rect x="119" y="154" width="161" height="4" fill="#D4DED7"/><rect x="119" y="167" width="182" height="4" fill="#D4DED7"/></svg>
-          {% elif loop.index0 == 1 %}<svg viewBox="0 0 400 210" fill="none"><rect x="57" y="33" width="240" height="144" rx="5" fill="#E4F1EB" transform="rotate(-6 57 33)"/><rect x="83" y="23" width="240" height="144" rx="5" fill="#215B4A"/><rect x="105" y="45" width="135" height="9" rx="2" fill="white"/><rect x="105" y="63" width="90" height="4" fill="#92CDBD"/><rect x="105" y="85" width="110" height="59" rx="3" fill="#92CDBD"/><path d="M122 124l23-14 23 7 27-20" stroke="white" stroke-width="4"/><rect x="231" y="87" width="69" height="5" fill="#92CDBD"/><rect x="231" y="102" width="55" height="5" fill="#92CDBD"/><rect x="231" y="117" width="62" height="5" fill="#92CDBD"/><rect x="255" y="148" width="88" height="48" rx="3" fill="white" stroke="#D4DED7"/><path d="M269 162h59M269 172h44M269 182h52" stroke="#D4DED7" stroke-width="3"/></svg>
-          {% else %}<svg viewBox="0 0 400 210" fill="none"><path d="M99 107h200M200 56v100" stroke="#215B4A" stroke-width="3" stroke-dasharray="5 5"/><rect x="155" y="61" width="90" height="90" rx="17" fill="#215B4A"/><rect x="174" y="83" width="52" height="36" rx="9" stroke="white" stroke-width="3"/><circle cx="188" cy="101" r="4" fill="#92CDBD"/><circle cx="212" cy="101" r="4" fill="#92CDBD"/><path d="M189 133h22M200 83V74" stroke="white" stroke-width="3"/><rect x="46" y="78" width="64" height="58" rx="8" fill="white" stroke="#D4DED7"/><path d="M62 95h32M62 105h24M62 115h29" stroke="#92CDBD" stroke-width="4"/><rect x="290" y="78" width="64" height="58" rx="8" fill="white" stroke="#D4DED7"/><path d="M309 107l9 9 17-20" stroke="#215B4A" stroke-width="4"/><rect x="176" y="16" width="48" height="29" rx="5" fill="white" stroke="#D4DED7"/><rect x="176" y="166" width="48" height="29" rx="5" fill="white" stroke="#D4DED7"/></svg>{% endif %}
+          {% set icon = loop.index0 %}{% include "practical-icon.njk" %}
         </div>
         <h2 data-home-path='["showcase",{{ loop.index0 }},"title"]'>{{ example.title }}</h2>
         <p class="example-brief" data-home-path='["showcase",{{ loop.index0 }},"brief"]'>{{ example.brief }}</p>

@@ -1,0 +1,10 @@
+heading: 직접 만든 AI도구
+lead: 목회 현장에서 필요한 일을 돕기 위해 직접 만든 도구들을 소개합니다.
+items:
+  - name: 설교 숏츠 제작기
+    category: 설교 영상 활용
+    tagline: 주일의 말씀을, 일상의 숏츠로.
+    description: 교회 유튜브의 설교 영상에서 AI가 핵심 메시지를 분석합니다. 제안한 구간을 고르고 제목과 자막을 확인해 세로(숏츠) 영상으로 만듭니다.
+    intro_url: /sermon-shorts/
+    app_url: https://sermonshorts.churchailab.org
+    visual: shorts

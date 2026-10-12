@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   {%- set theme = site.theme or 'classic' %}
-  {% if theme == 'beagle' %}<link rel="stylesheet" href="/assets/theme-beagle.css">
+  {% if theme == 'beagle' %}<link rel="stylesheet" href="/assets/theme-beagle.css?v=footer-17">
   {% elif theme == 'tesla' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme-apple.css">
   <link rel="stylesheet" href="/assets/theme-tesla.css">
@@ -64,11 +64,12 @@
   }
   </script>
   {% endif %}
+  {% if motion_demo or studio_page %}<link rel="stylesheet" href="/assets/motion-demo.css?v=studio-20">{% endif %}
   {% block head %}{% endblock %}
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/text-layout.css">
 </head>
-<body data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}">
+<body data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}{% if motion_demo or studio_page %} motion-demo{% endif %}{% if studio_page %} product-page{% endif %}">
 
 <header class="site">
   <div class="wrap-wide">
@@ -88,17 +89,21 @@
 </main>
 
 <footer class="site">
-  {% if theme == 'beagle' %}<div class="wrap footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.png" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>{% endif %}
-  <div class="wrap">
-    <p>{{ site.byline | br | safe }}</p>
-    <p>{% for l in site.links %}<a data-item-appearance="{{ l.appearance | dump }}" href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
-    <p>{{ site.copyright | br | safe }}</p>
+  <div class="wrap footer-profile">
+    {% if theme == 'beagle' %}<div class="footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.png" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>{% endif %}
+    <div class="footer-details">
+      <p>{{ site.byline | br | safe }}</p>
+      <p class="footer-affiliations">{% for l in site.links %}<a data-item-appearance="{{ l.appearance | dump }}" href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %}<span class="footer-separator"> · </span>{% endif %}{% endfor %}</p>
+      <p>{{ site.copyright | br | safe }}</p>
+      <a href="/admin/" class="admin-shortcut">관리자</a>
+    </div>
   </div>
-  <div class="wrap"><a href="/admin/" class="admin-shortcut">관리자</a></div>
 </footer>
 
 <script src="/assets/visual-layout.js" defer></script>
 {% if theme == 'beagle' %}<script src="/assets/showcase.js" defer></script>{% endif %}
 <script src="/assets/text-layout.js" defer></script>
+{% if motion_demo %}<script src="/assets/motion-demo.js?v=studio-20" defer></script>{% endif %}
+{% if studio_page %}<script src="/assets/sermon-motion.js?v=1" defer></script>{% endif %}
 </body>
 </html>

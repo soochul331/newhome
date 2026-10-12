@@ -76,7 +76,7 @@ def render(out, label, lines, name, role, url, style="apple", S=2):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(HERE, "..", "..", "src", "assets", "og.png"))
-    ap.add_argument("--label", default="Church AI Lab · 교회AI 컨설턴트")
+    ap.add_argument("--label", default="Church AI Lab · 목회AI 컨설턴트")
     ap.add_argument("--lines", default="AI를 사역에 쓰는 법,|함께 배웁니다.")
     ap.add_argument("--style", default="apple", choices=["apple", "classic"])
     ap.add_argument("--name", default="신수철 목사")
