@@ -1,5 +1,5 @@
 items:
-  - label: 함께 하는 일
+  - label: 활용 분야
     url: /#together
     visible: true
     hide_on_mobile: false

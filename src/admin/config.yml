@@ -3,12 +3,12 @@ backend:
   repo: soochul331/newhome
   branch: main
   commit_messages:
-    create: "관리자: {{collection}} \"{{slug}}\" 추가"
-    update: "관리자: {{collection}} \"{{slug}}\" 수정"
-    delete: "관리자: {{collection}} \"{{slug}}\" 삭제"
-    uploadMedia: "관리자: 이미지 {{path}} 추가"
-    deleteMedia: "관리자: 이미지 {{path}} 삭제"
-    openAuthoring: "관리자: {{message}}"
+    create: '관리자: {{collection}} "{{slug}}" 추가'
+    update: '관리자: {{collection}} "{{slug}}" 수정'
+    delete: '관리자: {{collection}} "{{slug}}" 삭제'
+    uploadMedia: '관리자: 이미지 {{path}} 추가'
+    deleteMedia: '관리자: 이미지 {{path}} 삭제'
+    openAuthoring: '관리자: {{message}}'
 local_backend: true
 publish_mode: simple
 locale: ko
@@ -85,7 +85,7 @@ collections:
           - label: 링크(푸터·소개)
             name: links
             widget: canvaslist
-            summary: "{{fields.label}}"
+            summary: '{{fields.label}}'
             fields:
               - label: 이름
                 name: label
@@ -148,7 +148,7 @@ collections:
           - label: 메뉴 항목 (끌어서 순서 변경)
             name: items
             widget: canvaslist
-            summary: "{{fields.label}} → {{fields.url}}"
+            summary: '{{fields.label}} → {{fields.url}}'
             fields:
               - label: 이름
                 name: label
@@ -189,7 +189,7 @@ collections:
           - label: 섹션 (끌어서 순서 변경 · 종류별 추가)
             name: sections
             widget: canvaslist
-            summary: "{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}"
+            summary: '{{fields.type}} · {{fields.heading}}{{fields.title}}{{fields.quote}}'
             types:
               - label: 히어로(첫 화면)
                 name: hero
@@ -249,7 +249,7 @@ collections:
                   - label: 큰 제목(H1)
                     name: title
                     widget: text
-                    hint: "정체성 네 요소: 두려움·혼란 / 신학적 분별 / 현장 실습 / 컨설턴트"
+                    hint: 첫 화면에서 누구를 위한 어떤 서비스인지 짧게 설명합니다.
                   - label: 부제
                     name: lead
                     widget: text
@@ -281,6 +281,28 @@ collections:
                         name: url
                         widget: string
                         required: false
+                  - label: 첫 화면 활용 예시 (Beagle 테마)
+                    name: showcase
+                    widget: list
+                    required: false
+                    summary: '{{fields.label}}'
+                    fields:
+                      - label: 탭 이름
+                        name: label
+                        widget: string
+                      - label: 예시 제목
+                        name: title
+                        widget: text
+                      - label: 설명
+                        name: brief
+                        widget: text
+                      - label: 진행 단계
+                        name: stages
+                        widget: list
+                        field:
+                          label: 단계
+                          name: stage
+                          widget: string
               - label: 나만의 질문
                 name: question
                 fields:
@@ -397,7 +419,7 @@ collections:
                   - label: 소제목(질문형)
                     name: heading
                     widget: text
-                    hint: "예: 무엇을 함께 하나요?"
+                    hint: '예: 무엇을 함께 하나요?'
                   - label: 첫 문장 직답
                     name: lead
                     widget: text
@@ -406,7 +428,7 @@ collections:
                     name: items
                     widget: list
                     max: 4
-                    summary: "{{fields.title}}"
+                    summary: '{{fields.title}}'
                     fields:
                       - label: 카드 서식
                         name: appearance
@@ -416,7 +438,7 @@ collections:
                         name: step
                         widget: string
                         required: false
-                        hint: "예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다."
+                        hint: '예: 1단계 · 분별과 책임. 비워 두면 표시하지 않습니다.'
                       - label: 카드 제목
                         name: title
                         widget: text
@@ -510,7 +532,7 @@ collections:
                   - label: 증거 항목
                     name: items
                     widget: list
-                    summary: "{{fields.kind}}"
+                    summary: '{{fields.kind}}'
                     fields:
                       - label: 항목 서식
                         name: appearance
@@ -773,8 +795,8 @@ collections:
     delete: true
     extension: md
     format: frontmatter
-    slug: "{{slug}}"
-    summary: "{{title}} ({{permalink}})"
+    slug: '{{slug}}'
+    summary: '{{title}} ({{permalink}})'
     fields:
       - label: 화면 편집
         name: _canvas
@@ -794,10 +816,10 @@ collections:
       - label: 주소(permalink)
         name: permalink
         widget: canvasstring
-        hint: "영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/"
+        hint: '영문 소문자와 하이픈, 앞뒤에 슬래시. 예: /lecture/'
         pattern:
           - ^/[a-z0-9-]+/$
-          - "형식: /영문소문자-하이픈/ 예) /lecture/"
+          - '형식: /영문소문자-하이픈/ 예) /lecture/'
       - label: 메타 설명
         name: description
         widget: canvastext
@@ -843,8 +865,8 @@ collections:
     delete: true
     extension: md
     format: frontmatter
-    slug: "{{fields.date}}-{{slug}}"
-    summary: "{{date}} · {{title}}"
+    slug: '{{fields.date}}-{{slug}}'
+    summary: '{{date}} · {{title}}'
     sortable_fields:
       - date
       - title

@@ -115,6 +115,19 @@
       const sections = this.mode === 'home' ? this.draft.sections || [] : [];
       const enabled = sections.map((s,i) => ({s,i})).filter(x => x.s.enabled !== false);
       window.VisualLayout.apply(doc);
+      window.HomeShowcase?.init(doc,this.showcaseIndex);
+      const selectShowcase=e=>{
+        const tab=e.target.closest('[data-showcase] [role="tab"]');
+        if(tab){
+          this.showcaseIndex=[...tab.parentElement.querySelectorAll('[role="tab"]')].indexOf(tab);
+          const root=tab.closest('[data-showcase]');
+          root.querySelectorAll('[role="tab"]').forEach((t,i)=>{t.setAttribute('aria-selected',String(i===this.showcaseIndex));t.tabIndex=i===this.showcaseIndex?0:-1;});
+          root.querySelectorAll('[role="tabpanel"]').forEach((p,i)=>{p.hidden=i!==this.showcaseIndex;});
+        }
+      };
+      doc.addEventListener('pointerdown',selectShowcase,true);
+      doc.addEventListener('focusin',selectShowcase,true);
+      doc.addEventListener('click',selectShowcase,true);
       this.bound = [];
       doc.addEventListener('click', e => { if (e.target.closest('a,button')) e.preventDefault(); },true);
       doc.addEventListener('submit', e => e.preventDefault());

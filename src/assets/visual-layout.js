@@ -8,6 +8,10 @@
       if (el) result.push({ key, el, path, kind });
     };
     add('title', 'h1', ['title']);
+    add('label', '[data-hero-label]', ['label']);
+    section.querySelectorAll('[data-home-path]').forEach(el=>{
+      try { const path=JSON.parse(el.dataset.homePath); if(Array.isArray(path)) result.push({key:path.join('-'),el,path,kind:'text'}); } catch (_) {}
+    });
     add('heading', ':scope > .wrap > h2', ['heading']);
     add('caption', 'figcaption', ['caption']);
     add('body', '[data-document-body]', ['body'], 'richtext');

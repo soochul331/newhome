@@ -1,22 +1,22 @@
-name: "신수철 목사 (Church AI Lab 디렉터)"
+name: 신수철 목사 (Church AI Lab 디렉터)
 byline: Church AI Lab 디렉터 · 늘푸른진건교회 교육목사
-title_tag: Church AI Lab
-description: 교회교육 현장의 목회자로, 또 AI를 연구하는 사람으로 일하고 있습니다. 교회사역에 AI를 어떻게 쓸지 고민하는 분들
-  곁에서 함께 답을 찾겠습니다. 신수철 목사입니다.
+title_tag: Church AI Lab · 목회자를 위한 AI 활용 교육
+description: 목회자를 위한 AI 활용 교육을 제공합니다. 교회교육 자료와 설교·강의 준비, 반복 업무를 돕는 AI 도구 만들기를 함께 연습합니다. 교회AI 컨설턴트 신수철 목사에게 강의와 컨설팅을 문의하세요.
 url: https://churchailab.org
 job_title: Church AI Lab 디렉터 · 교회AI 컨설턴트 · 늘푸른진건교회 교육목사
 organization: Church AI Lab
 alumni: 총신대학교 신학대학원 · Georgia Central University, GCU
 keywords:
   - 목회 AI
-  - 신학적 분별
+  - 교회 AI 활용
   - 교회교육
+  - AI 활용 교육
 links:
   - label: 늘푸른진건교회
     url: http://www.egjingeon.com/
   - label: 처치AI랩 블로그
     url: https://blog.naver.com/church_ai_lab
 copyright: © 2026 Church AI Lab 디렉터 신수철 목사
-og_image: /assets/og.png?v=20261009
-og_image_alt: AI 시대, 교회는 무엇을 맡기고 무엇을 지켜야 할까요? — Church AI Lab
+og_image: /assets/og.png?v=20261013
+og_image_alt: Church AI Lab · 목회자를 위한 AI 활용 교육
 theme: beagle

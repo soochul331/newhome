@@ -10,6 +10,8 @@
       {% for c in s.items %}
       {% set typography = c.typography or s.typography %}
       <div data-item-appearance="{{ c.appearance | dump }}" class="card" {% include "text-layout.njk" %}>
+        {% if site.theme == 'beagle' and s.id == 'together' %}<div class="card-visual" aria-hidden="true">{% set icon = loop.index0 %}{% include "practical-icon.njk" %}</div>{% endif %}
+        {% if site.theme == 'beagle' and s.id == 'for-whom' %}<span class="stage-number" aria-hidden="true">0{{ loop.index }}</span>{% endif %}
         {% if c.step %}<div class="card-step">{{ c.step | escape }}</div>{% endif %}
         <h3>{{ c.title | br | safe }}</h3>
         <p>{{ c.body | br | safe }}</p>
