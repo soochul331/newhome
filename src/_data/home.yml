@@ -81,6 +81,14 @@ sections:
     typography:
       title_scale: 100
       body_scale: 95
+  - type: richtext
+    id: sermon-shorts
+    enabled: true
+    heading: 설교 한 대목을 짧은 영상으로 나눌 수 있나요?
+    body: |-
+      <p>나눌 수 있습니다. 그 일을 돕는 도구, 설교shorts제작기를 직접 만들었습니다.</p>
+      <p>교회 유튜브에 올린 설교 영상을 불러오면 AI가 짧게 나누기 좋은 대목을 짚어 줍니다. 목회자가 대목을 고르고 제목과 자막을 확인하면, 교회 이름이 들어간 세로 영상이 됩니다. 지금은 함께하는 교회에서 먼저 쓰고 있습니다.</p>
+      <p class="actions"><a class="btn btn-primary" href="/sermon-shorts/">설교shorts제작기 소개 보기</a> <a class="btn btn-secondary" href="https://sermonshorts.churchailab.org">도구 열기 <span aria-hidden="true">↗</span></a></p>
   - type: evidence
     id: about
     enabled: true
@@ -95,7 +103,9 @@ sections:
         link_label: 늘푸른진건교회
         link_url: http://www.egjingeon.com/
       - kind: 직접 만든 도구
-        body: 설교·강의 PPT 디자인 스킬과 발표자 노트 자동 생성 스킬을 만들었습니다. 직접 쓰며 익힌 활용법을 나눕니다.
+        body: 설교·강의 PPT 디자인 스킬, 발표자 노트 자동 생성 스킬, 설교 영상으로 쇼츠를 만드는 설교shorts제작기를 만들었습니다. 직접 쓰며 익힌 활용법을 나눕니다.
+        link_label: 설교shorts제작기
+        link_url: /sermon-shorts/
       - kind: 연구
         body: AI융합 박사과정에 재학 중입니다. 배운 내용을 실제 사역 자료와 도구에 적용하고 있습니다.
       - kind: 기록
