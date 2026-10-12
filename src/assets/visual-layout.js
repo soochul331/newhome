@@ -38,9 +38,9 @@
   }
   function references(section) {
     const result = [];
-    section.querySelectorAll('.notion-board > li, .learning-journal ol > li').forEach((el,i) => {
+    section.querySelectorAll('.notion-board > li, .learning-journal ol > li, .paper-steps > li').forEach((el,i) => {
       result.push({key:'card-'+i, el, path:['items',i], kind:'box', sourceId:'for-whom'});
-      [['title','h3, .journal-title'],['step','.board-stage, .journal-title + p']].forEach(([field,selector]) => {
+      [['title','h3, .journal-title'],['step','.board-stage, .journal-title + p, .paper-step-label']].forEach(([field,selector]) => {
         const node = el.querySelector(selector);
         if (node) result.push({key:'item-'+i+'-'+field,el:node,path:['items',i,field],kind:'text',sourceId:'for-whom'});
       });

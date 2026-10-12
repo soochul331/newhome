@@ -1,0 +1,28 @@
+{% set learning = [] %}
+{% for section in home.sections %}{% if section.id == "for-whom" %}{% set learning = section.items %}{% endif %}{% endfor %}
+    <section data-appearance="{{ s.appearance | dump }}" class="hero beagle-hero" id="{{ s.id or 'top' }}">
+      <div class="hero-inner wrap-wide">
+        <div class="hero-copy">
+          <p class="eyebrow">{{ site.name | oneline }}</p>
+          <h1>{{ s.title | br | safe }}</h1>
+          {% if s.lead %}<p class="lead">{{ s.lead | oneline }}</p>{% endif %}
+          <div class="actions">
+            {% if s.primary.label %}<a class="btn btn-primary" href="{{ s.primary.url | replace('/#','#') }}">{{ s.primary.label | oneline }} <span aria-hidden="true">↗</span></a>{% endif %}
+            {% if s.secondary.label %}<a class="btn btn-secondary" href="{{ s.secondary.url | replace('/#','#') }}">{{ s.secondary.label | oneline }}</a>{% endif %}
+          </div>
+        </div>
+        <div class="paper-scene" aria-label="학습 과정 미리보기">
+          <div class="paper paper-back" aria-hidden="true"><span class="paper-meta">CHURCH AI LAB / NOTES</span><p>질문에서<br>나만의 도구까지.</p><div class="paper-lines"></div></div>
+          <div class="paper paper-front">
+            <div class="paper-top"><span>LEARNING NOTE</span><span>01 — 04</span></div>
+            <p class="paper-caption">천천히, 한 단계씩.</p>
+            <h2>사역에 맞는<br>AI를 함께<br>찾습니다.</h2>
+            <div class="paper-rule"></div>
+            <ol class="paper-steps">{% for c in learning %}<li data-item-appearance="{{ c.appearance | dump }}"><span>0{{ loop.index }}</span><span class="paper-step-label">{{ c.step | oneline }}</span></li>{% endfor %}</ol>
+            <a href="#for-whom" class="paper-link">네 단계 학습 살펴보기 <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="paper paper-small" aria-hidden="true"><span class="paper-meta">FIELD NOTE / 03</span><p>배운 것을<br>사역의 자료로.</p><div class="paper-lines"></div></div>
+        </div>
+      </div>
+      <div class="hero-bottom wrap-wide"><span>신학적 분별 · 현장 실습 · 온라인 활동</span><a href="#question">한 걸음씩 살펴보기 ↓</a></div>
+    </section>

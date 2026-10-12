@@ -28,7 +28,7 @@ function findIframe(node) {
 }
 const config = yaml.load(fs.readFileSync('src/admin/config.yml', 'utf8'));
 const themeField = config.collections.find(c => c.name === 'settings').files.find(f => f.name === 'site').fields.find(f => f.name === 'theme');
-const themes = ['classic', 'apple', 'tesla', 'claude', 'notion'];
+const themes = ['classic', 'apple', 'tesla', 'claude', 'notion', 'beagle'];
 assert.deepEqual(themeField.options.map(o => o.value), themes);
 for (const theme of themes) {
   const site = { ...base.site, theme };
@@ -54,8 +54,10 @@ for (const theme of themes) {
   console.log(`${theme}: administrator preview and assets passed`);
 }
 const published = fs.readFileSync('_site/index.html', 'utf8');
-assert.ok(published.includes('class="theme-notion"'));
-assert.ok(published.includes('notion-workspace'));
+assert.ok(published.includes('class="theme-beagle"'));
+assert.ok(published.includes('paper-scene'));
+assert.ok(published.includes('church-ai-lab-horizontal.png'));
+assert.ok(published.includes('church-ai-lab-stacked.png'));
 assert.ok(!published.includes('class="preview-notice"'));
 assert.ok(!published.includes('-preview/#'));
-console.log('Production homepage: Notion, correct navigation, no comparison banner');
+console.log('Production homepage: Beagle, correct navigation, no comparison banner');

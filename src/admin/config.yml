@@ -103,7 +103,7 @@ collections:
           - label: 화면 테마
             name: theme
             widget: canvasselect
-            default: notion
+            default: beagle
             required: false
             options:
               - label: 기본(브랜드 디자인)
@@ -116,6 +116,8 @@ collections:
                 value: claude
               - label: Notion 스타일
                 value: notion
+              - label: Beagle 스타일
+                value: beagle
             hint: 선택하면 오른쪽 미리보기에 반영됩니다. 게시 버튼으로 저장하면 홈페이지에 적용됩니다.
           - label: 링크 공유 이미지(카톡 미리보기)
             name: og_image

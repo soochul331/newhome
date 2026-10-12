@@ -121,6 +121,7 @@
       const bind = target => {
         const owner = target.index != null ? this.draft.sections[target.index] : this.draft;
         if (['text','richtext'].includes(target.kind) && typeof get(owner,target.path) !== 'string' && target.initialText === undefined) return;
+        if(target.kind==='text' && target.el.querySelector('img')) return;
         target.el.dataset.editable = target.key;
         this.bound.push(target);
         target.el.addEventListener('click',e => { e.stopPropagation(); this.select(target); });
@@ -165,7 +166,7 @@
       if (this.mode === 'site') {
         add('header-box','header',[],'상단 영역','box');
         add('footer-box','footer',[],'푸터 영역','box');
-        add('brand','header .brand',[['tesla','claude','notion'].includes(this.draft.theme) ? 'title_tag' : 'name'],'상단 사이트 이름');
+        add('brand','header .brand',[['tesla','claude','notion','beagle'].includes(this.draft.theme) ? 'title_tag' : 'name'],'상단 사이트 이름');
         add('name','.notion-eyebrow,.hero-eyebrow',['name'],'이름');
         add('byline','footer .wrap > p:first-child',['byline'],'푸터 소개');
         add('copyright','footer .wrap > p:last-child',['copyright'],'저작권 문구');
