@@ -68,16 +68,16 @@
   });
   consoleEl.addEventListener('pointerleave',()=>panels.forEach(p=>p.querySelector('.lab-output').style.transform=''));
   function sync(){
-    body.classList.toggle('motion-off',!enabled);toggle.setAttribute('aria-pressed',String(enabled));
-    toggle.textContent=preference.matches?'기기 설정: 모션 줄이기':enabled?'모션 켜짐':'모션 꺼짐';
-    toggle.disabled=preference.matches;replay.disabled=!enabled;progress.hidden=!enabled;
+    body.classList.toggle('motion-off',!enabled);toggle?.setAttribute('aria-pressed',String(enabled));
+    if(toggle) toggle.textContent=preference.matches?'기기 설정: 모션 줄이기':enabled?'모션 켜짐':'모션 꺼짐';
+    if(toggle) toggle.disabled=preference.matches;if(replay) replay.disabled=!enabled;progress.hidden=!enabled;
     panels.forEach(p=>p.querySelector('.lab-output').style.transform='');
     if(enabled)play(panels.find(p=>!p.hidden));else{++animationGeneration;panels.forEach(p=>p.classList.remove('is-playing'));story(0);}
     schedule();
   }
-  toggle.addEventListener('click',()=>{enabled=!enabled;sync();});
+  toggle?.addEventListener('click',()=>{enabled=!enabled;sync();});
   preference.addEventListener('change',()=>{enabled=!preference.matches;sync();});
-  replay.addEventListener('click',()=>{
+  replay?.addEventListener('click',()=>{
     body.classList.remove('motion-ready');
     [...reveals,...toolEntries,...lowerSections].forEach(el=>{el.classList.remove('is-visible');observer?.observe(el);});
     scrollTo({top:0,behavior:'smooth'});activate(0);

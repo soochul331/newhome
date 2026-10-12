@@ -39,7 +39,7 @@ for (const theme of themes) {
   });
   const html = findIframe(result);
   assert.ok(html, `${theme}: editor preview failed to render`);
-  assert.ok(html.includes(`class="theme-${theme}"`), `${theme}: wrong body theme`);
+  assert.ok(html.includes(`class="theme-${theme}`), `${theme}: wrong body theme`);
   assert.ok(!html.includes('class="preview-notice"'), `${theme}: comparison banner leaked`);
   assert.ok(!html.includes('href="/notion-preview/#'), `${theme}: comparison navigation leaked`);
   const stylesheet = theme === 'classic' ? 'style.css' : `theme-${theme}.css`;
@@ -54,10 +54,13 @@ for (const theme of themes) {
   console.log(`${theme}: administrator preview and assets passed`);
 }
 const published = fs.readFileSync('_site/index.html', 'utf8');
-assert.ok(published.includes('class="theme-beagle"'));
-assert.ok(published.includes('paper-scene'));
+assert.ok(published.includes('class="theme-beagle motion-demo"'));
+assert.ok(published.includes('data-lab'));
 assert.ok(published.includes('church-ai-lab-horizontal.png'));
 assert.ok(published.includes('church-ai-lab-stacked.png'));
 assert.ok(!published.includes('class="preview-notice"'));
 assert.ok(!published.includes('-preview/#'));
-console.log('Production homepage: Beagle, correct navigation, no comparison banner');
+assert.ok(published.includes('name="contact"'));
+assert.ok(!published.includes('name="robots" content="noindex'));
+assert.ok(!published.includes('디자인 데모'));
+console.log('Production homepage: studio, real contact form, correct navigation, no comparison banner');

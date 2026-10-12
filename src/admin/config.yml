@@ -48,6 +48,7 @@ collections:
               - og_image
               - og_image_alt
               - appearance
+              - homepage_layout
           - label: 사이트 이름(이름 표기)
             name: name
             widget: canvastext
@@ -133,6 +134,15 @@ collections:
             name: appearance
             widget: canvasvisualappearance
             required: false
+          - label: 홈페이지 레이아웃
+            name: homepage_layout
+            widget: canvasselect
+            default: studio
+            options:
+              - label: 모션 스튜디오
+                value: studio
+              - label: 기존 테마 레이아웃
+                value: classic
       - name: navigation
         label: 메뉴
         file: src/_data/navigation.yml
@@ -186,6 +196,8 @@ collections:
             fieldnames:
               - sections
               - appearance
+              - studio
+              - tools
           - label: 섹션 (끌어서 순서 변경 · 종류별 추가)
             name: sections
             widget: canvaslist
@@ -783,6 +795,99 @@ collections:
             name: appearance
             widget: canvasvisualappearance
             required: false
+          - label: 모션 스튜디오 문구·프로필
+            name: studio
+            widget: canvasobject
+            fields:
+              - label: 첫 화면 제목 1행
+                name: hero_line1
+                widget: text
+              - label: 첫 화면 제목 2행
+                name: hero_line2
+                widget: text
+              - label: 활용 장면 제목
+                name: lab_heading
+                widget: text
+              - label: 활용 예시 안내
+                name: example_note
+                widget: text
+              - label: 활용 상세 제목
+                name: story_heading
+                widget: text
+              - label: 학습 과정 제목
+                name: learning_heading
+                widget: text
+              - label: 함께하는 사람 제목
+                name: about_heading
+                widget: text
+              - label: 프로필 사진
+                name: profile_image
+                widget: image
+              - label: 이름
+                name: profile_name
+                widget: text
+              - label: 직함
+                name: profile_title
+                widget: text
+              - label: 역할
+                name: profile_role
+                widget: text
+              - label: 최근 글 제목
+                name: posts_heading
+                widget: text
+              - label: 문의 제목
+                name: contact_heading
+                widget: text
+              - label: 탭별 요청 예시 (4개 순서 유지)
+                name: requests
+                widget: list
+                field:
+                  label: 내용
+                  name: value
+                  widget: text
+              - label: 탭별 결과물 이름 (4개 순서 유지)
+                name: outputs
+                widget: list
+                field:
+                  label: 내용
+                  name: value
+                  widget: text
+          - label: 직접 만든 AI도구
+            name: tools
+            widget: canvasobject
+            fields:
+              - label: 제목
+                name: heading
+                widget: text
+              - label: 설명
+                name: lead
+                widget: text
+              - label: 도구 목록
+                name: items
+                widget: list
+                fields:
+                  - label: 도구 이름
+                    name: name
+                    widget: text
+                  - label: 분류
+                    name: category
+                    widget: text
+                  - label: 한 줄 소개
+                    name: tagline
+                    widget: text
+                  - label: 설명
+                    name: description
+                    widget: text
+                  - label: 소개 페이지 주소
+                    name: intro_url
+                    widget: text
+                  - label: 도구 주소
+                    name: app_url
+                    widget: text
+                  - label: 시각 자료 종류
+                    name: visual
+                    widget: text
+                summary: '{{fields.name}}'
   - name: pages
     identifier_field: title
     editor:
@@ -810,6 +915,8 @@ collections:
           - body
           - typography
           - appearance
+          - layout
+          - studio_page
       - label: 제목
         name: title
         widget: canvastext
@@ -852,6 +959,16 @@ collections:
       - label: 화면 서식
         name: appearance
         widget: canvasvisualappearance
+        required: false
+      - label: 레이아웃
+        name: layout
+        widget: canvastext
+        default: page.njk
+        required: false
+      - label: 스튜디오 소개 페이지
+        name: studio_page
+        widget: canvasboolean
+        default: false
         required: false
   - name: posts
     identifier_field: title

@@ -30,7 +30,15 @@
     env.addFilter('dateKo', d => new Date(d).toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', timeZone:'UTC' }));
     return env;
   }
-  window.HomePreview = { ready, environment, assignTones };
+  function isStudio(context) { return context.site.homepage_layout === 'studio' && context.site.theme === 'beagle'; }
+  function renderHome(env,context) {
+    if(isStudio(context)) return env.render('studio-home.njk',context);
+    return assignTones((context.home.sections || []).filter(s=>s.enabled!==false)).map(s=>{
+      if(s.type==='richtext') s={...s,body:markdown.render(s.body || '')};
+      return env.render('sections/'+s.type+'.njk',{...context,s});
+    }).join('');
+  }
+  window.HomePreview = { ready, environment, assignTones, isStudio, renderHome };
   function preview(name) {
     return createClass({
       getInitialState() { return { base: null, error: '', overflow:0, viewport:'desktop' }; },
@@ -60,12 +68,9 @@
           if (name === 'pages' || name === 'posts') {
             Object.assign(context, value, { content: markdown.render(value.body || '') });
             context.page.url = value.permalink || '/preview/';
-            content = env.render(name === 'pages' ? 'page.njk' : 'post.njk', context);
+            content = env.render(name === 'pages' ? (value.studio_page ? 'sermon-product.njk' : 'page.njk') : 'post.njk', context);
           } else {
-            content = assignTones((context.home.sections || []).filter(s => s.enabled !== false)).map(s => {
-              if (s.type === 'richtext') s.body = markdown.render(s.body || '');
-              return env.render('sections/' + s.type + '.njk', { ...context, s });
-            }).join('');
+            content = renderHome(env,context);
           }
           let html = env.render('base.njk', { ...context, content });
           // Preview is inert: no scripts, form submissions, or navigation.

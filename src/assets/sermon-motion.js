@@ -3,9 +3,9 @@
   const body=document.body,button=document.querySelector('[data-product-motion]');
   const preference=matchMedia('(prefers-reduced-motion: reduce)');let enabled=!preference.matches;
   document.querySelectorAll('header nav a').forEach(a=>{
-    const href=a.getAttribute('href');if(href?.startsWith('/#'))a.setAttribute('href','/motion-preview/'+href.slice(1));
+    const href=a.getAttribute('href');if(href?.startsWith('/#'))a.setAttribute('href',href);
   });
-  document.querySelectorAll('.product-page main a[href="/#contact"]').forEach(a=>a.href='https://churchailab.org/#contact');
+  document.querySelectorAll('.product-page main a[href="/#contact"]').forEach(a=>a.href='/#contact');
   const chapters=[...document.querySelectorAll('.product-chapter')];
   const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}

@@ -99,11 +99,8 @@
       if (this.mode === 'pages' || this.mode === 'posts') {
         Object.assign(context,this.draft,{content:markdown.render(this.draft.body || '')});
         if(this.mode==='posts') context.date ||= new Date().toISOString();
-        content = env.render(this.mode === 'pages' ? 'page.njk' : 'post.njk',context);
-      } else content = window.HomePreview.assignTones(context.home.sections.filter(s => s.enabled !== false)).map(s => {
-        if (s.type === 'richtext') s = {...s,body:markdown.render(s.body || '')};
-        return env.render('sections/'+s.type+'.njk',{...context,s});
-      }).join('');
+        content = env.render(this.mode === 'pages' ? (this.draft.studio_page ? 'sermon-product.njk' : 'page.njk') : 'post.njk',context);
+      } else content = window.HomePreview.renderHome(env,context);
       let html = env.render('base.njk',{...context,content});
       html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace('<head>', '<head><base href="'+location.origin+'/"><style>html{scroll-behavior:auto}[data-document-body]:empty{min-height:120px;border:1px dashed #b8c5d8}[data-document-body]:empty:before{content:"클릭해서 본문을 입력하세요";color:#677080}[data-editable]:hover{outline:2px dashed #0075de;outline-offset:3px;cursor:text}[data-selected]{outline:2px solid #0075de!important;outline-offset:3px}[contenteditable]{white-space:pre-wrap!important}a,button{cursor:default}input,textarea{pointer-events:none}</style>');
       this.setState({html,selected:null});
@@ -160,7 +157,7 @@
           });
         }
       };
-      if (this.mode === 'home') doc.querySelectorAll('main > section').forEach((section,index) => {
+      if (this.mode === 'home' && !window.HomePreview.isStudio(this.base)) doc.querySelectorAll('main > section').forEach((section,index) => {
         const source = enabled[index];
         if (!source) return;
         [...window.VisualLayout.targets(section),...window.VisualLayout.references(section)].forEach(target => {
@@ -172,6 +169,9 @@
           if (body) bind({key:'body',el:body,path:['body'],kind:'richtext',index:source.i,label:'自由 글 본문'.replace('自由','자유')});
         }
       });
+      if(this.mode==='home' && window.HomePreview.isStudio(this.base)) {
+        window.VisualLayout.studioTargets(doc,this.draft).forEach(target=>{if(!target.el.closest('[contenteditable]')) bind(target);});
+      }
       const add = (key,selector,path,label,kind = 'text') => {
         const el = doc.querySelector(selector);
         if (el) bind({key,el,path,label,kind});
@@ -181,10 +181,10 @@
         add('footer-box','footer',[],'푸터 영역','box');
         add('brand','header .brand',[['tesla','claude','notion','beagle'].includes(this.draft.theme) ? 'title_tag' : 'name'],'상단 사이트 이름');
         add('name','.notion-eyebrow,.hero-eyebrow',['name'],'이름');
-        add('byline','footer .wrap > p:first-child',['byline'],'푸터 소개');
-        add('copyright','footer .wrap > p:last-child',['copyright'],'저작권 문구');
+        add('byline','footer .footer-details > p:first-child,footer .wrap > p:first-child',['byline'],'푸터 소개');
+        add('copyright','footer .footer-details > p:last-of-type,footer .wrap > p:last-child',['copyright'],'저작권 문구');
         doc.querySelectorAll('[data-site-title]').forEach(el=>bind({key:'brand',el,path:['title_tag'],kind:'text',label:'사이트 이름'}));
-        doc.querySelectorAll('footer a').forEach((el,i) => bind({key:'link-'+i,el,path:['links',i,'label'],kind:'text',label:'푸터 링크 '+(i+1)}));
+        doc.querySelectorAll('footer .footer-affiliations a').forEach((el,i) => bind({key:'link-'+i,el,path:['links',i,'label'],kind:'text',label:'푸터 링크 '+(i+1)}));
       }
       if (this.mode === 'navigation') {
         add('navigation-box','header nav',[],'메뉴 영역','box');
@@ -194,7 +194,7 @@
       if (this.mode === 'pages' || this.mode === 'posts') {
         add('hero-box','main > section:first-child',[],'제목 영역','box');
         add('body-box','main > section:last-child',[],'본문 영역','box');
-        add('title','main h1',['title'],'제목');
+        add('title',this.draft.studio_page ? '.product-hero-bottom h2' : 'main h1',['title'],'제목');
         add('description','main .lead',[this.mode === 'pages' ? 'description' : 'summary'],'요약');
         add('body','[data-document-body]',['body'],'본문','richtext');
         doc.querySelectorAll('[data-document-body] img').forEach((el,i)=>bind({key:'document-image-'+i,el,path:[],kind:'image',label:'본문 이미지 '+(i+1)}));

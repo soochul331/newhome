@@ -144,3 +144,46 @@ sections:
       교육 대상과 도움이 필요한 업무를 남겨 주시면 확인하고 답을 드립니다.
     form_enabled: true
     closing: 한 걸음씩 함께 만들어 가겠습니다. 감사합니다.
+tools:
+  heading: 직접 만든 AI도구
+  lead: 목회 현장에서 필요한 일을 돕기 위해 직접 만든 도구들을 소개합니다.
+  items:
+    - name: 설교 숏츠 제작기
+      category: 설교 영상 활용
+      tagline: 주일의 말씀을, 일상의 숏츠로.
+      description: 교회 유튜브의 설교 영상에서 AI가 핵심 메시지를 분석합니다. 제안한 구간을 고르고 제목과 자막을 확인해 세로(숏츠) 영상으로 만듭니다.
+      intro_url: /sermon-shorts/
+      app_url: https://sermonshorts.churchailab.org
+      visual: shorts
+studio:
+  hero_line1: 사역의 아이디어를
+  hero_line2: 실현 가능한 결과물로
+  lab_heading: 생각에서, 실제로.
+  example_note: AI를 사역에 활용하는 과정을 예시로 보여드립니다.
+  story_heading: |-
+    배우는 데서
+    끝나지 않도록.
+  learning_heading: |-
+    작게 시작해서,
+    직접 만들어 봅니다.
+  about_heading: |-
+    교회 현장에서 쓰고,
+    함께 나눕니다.
+  profile_image: /assets/shin-soochul-profile.webp
+  profile_name: 신수철 목사
+  profile_title: Church AI Lab 디렉터
+  profile_role: 목회AI 컨설턴트
+  posts_heading: 써 보며 남긴 기록.
+  contact_heading: |-
+    우리 교회에 필요한
+    첫 작업부터 함께.
+  requests:
+    - 설교 묵상을 정리하고 흐름과 적용 질문을 준비하고 싶어요.
+    - 주보 안내문과 행사 계획, 회의록 초안을 준비하고 싶어요.
+    - 주일학교 예배 및 소그룹 모임을 위한 활동과 나눔 자료를 준비하고 싶어요.
+    - 내 사역에서 자주 하는 일을 AI 도구로 만들고 싶어요.
+  outputs:
+    - 설교 준비 메모
+    - 행정 문서 초안
+    - 교육 활동지
+    - 나만의 AI 도구

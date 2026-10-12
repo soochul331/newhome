@@ -2,4 +2,6 @@
 layout: base.njk
 permalink: /
 ---
+{% if site.homepage_layout == "studio" and site.theme == "beagle" %}{% include "studio-home.njk" %}{% else %}
 {% for s in home.sections | enabled | toned %}{% include "sections/" ~ s.type ~ ".njk" %}{% endfor %}
+{% endif %}

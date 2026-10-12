@@ -120,6 +120,20 @@
   function canvasAppearance(doc) {
     try { return JSON.parse(doc.body.dataset.canvasAppearance || '[]'); } catch (_) { return []; }
   }
+  function studioTargets(doc,home) {
+    if(!doc.body.hasAttribute('data-studio-home-values')) return [];
+    if(!home) { try {home=JSON.parse(doc.body.dataset.studioHomeValues);} catch(_){return [];} }
+    const normalize=v=>String(v).replace(/\s+/g,' ').trim(),leaves=[],result=[];
+    function walk(value,path=[]) {if(typeof value==='string' && value.trim()) leaves.push({value,path}); else if(value && typeof value==='object') Object.entries(value).forEach(([key,v])=>{if(key!=='appearance') walk(v,[...path,Array.isArray(value)?Number(key):key]);});}
+    walk(home);
+    leaves.sort((a,b)=>({studio:0,tools:1,sections:2}[a.path[0]]??3)-({studio:0,tools:1,sections:2}[b.path[0]]??3));
+    const els=[...doc.querySelectorAll('main h1,main h2,main h3,main p,main span,main dt,main dd,main li,main a,main button,main img')];
+    leaves.forEach(({value,path})=>{
+      const image=/^(https?:|\/|#)/.test(value);
+      const candidates=els.filter(el=>image ? el.tagName==='IMG' && el.getAttribute('src')===value : normalize(el.innerText ?? el.textContent)===normalize(value));
+      candidates.filter(el=>!candidates.some(child=>child!==el && el.contains(child))).forEach(el=>result.push({key:'home-'+path.join('-'),el,path,kind:image?'image':'text',label:path.join(' · ')}));
+    });return result;
+  }
   function apply(doc) {
     const appearances=canvasAppearance(doc);
     let homeAppearance={};
@@ -129,6 +143,7 @@
       if(value && typeof value.text==='string') target.el.textContent=value.text;
       style(target,appearance?.[target.key]);
     }));
+    studioTargets(doc).forEach(target=>style(target,homeAppearance[styleKey(target)]));
     chromeTargets(doc).forEach(target=> {
       try {
         let raw;
@@ -147,7 +162,7 @@
       });
     });
   }
-  global.VisualLayout = { targets, references, chromeTargets, style, reset, styleKey, apply, fonts, textTargets };
+  global.VisualLayout = { studioTargets, targets, references, chromeTargets, style, reset, styleKey, apply, fonts, textTargets };
   if (global.document.readyState === 'loading') global.document.addEventListener('DOMContentLoaded', () => apply(global.document));
   else apply(global.document);
 })(window);
