@@ -62,7 +62,7 @@
       fitPreview(event) {
         if (!event.target.contentDocument?.body) return;
         if (this.stopLayout) this.stopLayout();
-        if (window.VisualLayout) window.VisualLayout.apply(event.target.contentDocument);
+        if (window.VisualLayout) window.VisualLayout.apply(event.target.contentDocument,true);
         this.stopLayout = window.TextLayout.observe(event.target.contentDocument, count => {
           if (this.alive && count !== this.state.overflow) this.setState({ overflow:count });
         });

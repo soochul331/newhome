@@ -102,9 +102,9 @@
     return list;
   }
   // Structural keys are computed before wrapping so they survive text changes.
-  function textTargets(doc) {
+  function textTargets(doc,onlyKeys) {
     const existing = [...doc.querySelectorAll('[data-canvas-text]')];
-    if (existing.length) return existing.map(el => ({el,key:el.dataset.canvasText,kind:'text'}));
+    if (existing.length) return existing.filter(el=>!onlyKeys || onlyKeys.has(el.dataset.canvasText)).map(el => ({el,key:el.dataset.canvasText,kind:'text'}));
     const walker = doc.createTreeWalker(doc.body,4);
     const nodes = [];
     while(walker.nextNode()) {
@@ -115,7 +115,8 @@
       let current=node;
       while(current!==root) { parts.unshift([...current.parentNode.childNodes].indexOf(current)); current=current.parentNode; }
       const scope=root.id || root.tagName.toLowerCase();
-      nodes.push({node,key:'canvas-'+doc.body.className+'-'+scope+'-'+parts.join('-')});
+      const key='canvas-'+doc.body.className+'-'+scope+'-'+parts.join('-');
+      if(!onlyKeys || onlyKeys.has(key)) nodes.push({node,key});
     }
     return nodes.map(({node,key})=>{
       const el=doc.createElement('span'); el.dataset.canvasText=key;
@@ -143,11 +144,13 @@
       candidates.filter(el=>!candidates.some(child=>child!==el && el.contains(child))).forEach(el=>result.push({key:'home-'+path.join('-'),el,path,kind:image?'image':'text',label:path.join(' · ')}));
     });return result;
   }
-  function apply(doc) {
+  function apply(doc,editor=false) {
     const appearances=canvasAppearance(doc);
     let homeAppearance={};
     try { homeAppearance=JSON.parse(doc.body.dataset.homeCanvasAppearance || '{}'); } catch (_) {}
-    textTargets(doc).forEach(target=>(target.el.closest('header.site,footer.site') ? [homeAppearance,...appearances] : appearances).forEach(appearance=>{
+    const canvasKeys=new Set();
+    [homeAppearance,...appearances].forEach(a=>{Object.keys(a || {}).filter(k=>k.startsWith('canvas-')).forEach(k=>canvasKeys.add(k));Object.keys(a?.canvasTexts || {}).forEach(k=>canvasKeys.add(k));});
+    textTargets(doc,editor ? undefined : canvasKeys).forEach(target=>(target.el.closest('header.site,footer.site') ? [homeAppearance,...appearances] : appearances).forEach(appearance=>{
       const value=appearance?.canvasTexts?.[target.key];
       if(value && typeof value.text==='string') target.el.textContent=value.text;
       style(target,appearance?.[target.key]);

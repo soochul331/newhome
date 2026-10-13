@@ -111,7 +111,7 @@
       if(!doc?.body) return;
       const sections = this.mode === 'home' ? this.draft.sections || [] : [];
       const enabled = sections.map((s,i) => ({s,i})).filter(x => x.s.enabled !== false);
-      window.VisualLayout.apply(doc);
+      window.VisualLayout.apply(doc,true);
       window.HomeShowcase?.init(doc,this.showcaseIndex);
       const selectShowcase=e=>{
         const tab=e.target.closest('[data-showcase] [role="tab"]');
@@ -205,7 +205,7 @@
         const path=['appearance','canvasTexts',target.key,'text'];
         bind({...target,path,initialText:target.el.textContent,label:'선택한 텍스트'});
       });
-      window.VisualLayout.apply(doc);
+      window.VisualLayout.apply(doc,true);
       this.stop = window.TextLayout.observe(doc);
 
     },

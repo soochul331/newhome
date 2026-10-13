@@ -60,3 +60,8 @@ assert.ok(!html.includes('rel="preconnect"'));
 assert.ok(styledHTML.includes('rel="preconnect"'));
 assert.ok(html.includes('.studio-intro'));
 console.log('Rendering: studio CSS inlined with no extra stylesheet request; unused font preconnects omitted');
+assert.ok(html.includes('church-ai-lab-horizontal.webp'));
+assert.ok(fs.statSync('src/assets/brand/church-ai-lab-horizontal.webp').size < 12000);
+assert.ok(fs.statSync('src/assets/brand/church-ai-lab-stacked.webp').size < 10000);
+assert.ok(fs.readFileSync('src/assets/motion-demo.css','utf8').includes('.studio-intro .title-line>span{animation:none!important'));
+console.log('Images/LCP: small WebP logos and immediately visible homepage title passed');

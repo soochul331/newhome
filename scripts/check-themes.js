@@ -56,8 +56,8 @@ for (const theme of themes) {
 const published = fs.readFileSync('_site/index.html', 'utf8');
 assert.ok(published.includes('class="theme-beagle motion-demo"'));
 assert.ok(published.includes('data-lab'));
-assert.ok(published.includes('church-ai-lab-horizontal.png'));
-assert.ok(published.includes('church-ai-lab-stacked.png'));
+assert.ok(published.includes('church-ai-lab-horizontal.webp'));
+assert.ok(published.includes('church-ai-lab-stacked.webp'));
 assert.ok(!published.includes('class="preview-notice"'));
 assert.ok(!published.includes('-preview/#'));
 assert.ok(published.includes('name="contact"'));

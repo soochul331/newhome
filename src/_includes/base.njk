@@ -79,7 +79,7 @@
 
 <header class="site">
   <div class="wrap-wide">
-    <a class="brand" href="/">{% if theme == 'beagle' %}<img class="brand-horizontal" src="/assets/brand/church-ai-lab-horizontal.png" alt="Church AI Lab · 교회를 위한 AI 연구소" width="2164" height="727">{% elif theme == 'tesla' or theme == 'claude' or theme == 'notion' %}{{ site.title_tag | oneline }}{% else %}{{ site.name | br | safe }}{% endif %}</a>
+    <a class="brand" href="/">{% if theme == 'beagle' %}<img class="brand-horizontal" src="/assets/brand/church-ai-lab-horizontal.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="600" height="202" decoding="async" fetchpriority="high">{% elif theme == 'tesla' or theme == 'claude' or theme == 'notion' %}{{ site.title_tag | oneline }}{% else %}{{ site.name | br | safe }}{% endif %}</a>
     <nav data-appearance="{{ (navigation.appearance or {}) | dump }}" aria-label="페이지 안내">
       {% for item in navigation.items %}{% if item.visible != false %}<a data-nav-index="{{ loop.index0 }}" data-item-appearance="{{ item.appearance | dump }}" href="{% if design_preview and (theme == 'tesla' or theme == 'claude' or theme == 'notion' or theme == 'beagle') and (item.url.startsWith('#') or item.url.startsWith('/#')) %}/{{ theme }}-preview/{{ item.url | replace('/#', '#') }}{% else %}{{ item.url }}{% endif %}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endif %}{% endfor %}
     </nav>
@@ -96,7 +96,7 @@
 
 <footer class="site">
   <div class="wrap footer-profile">
-    {% if theme == 'beagle' %}<div class="footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.png" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>{% endif %}
+    {% if theme == 'beagle' %}<div class="footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>{% endif %}
     <div class="footer-details">
       <p>{{ site.byline | br | safe }}</p>
       <p class="footer-affiliations">{% for l in site.links %}<a data-item-appearance="{{ l.appearance | dump }}" href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %}<span class="footer-separator"> · </span>{% endif %}{% endfor %}</p>
@@ -106,7 +106,7 @@
   </div>
 </footer>
 
-{% if (home | hasAppearance) or (site | hasAppearance) or (navigation | hasAppearance) or appearance %}<script src="/assets/visual-layout.js?v=perf23" defer></script>{% endif %}
+{% if (home | hasAppearance) or (site | hasAppearance) or (navigation | hasAppearance) or appearance %}<script src="/assets/visual-layout.js?v=perf24" defer></script>{% endif %}
 {% if theme == 'beagle' and not studio_home and not motion_demo %}<script src="/assets/showcase.js" defer></script>{% endif %}
 <script src="/assets/text-layout.js" defer></script>
 {% if motion_demo or studio_home %}<script src="/assets/motion-demo.js?v=studio-21" defer></script>{% endif %}
