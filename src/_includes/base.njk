@@ -7,7 +7,8 @@
   <meta name="description" content="{{ (description or site.description) | oneline }}">
   <meta name="author" content="{{ site.name | oneline }}">
   {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
-  <meta property="og:title" content="{% if title %}{{ title | oneline }} · {{ site.name | oneline }}{% else %}{{ site.title_tag | oneline }}{% endif %}">
+  {% if page.url == '/' and site.homepage_layout == 'studio' %}{% set share_title = home.studio.hero_line1 ~ ' ' ~ home.studio.hero_line2 ~ ' · Church AI Lab' %}{% else %}{% set share_title = (title or site.title_tag) | oneline %}{% endif %}
+  <meta property="og:title" content="{{ share_title | oneline }}">
   <meta property="og:description" content="{{ (description or site.description) | oneline }}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
@@ -19,6 +20,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="{{ (site.og_image_alt or site.title_tag) | oneline }}">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ share_title | oneline }}">
+  <meta name="twitter:description" content="{{ (description or site.description) | oneline }}">
+  <meta name="twitter:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}{% else %}{{ site.url }}{{ ogimg }}{% endif %}">
+  <meta property="og:image:type" content="image/png">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
