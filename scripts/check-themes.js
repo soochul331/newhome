@@ -43,7 +43,7 @@ for (const theme of themes) {
   assert.ok(!html.includes('class="preview-notice"'), `${theme}: comparison banner leaked`);
   assert.ok(!html.includes('href="/notion-preview/#'), `${theme}: comparison navigation leaked`);
   const stylesheet = theme === 'classic' ? 'style.css' : `theme-${theme}.css`;
-  assert.ok(html.includes(`/assets/${stylesheet}`), `${theme}: stylesheet missing`);
+  assert.ok(html.includes(`/assets/${stylesheet}`) || (theme === "beagle" && html.includes("data-studio-css")), `${theme}: stylesheet missing`);
   assert.ok(fs.existsSync(`_site/assets/${stylesheet}`));
   if (theme === 'notion') {
     assert.ok(html.includes('notion-workspace'));

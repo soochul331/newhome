@@ -1,4 +1,5 @@
 import yaml from "js-yaml";
+import fs from "node:fs";
 import { assignTones } from "./scripts/tones.js";
 
 function hasSerif(value) {
@@ -11,6 +12,9 @@ function hasAppearance(value) {
 }
 
 export default function (eleventyConfig) {
+  eleventyConfig.addGlobalData("inlineStyles", () => ({
+    studio: ["theme-beagle.css", "motion-demo.css", "text-layout.css"].map(name => fs.readFileSync("src/assets/" + name, "utf8").replace(/\/\*[\s\S]*?\*\//g, "")).join("\n")
+  }));
   eleventyConfig.addFilter("hasSerif", hasSerif);
   eleventyConfig.addFilter("hasAppearance", hasAppearance);
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));

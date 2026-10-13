@@ -53,3 +53,10 @@ assert.ok(styledHTML.includes('<script src="/assets/visual-layout.js'));
 const css=fs.readFileSync('src/assets/motion-demo.css','utf8');
 assert.ok(!/@keyframes work-source-transform[^@]*visibility:/.test(css));
 console.log('Performance: default serif/editor resources omitted; saved custom fonts/styles retained; compositor-only source animation passed');
+
+assert.ok(html.includes('data-studio-css'));
+assert.ok(!/<link[^>]+href="[^" ]*(?:theme-beagle|motion-demo|text-layout)\.css/.test(html));
+assert.ok(!html.includes('rel="preconnect"'));
+assert.ok(styledHTML.includes('rel="preconnect"'));
+assert.ok(html.includes('.studio-intro'));
+console.log('Rendering: studio CSS inlined with no extra stylesheet request; unused font preconnects omitted');
