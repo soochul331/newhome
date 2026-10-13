@@ -70,9 +70,9 @@
   }
   </script>
   {% endif %}
-  {% if motion_demo or studio_page or studio_home %}<link rel="stylesheet" href="/assets/motion-demo.css?v=studio-22">{% endif %}
+  {% if motion_demo or studio_page or studio_home %}<link rel="stylesheet" href="/assets/motion-demo.css?v=perf23">{% endif %}
   {% block head %}{% endblock %}
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {% if theme != 'claude' and ((home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif)) %}<link data-visual-serif href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">{% endif %}
   <link rel="stylesheet" href="/assets/text-layout.css">
 </head>
 <body {% if studio_home or motion_demo %}data-studio-home-values="{{ home | dump }}"{% endif %} data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}{% if motion_demo or studio_page or studio_home %} motion-demo{% endif %}{% if studio_page %} product-page{% endif %}">
@@ -106,7 +106,7 @@
   </div>
 </footer>
 
-<script src="/assets/visual-layout.js?v=studio21" defer></script>
+{% if (home | hasAppearance) or (site | hasAppearance) or (navigation | hasAppearance) or appearance %}<script src="/assets/visual-layout.js?v=perf23" defer></script>{% endif %}
 {% if theme == 'beagle' and not studio_home and not motion_demo %}<script src="/assets/showcase.js" defer></script>{% endif %}
 <script src="/assets/text-layout.js" defer></script>
 {% if motion_demo or studio_home %}<script src="/assets/motion-demo.js?v=studio-21" defer></script>{% endif %}

@@ -1,7 +1,18 @@
 import yaml from "js-yaml";
 import { assignTones } from "./scripts/tones.js";
 
+function hasSerif(value) {
+  if(!value || typeof value !== 'object') return false;
+  return value.font === 'serif' || Object.values(value).some(hasSerif);
+}
+function hasAppearance(value) {
+  if(!value || typeof value !== 'object') return false;
+  return !!(value.appearance && Object.keys(value.appearance).length) || Object.values(value).some(hasAppearance);
+}
+
 export default function (eleventyConfig) {
+  eleventyConfig.addFilter("hasSerif", hasSerif);
+  eleventyConfig.addFilter("hasAppearance", hasAppearance);
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });

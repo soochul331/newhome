@@ -15,6 +15,15 @@
     });
   }
   const markdown = window.markdownit({ html: false, linkify: true });
+  function hasSerif(value) {
+    if(!value || typeof value !== 'object') return false;
+    return value.font === 'serif' || Object.values(value).some(hasSerif);
+  }
+  function hasAppearance(value) {
+    if(!value || typeof value !== 'object') return false;
+    return !!(value.appearance && Object.keys(value.appearance).length) || Object.values(value).some(hasAppearance);
+  }
+
   function environment(templates) {
     const Loader = nunjucks.Loader.extend({ getSource(name) {
       if (!(name in templates)) throw new Error('알 수 없는 섹션: ' + name);
@@ -22,6 +31,8 @@
     }});
     const env = new nunjucks.Environment(new Loader(), { autoescape: true });
     const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    env.addFilter('hasSerif',hasSerif);
+    env.addFilter('hasAppearance',hasAppearance);
     env.addFilter('br', v => esc(String(v == null ? '' : v).replace(/\r\n?/g, '\n').trim()).replace(/\n/g, '<br>'));
     env.addFilter('oneline', v => String(v == null ? '' : v).replace(/\s*[\r\n]+\s*/g, ' ').trim());
     env.addFilter('enabled', a => (a || []).filter(x => x.enabled !== false));

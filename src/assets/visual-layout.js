@@ -56,6 +56,12 @@
     const el = target.el;
     if (target.kind === 'richtext') el.querySelectorAll('h1,h2,h3,h4,p,li,blockquote').forEach(node => style({el:node,kind:'text'},values));
     if (fonts[values.font]) el.style.fontFamily = fonts[values.font];
+    // Keep font downloads opt-in, including when choosing a serif in the editor.
+    const doc=el.ownerDocument;
+    if(values.font==='serif' && doc?.head && !doc.querySelector('link[data-visual-serif],link[href*="Noto+Serif"]')) {
+      const link=doc.createElement('link');link.rel='stylesheet';link.dataset.visualSerif='';
+      link.href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap';doc.head.append(link);
+    }
     if (/^#[0-9a-f]{6}$/i.test(values.color || '')) el.style.color = values.color;
     const size = number(values.size, 13, 100);
     if (values.size && size) { el.dataset.visualSize = size; el.style.fontSize = 'min(' + size + 'px, 12vw)'; }
@@ -130,7 +136,7 @@
     const els=[...doc.querySelectorAll('main h1,main h2,main h3,main p,main span,main dt,main dd,main li,main a,main button,main img')];
     leaves.forEach(({value,path})=>{
       const image=/^(https?:|\/|#)/.test(value);
-      const candidates=els.filter(el=>image ? el.tagName==='IMG' && el.getAttribute('src')===value : normalize(el.innerText ?? el.textContent)===normalize(value));
+      const candidates=els.filter(el=>image ? el.tagName==='IMG' && el.getAttribute('src')===value : normalize(el.textContent.replace(/\s+/g," "))===normalize(value.replace(/\n/g,"")));
       candidates.filter(el=>!candidates.some(child=>child!==el && el.contains(child))).forEach(el=>result.push({key:'home-'+path.join('-'),el,path,kind:image?'image':'text',label:path.join(' · ')}));
     });return result;
   }
