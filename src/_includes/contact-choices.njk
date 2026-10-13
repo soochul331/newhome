@@ -1,0 +1,32 @@
+<div class="contact-choices">
+  {% for s in home.sections %}{% if s.id == 'contact' and s.form_enabled %}
+  <details class="contact-choice" name="contact-choice" id="lecture-inquiry">
+    <summary class="contact-link">강의·컨설팅 문의하기 <span aria-hidden="true">↗</span></summary>
+    <div class="contact-drawer"><form class="contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hidden"><label>사람이시면 비워 두세요 <input name="bot-field"></label></p>
+      <p class="form-intro">교육 대상과 배우고 싶은 내용, 희망 일정을 알려 주세요.</p>
+      <label><span class="label">성함</span><input type="text" name="name" required autocomplete="name" maxlength="100"></label>
+      <label><span class="label">이메일</span><input type="email" name="email" required autocomplete="email" maxlength="254"></label>
+      <label><span class="label">문의 내용</span><textarea name="message" required maxlength="5000" placeholder="예: 교사 20명을 대상으로 주일학교 자료를 만드는 AI 활용 교육을 받고 싶습니다."></textarea></label>
+      <p class="form-use-note">보내주신 내용과 이메일은 문의 검토와 답변에 사용합니다.</p>
+      <button class="btn btn-primary" type="submit">문의 보내기</button>
+    </form></div>
+  </details>
+  {% endif %}{% endfor %}
+  <details class="contact-choice" name="contact-choice" id="tool-proposal">
+    <summary class="contact-link">나만의 AI 도구 제작 제안하기 <span aria-hidden="true">↗</span></summary>
+    <div class="contact-drawer"><form class="contact" name="tool-proposal" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/proposal-thanks.html">
+      <input type="hidden" name="form-name" value="tool-proposal">
+      <p class="hidden"><label>사람이시면 비워 두세요 <input name="bot-field"></label></p>
+      <p class="form-intro">사역 현장에서 필요한 도구의 아이디어를 들려주세요. 아직 구체적이지 않아도 괜찮습니다.</p>
+      <label><span class="label">성함</span><input type="text" name="name" required autocomplete="name" maxlength="100"></label>
+      <label><span class="label">답변받을 이메일</span><input type="email" name="email" required autocomplete="email" maxlength="254"></label>
+      <label><span class="label">어떤 서비스나 도구가 필요한가요?</span><textarea name="service" required maxlength="5000" placeholder="예: 소그룹 주제에 맞는 나눔 질문과 활동지를 준비하는 도구"></textarea></label>
+      <label><span class="label">사역 중 어떤 상황에서 필요성을 느꼈나요?</span><textarea name="ministry-need" required maxlength="5000" placeholder="지금 어떻게 작업하고 있는지, 어떤 점이 어렵거나 시간이 많이 드는지 알려 주세요."></textarea></label>
+      <label><span class="label">어떻게 작동하면 좋을까요?</span><textarea name="workflow" required maxlength="5000" placeholder="무엇을 입력하고, 어떤 결과를 받으면 좋을지 자유롭게 적어 주세요."></textarea></label>
+      <p class="form-use-note">보내주신 내용과 이메일은 제안 검토와 답변에 사용합니다. 제안 접수가 제작 확정을 의미하지는 않습니다.</p>
+      <button class="btn btn-primary" type="submit">제안 보내기</button>
+    </form></div>
+  </details>
+</div>
