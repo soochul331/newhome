@@ -27,8 +27,8 @@ def render(out):
     mask = logo.convert('L').point(lambda x: 255 if x < 200 else 0)
     logo = logo.crop(mask.getbbox())
     logo.thumbnail((310, 95), Image.Resampling.LANCZOS)
-    # Place the existing mark on a clean white brand panel, without recoloring it.
-    d.rounded_rectangle((65, 42, 405, 151), radius=12, fill='white')
+    # Blend the logo's white ground into the surrounding studio background.
+    logo = ImageChops.multiply(logo, Image.new('RGB', logo.size, '#f7f9fc'))
     im.paste(logo, (80, 50))
     d.text((1125, 90), '목회자를 위한 AI 활용 교육', font=font(25), fill=muted, anchor='rm')
     lines = [studio['hero_line1'], studio['hero_line2']]
@@ -39,14 +39,15 @@ def render(out):
         d.text((75, 220+i*98), line, font=font(size, 700), fill=navy, anchor='lt')
     d.line((75, 448, 1125, 448), fill='#ccd8e9', width=2)
     d.text((75, 477), '설교준비 · 목회행정 · 교회교육 · 나만의 AI 도구', font=font(25), fill=muted)
-    d.text((75, 548), studio['profile_name'], font=font(27,700), fill=navy)
-    d.text((260, 553), site['byline'], font=font(22), fill=muted)
-    d.text((1125, 566), 'churchailab.org', font=font(23,600), fill=navy, anchor='rm')
+    d.rectangle((0, 530, 1200, 630), fill=navy)
+    d.text((75, 558), studio['profile_name'], font=font(27,700), fill='#f7f9fc')
+    d.text((260, 563), site['byline'], font=font(22), fill='#f7f9fc')
+    d.text((1125, 579), 'churchailab.org', font=font(23,600), fill='#f7f9fc', anchor='rm')
     Path(out).parent.mkdir(parents=True, exist_ok=True)
     im.save(out, optimize=True)
     print(out)
 
 if __name__ == '__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--out', default=str(ROOT / 'src/assets/og-studio-20261013.png'))
+    parser.add_argument('--out', default=str(ROOT / 'src/assets/og-studio-20261013-v2.png'))
     render(parser.parse_args().out)
