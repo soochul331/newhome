@@ -40,7 +40,11 @@ assert.ok(content.includes('action="/proposal-thanks.html"'));
 console.log('Contact drawers: closed by default, separate proposal form and required ministry fields passed');
 // Public pages should not pay the editor/font cost until a saved style needs it.
 assert.ok(!html.includes('fonts.googleapis.com/css'));
-assert.ok(!html.includes('<script src="/assets/visual-layout.js'));
+const plain=structuredClone(context);
+function removeAppearance(v){if(v&&typeof v==='object'){delete v.appearance;Object.values(v).forEach(removeAppearance);}}
+removeAppearance(plain.home);removeAppearance(plain.site);removeAppearance(plain.navigation);
+const plainHTML=env.render('base.njk',{...plain,content});
+assert.ok(!plainHTML.includes('<script src="/assets/visual-layout.js'));
 const styled=structuredClone(context);
 styled.home.appearance={ 'home-studio-hero_line1':{font:'serif',color:'#102858'} };
 const styledHTML=env.render('base.njk',{...styled,content});

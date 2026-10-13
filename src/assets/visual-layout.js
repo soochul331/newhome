@@ -126,17 +126,20 @@
   function canvasAppearance(doc) {
     try { return JSON.parse(doc.body.dataset.canvasAppearance || '[]'); } catch (_) { return []; }
   }
-  function studioTargets(doc,home) {
+  function studioTargets(doc,home,onlyKeys) {
     if(!doc.body.hasAttribute('data-studio-home-values')) return [];
     if(!home) { try {home=JSON.parse(doc.body.dataset.studioHomeValues);} catch(_){return [];} }
-    const normalize=v=>String(v).replace(/\s+/g,' ').trim(),leaves=[],result=[];
+    const normalize=v=>String(v).replace(/\s+/g,''),leaves=[],result=[];
     function walk(value,path=[]) {if(typeof value==='string' && value.trim()) leaves.push({value,path}); else if(value && typeof value==='object') Object.entries(value).forEach(([key,v])=>{if(key!=='appearance') walk(v,[...path,Array.isArray(value)?Number(key):key]);});}
     walk(home);
     leaves.sort((a,b)=>({studio:0,tools:1,sections:2}[a.path[0]]??3)-({studio:0,tools:1,sections:2}[b.path[0]]??3));
     const els=[...doc.querySelectorAll('main h1,main h2,main h3,main p,main span,main dt,main dd,main li,main a,main button,main img')];
+    const index=new Map();
+    els.forEach(el=>{const key=el.tagName==='IMG' ? el.getAttribute('src') : normalize(el.textContent);if(!index.has(key))index.set(key,[]);index.get(key).push(el);});
     leaves.forEach(({value,path})=>{
+      if(onlyKeys && !onlyKeys.has('home-'+path.join('-'))) return;
       const image=/^(https?:|\/|#)/.test(value);
-      const candidates=els.filter(el=>image ? el.tagName==='IMG' && el.getAttribute('src')===value : normalize(el.textContent.replace(/\s+/g," "))===normalize(value.replace(/\n/g,"")));
+      const candidates=(index.get(image ? value : normalize(value)) || []).filter(el=>image ? el.tagName==='IMG' : el.tagName!=='IMG');
       candidates.filter(el=>!candidates.some(child=>child!==el && el.contains(child))).forEach(el=>result.push({key:'home-'+path.join('-'),el,path,kind:image?'image':'text',label:path.join(' · ')}));
     });return result;
   }
@@ -149,7 +152,8 @@
       if(value && typeof value.text==='string') target.el.textContent=value.text;
       style(target,appearance?.[target.key]);
     }));
-    studioTargets(doc).forEach(target=>style(target,homeAppearance[styleKey(target)]));
+    const studioKeys=new Set(Object.keys(homeAppearance).filter(key=>key.startsWith('home-')));
+    if(studioKeys.size) studioTargets(doc,undefined,studioKeys).forEach(target=>style(target,homeAppearance[styleKey(target)]));
     chromeTargets(doc).forEach(target=> {
       try {
         let raw;
