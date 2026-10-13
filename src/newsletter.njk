@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: 뉴스레터
+description: 설교준비, 목회행정, 교회교육, 나만의 AI 도구. Church AI Lab이 사역 현장에서 활용할 AI 이야기와 소식을 전합니다.
+newsletter_page: true
+permalink: /newsletter/
+---
+<section class="letter-board">
+  <header class="letter-heading"><a href="/">Church AI Lab</a><h1>뉴스레터</h1><p>사역에 더 가까운 AI 이야기.<br>직접 써 보고, 만들고, 배운 내용을 나눕니다.</p></header>
+  {% if collections.newsletters.length %}
+  <p class="letter-count">전체 {{ collections.newsletters.length }}편 · 최신 발행순</p>
+  <ol class="letter-list">
+  {% for letter in collections.newsletters %}
+    <li><a href="{{ letter.url }}"><time datetime="{{ letter.date | isoDate }}">{{ letter.date | dateKo }}</time><div><h2>{{ letter.data.title }}</h2><p>{{ letter.data.summary }}</p></div><span class="letter-open" aria-hidden="true">↗</span></a></li>
+  {% endfor %}
+  </ol>
+  {% else %}<div class="letter-empty"><h2>첫 번째 이야기를 준비하고 있습니다.</h2><p>뉴스레터가 발행되면 이곳에서 읽으실 수 있습니다.</p><a href="/#tools">직접 만든 AI 도구 둘러보기</a></div>{% endif %}
+</section>

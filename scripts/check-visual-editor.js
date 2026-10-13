@@ -38,6 +38,11 @@ assert.ok(sections.types.some(t=>t.name==='image'));
 console.log('Visual editor: all themes, safe appearance metadata, per-card persistence and image rendering passed');
 
 for(const collection of config.collections) for(const entry of collection.files || [collection]) {
+  if(collection.name === 'newsletters') {
+    assert.equal(entry.fields.find(f=>f.name==='body').widget,'markdown');
+    assert.equal(entry.fields.find(f=>f.name==='published').widget,'boolean');
+    continue; // Long-form newsletters use the standard writing editor with live preview.
+  }
   const canvas=entry.fields[0];
   assert.equal(canvas.widget,'visualcanvas');
   assert.deepEqual(canvas.fieldnames,entry.fields.slice(1).map(f=>f.name));
@@ -52,7 +57,7 @@ for(const [name,value] of Object.entries(values)) registered.canvastext.control.
 const actual=registered.visualcanvas.control.read.call({props:{field:{get:()=>({toArray:()=>Object.keys(values)})}}});
 assert.deepEqual(JSON.parse(JSON.stringify(actual)),JSON.parse(JSON.stringify(values)));
 assert.equal(actual.optional,undefined);
-console.log('Default canvas: all CMS entries covered; empty, optional and boolean values preserved');
+console.log('Default canvas: page canvas and newsletter writing entries covered; empty, optional and boolean values preserved');
 
 let cleared=false;
 registered.canvastext.control.componentDidMount.call({props:{field:{get:()=> 'summary'},value:'추가한 요약',onChange:value=>{assert.equal(value,undefined);cleared=true;}}});

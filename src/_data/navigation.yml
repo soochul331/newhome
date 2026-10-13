@@ -15,6 +15,10 @@ items:
     url: /#posts
     visible: true
     hide_on_mobile: true
+  - label: 뉴스레터
+    url: /newsletter/
+    visible: true
+    hide_on_mobile: false
   - label: 문의
     url: /#contact
     visible: true

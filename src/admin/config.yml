@@ -1049,3 +1049,30 @@ collections:
         name: appearance
         widget: canvasvisualappearance
         required: false
+
+  - name: newsletters
+    label: 뉴스레터
+    label_singular: 뉴스레터
+    description: 뉴스레터 게시판에 올릴 글을 작성합니다. 공개를 끄면 홈페이지에 노출되지 않습니다.
+    folder: src/newsletters
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    preview_path: 'newsletter/{{slug}}'
+    summary: '{{date}} · {{title}}'
+    sortable_fields: [date, title]
+    fields:
+      - {label: 제목, name: title, widget: string}
+      - label: 발행일
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+      - {label: 공개, name: published, widget: boolean, default: true}
+      - {label: 요약, name: summary, widget: text, hint: 목록과 공유 미리보기에 표시할 짧은 소개입니다.}
+      - {label: 대표 이미지, name: cover, widget: image, required: false}
+      - {label: 이미지 설명, name: cover_alt, widget: string, required: false}
+      - {label: 본문, name: body, widget: markdown}

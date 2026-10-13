@@ -44,6 +44,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("posts", (api) =>
     api.getFilteredByGlob("src/posts/*.md").sort((a, b) => b.date - a.date)
   );
+  eleventyConfig.addCollection("newsletters", api => api.getFilteredByGlob("src/newsletters/*.md").filter(p => p.data.published !== false).sort((a,b) => b.date - a.date));
   eleventyConfig.addCollection("pages", (api) => api.getFilteredByGlob("src/pages/*.md"));
 
   return {
