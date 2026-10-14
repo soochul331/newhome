@@ -15,8 +15,8 @@ items:
     url: /#posts
     visible: true
     hide_on_mobile: true
-  - label: 뉴스레터
-    url: /newsletter/
+  - label: 칼럼
+    url: /column/
     visible: true
     hide_on_mobile: false
   - label: 문의

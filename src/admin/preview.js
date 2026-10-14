@@ -76,11 +76,11 @@
           const env = environment(context.templates);
           context.page = { url: '/' };
           let content;
-          if (name === 'pages' || name === 'posts' || name === 'newsletters') {
+          if (name === 'pages' || name === 'posts' || name === 'columns') {
             Object.assign(context, value, { content: markdown.render(value.body || '') });
-            if (name === 'newsletters') context.newsletter_page = true;
+            if (name === 'columns') context.column_page = true;
             context.page.url = value.permalink || '/preview/';
-            content = env.render(name === 'pages' ? (value.studio_page ? 'sermon-product.njk' : 'page.njk') : (name === 'newsletters' ? 'newsletter.njk' : 'post.njk'), context);
+            content = env.render(name === 'pages' ? (value.studio_page ? 'sermon-product.njk' : 'page.njk') : (name === 'columns' ? 'column.njk' : 'post.njk'), context);
           } else {
             content = renderHome(env,context);
           }
@@ -102,5 +102,5 @@
     });
   }
   CMS.registerPreviewStyle('body{margin:0;padding:0}iframe{display:block}', { raw:true });
-  ['site', 'navigation', 'home', 'pages', 'posts', 'newsletters'].forEach(name => CMS.registerPreviewTemplate(name, preview(name)));
+  ['site', 'navigation', 'home', 'pages', 'posts', 'columns'].forEach(name => CMS.registerPreviewTemplate(name, preview(name)));
 })();

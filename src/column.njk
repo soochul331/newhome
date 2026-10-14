@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: 칼럼 · AI와 교회 사이
+description: AI와 교회 소식 가운데 목회 현장에 닿는 기사를 골라 읽고, 설교준비·목회행정·교회교육·나만의 AI 도구의 눈으로 리뷰합니다.
+column_page: true
+permalink: /column/
+---
+<section class="letter-board">
+  <header class="letter-heading"><a href="/">Church AI Lab</a><p class="letter-kicker">칼럼</p><h1>AI와 교회 사이</h1><p>AI와 교회 소식 가운데 목회 현장에 닿는 기사를 골라 읽습니다.<br>무슨 일인지, 교회에는 어떤 의미인지, 오늘 무엇을 해 볼 수 있는지 함께 생각합니다.</p></header>
+  {% if collections.columns.length %}
+  <p class="letter-count">전체 {{ collections.columns.length }}편 · 최신 발행순</p>
+  <ol class="letter-list">
+  {% for column in collections.columns %}
+    <li><a href="{{ column.url }}"><time datetime="{{ column.date | isoDate }}">{{ column.date | dateKo }}</time><div><h2>{{ column.data.title }}</h2><p>{{ column.data.summary }}</p>{% if column.data.source_name %}<p class="letter-source-line">다룬 기사 · {{ column.data.source_name }}</p>{% endif %}</div><span class="letter-open" aria-hidden="true">↗</span></a></li>
+  {% endfor %}
+  </ol>
+  {% else %}<div class="letter-empty"><h2>첫 번째 칼럼을 준비하고 있습니다.</h2><p>칼럼이 발행되면 이곳에서 읽으실 수 있습니다.</p><a href="/#tools">직접 만든 AI 도구 둘러보기</a></div>{% endif %}
+</section>

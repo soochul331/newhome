@@ -5,7 +5,7 @@ import path from "node:path";
 import yaml from "js-yaml";
 
 const ROOT = path.resolve(new URL(".", import.meta.url).pathname, "..");
-const TARGETS = ["src/_data", "src/pages", "src/posts", "src/newsletters"];
+const TARGETS = ["src/_data", "src/pages", "src/posts", "src/columns"];
 
 const BANNED = ["지금 바로", "마감 임박", "서두르세요", "혁명적", "완벽한", "국내 최초", "유일한", "뒤처집니다", "안 하면 큰일", "축복받은 가격", "은혜로운 할인"];
 const NAME_VARIANTS = ["알부남", "신목사", "신 목사님", "신수철목사"];

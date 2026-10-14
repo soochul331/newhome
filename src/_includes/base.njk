@@ -27,7 +27,7 @@
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   {%- set theme = site.theme or 'classic' %}
 {% set studio_home = site.homepage_layout == 'studio' and theme == 'beagle' and page.url == '/' %}
-{% set inline_studio = theme == 'beagle' and (studio_home or studio_page or motion_demo or newsletter_page) %}
+{% set inline_studio = theme == 'beagle' and (studio_home or studio_page or motion_demo or column_page) %}
 {% if theme != 'beagle' or (home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif) %}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{% endif %}
   {% if theme == 'beagle' %}{% if inline_studio %}<style data-studio-css="theme-beagle.css motion-demo.css text-layout.css">{{ inlineStyles.studio | safe }}</style>{% else %}<link rel="stylesheet" href="/assets/theme-beagle.css?v=footer-17">{% endif %}
   {% elif theme == 'tesla' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
@@ -71,12 +71,12 @@
   </script>
   {% endif %}
   {% if (motion_demo or studio_page or studio_home) and not inline_studio %}<link rel="stylesheet" href="/assets/motion-demo.css?v=perf23">{% endif %}
-  {% if newsletter_page %}<link rel="stylesheet" href="/assets/newsletter.css?v=1">{% endif %}
+  {% if column_page %}<link rel="stylesheet" href="/assets/column.css?v=2">{% endif %}
   {% block head %}{% endblock %}
   {% if theme != 'claude' and ((home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif)) %}<link data-visual-serif href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">{% endif %}
   {% if not inline_studio %}<link rel="stylesheet" href="/assets/text-layout.css">{% endif %}
 </head>
-<body {% if studio_home or motion_demo %}data-studio-home-values="{{ home | dump }}"{% endif %} data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}{% if motion_demo or studio_page or studio_home or newsletter_page %} motion-demo{% endif %}{% if studio_page %} product-page{% endif %}">
+<body {% if studio_home or motion_demo %}data-studio-home-values="{{ home | dump }}"{% endif %} data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}{% if motion_demo or studio_page or studio_home or column_page %} motion-demo{% endif %}{% if studio_page %} product-page{% endif %}">
 
 <header class="site">
   <div class="wrap-wide">

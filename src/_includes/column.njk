@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="letter-article">
+  <header class="letter-heading"><a href="/column/">칼럼 · AI와 교회 사이</a>{% if date %}<p><time datetime="{{ date | isoDate }}">{{ date | dateKo }}</time></p>{% endif %}<h1>{{ title | br | safe }}</h1><p>{{ summary | br | safe }}</p></header>
+  {% if source_url %}
+  <aside class="letter-source" aria-label="다룬 기사">
+    <p class="letter-source-label">다룬 기사</p>
+    <p class="letter-source-title"><a href="{{ source_url }}" target="_blank" rel="noopener">{{ source_title or source_url }}</a></p>
+    <p class="letter-source-meta">{% if source_name %}{{ source_name }}{% endif %}{% if source_date %} · {{ source_date }}{% endif %}</p>
+  </aside>
+  {% endif %}
+  {% if cover %}<img class="letter-cover" src="{{ cover }}" alt="{{ cover_alt or '' }}" decoding="async">{% endif %}
+  <div class="letter-body" data-document-body>{{ content | safe }}</div>
+  {% if source_url %}<p class="letter-source-note">원문은 해당 매체의 저작물이며, 이 글은 요약과 리뷰만 담습니다. 기사 전문은 <a href="{{ source_url }}" target="_blank" rel="noopener">원문 링크</a>에서 읽으실 수 있습니다.</p>{% endif %}
+  <footer class="letter-end"><p>Church AI Lab · 신수철 목사</p><a href="/column/">전체 칼럼 보기</a></footer>
+</article>
