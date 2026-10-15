@@ -99,7 +99,7 @@
       if (this.mode === 'pages' || this.mode === 'posts') {
         Object.assign(context,this.draft,{content:markdown.render(this.draft.body || '')});
         if(this.mode==='posts') context.date ||= new Date().toISOString();
-        content = env.render(this.mode === 'pages' ? (this.draft.studio_page ? 'sermon-product.njk' : 'page.njk') : 'post.njk',context);
+        content = env.render(this.mode === 'pages' ? (this.draft.studio_page ? 'sermon-product.njk' : 'document.njk') : 'document.njk',context);
       } else content = window.HomePreview.renderHome(env,context);
       let html = env.render('base.njk',{...context,content});
       html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace('<head>', '<head><base href="'+location.origin+'/"><style>html{scroll-behavior:auto}[data-document-body]:empty{min-height:120px;border:1px dashed #b8c5d8}[data-document-body]:empty:before{content:"클릭해서 본문을 입력하세요";color:#677080}[data-editable]:hover{outline:2px dashed #0075de;outline-offset:3px;cursor:text}[data-selected]{outline:2px solid #0075de!important;outline-offset:3px}[contenteditable]{white-space:pre-wrap!important}a,button{cursor:default}input,textarea{pointer-events:none}</style>');

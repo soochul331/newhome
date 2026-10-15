@@ -1,0 +1,38 @@
+[
+  {
+    "id": "01-pdf-summary",
+    "title": "NotebookLM으로 PDF 요약하기: 인용으로 원문까지 확인하는 방법",
+    "keyword": "NotebookLM PDF 요약",
+    "search_volume": null,
+    "demand_status": "unmeasured",
+    "status": "draft_needs_test_and_review",
+    "approved": false,
+    "published_url": null,
+    "resource_path": "/resources/pdf-summary/",
+    "resource_live_verified": false
+  },
+  {
+    "id": "02-meeting-notes",
+    "title": "클로바노트 AI 회의록: 결정사항과 담당자를 확인하는 순서",
+    "keyword": "클로바노트 회의록",
+    "search_volume": null,
+    "demand_status": "unmeasured",
+    "status": "draft_needs_test_and_review",
+    "approved": false,
+    "published_url": null,
+    "resource_path": "/resources/meeting-notes/",
+    "resource_live_verified": false
+  },
+  {
+    "id": "03-event-poster",
+    "title": "Canva AI 포스터 만들기: 한글 행사 안내를 완성하기 전 점검할 것",
+    "keyword": "Canva AI 포스터",
+    "search_volume": null,
+    "demand_status": "unmeasured",
+    "status": "draft_needs_test_and_review",
+    "approved": false,
+    "published_url": null,
+    "resource_path": "/resources/event-poster/",
+    "resource_live_verified": false
+  }
+]

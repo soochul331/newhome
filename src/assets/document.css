@@ -1,0 +1,13 @@
+/* Shared reading and navigation rules. All pages inherit Studio tokens. */
+.motion-demo header.site nav{flex-wrap:wrap}.motion-demo header.site nav a{display:inline-flex;align-items:center;min-height:44px}.motion-demo header.site nav a:focus-visible{outline:3px solid var(--studio-blue);outline-offset:4px}
+.letter-article.document-page,.motion-demo .letter-board{color:var(--ink)}
+.letter-body pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:var(--mint);border:1px solid var(--line);border-radius:3px}.letter-body code{font:inherit}.letter-body a{overflow-wrap:anywhere}.letter-body li{margin:.6em 0}.letter-body h2,.letter-body h3{line-height:1.45}.letter-body h2:first-child{margin-top:0}.letter-body :focus-visible{outline:3px solid var(--studio-blue);outline-offset:4px}
+@media(max-width:760px){.motion-demo header.site .wrap-wide{flex-wrap:wrap;gap:12px}.motion-demo header.site nav{width:100%;justify-content:flex-start;gap:8px 14px}.letter-heading h1{font-size:clamp(30px,8vw,48px)}.letter-body pre{padding:16px}}
+/* Copy controls stay outside the text so only the prompt is copied. */
+.prompt-block{margin:24px 0;border:1px solid var(--line);border-radius:4px;background:var(--mint);overflow:hidden}
+.prompt-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:8px 12px;border-bottom:1px solid var(--line)}
+.prompt-copy{flex-shrink:0;min-width:76px;min-height:44px;padding:8px 16px;border:1px solid var(--action);border-radius:4px;background:var(--paper);color:var(--action);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.prompt-copy:hover{background:var(--action);color:var(--paper)}.prompt-copy:focus-visible{outline:3px solid var(--studio-blue);outline-offset:3px}.prompt-copy:disabled{opacity:.6;cursor:wait}
+.prompt-copy-status{font-size:14px;line-height:1.6;color:var(--ink);overflow-wrap:anywhere}
+.letter-body .prompt-block pre,.product-prose .prompt-block pre{margin:0;padding:20px;border:0;border-radius:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:transparent}
+@media(max-width:760px){.prompt-toolbar{gap:10px}.letter-body .prompt-block pre,.product-prose .prompt-block pre{padding:16px}}

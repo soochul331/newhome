@@ -8,7 +8,7 @@
   <meta name="description" content="{{ (description or site.description) | oneline }}">
   <meta name="author" content="{{ site.name | oneline }}">
   {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
-  {% if page.url == '/' and site.homepage_layout == 'studio' %}{% set share_title = home.studio.hero_line1 ~ ' ' ~ home.studio.hero_line2 ~ ' · Church AI Lab' %}{% else %}{% set share_title = (title or site.title_tag) | oneline %}{% endif %}
+  {% if page.url == '/' %}{% set share_title = home.studio.hero_line1 ~ ' ' ~ home.studio.hero_line2 ~ ' · Church AI Lab' %}{% else %}{% set share_title = (title or site.title_tag) | oneline %}{% endif %}
   <meta property="og:title" content="{{ share_title | oneline }}">
   <meta property="og:description" content="{{ (description or site.description) | oneline }}">
   <meta property="og:type" content="website">
@@ -26,23 +26,12 @@
   <meta name="twitter:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}{% else %}{{ site.url }}{{ ogimg }}{% endif %}">
   <meta property="og:image:type" content="image/png">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-  {%- set theme = site.theme or 'classic' %}
-{% set studio_home = site.homepage_layout == 'studio' and theme == 'beagle' and page.url == '/' %}
-{% set inline_studio = theme == 'beagle' and (studio_home or studio_page or motion_demo or column_page) %}
-{% if theme != 'beagle' or (home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif) %}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{% endif %}
-  {% if theme == 'beagle' %}{% if inline_studio %}<style data-studio-css="theme-beagle.css motion-demo.css text-layout.css">{{ inlineStyles.studio | safe }}</style>{% else %}<link rel="stylesheet" href="/assets/theme-beagle.css?v=footer-17">{% endif %}
-  {% elif theme == 'tesla' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme-apple.css">
-  <link rel="stylesheet" href="/assets/theme-tesla.css">
-  {% elif theme == 'claude' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme-apple.css">
-  <link rel="stylesheet" href="/assets/theme-claude.css">
-  {% elif theme == 'notion' %}<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme-apple.css">
-  <link rel="stylesheet" href="/assets/theme-notion.css">
-  {% elif theme == 'apple' %}<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/theme-apple.css">{% else %}<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css">{% endif %}
+  {# Studio is the default shell for every page, including CMS-created pages. #}
+  {% set theme = 'beagle' %}
+  {% set studio_home = page.url == '/' %}
+  {% if (home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif) %}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{% endif %}
+  <style data-studio-css="theme-beagle.css motion-demo.css text-layout.css document.css">{{ inlineStyles.studio | safe }}</style>
+  <link rel="stylesheet" href="/assets/column.css?v=3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -71,34 +60,27 @@
   }
   </script>
   {% endif %}
-  {% if (motion_demo or studio_page or studio_home) and not inline_studio %}<link rel="stylesheet" href="/assets/motion-demo.css?v=perf23">{% endif %}
-  {% if column_page %}<link rel="stylesheet" href="/assets/column.css?v=2">{% endif %}
   {% block head %}{% endblock %}
-  {% if theme != 'claude' and ((home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif)) %}<link data-visual-serif href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">{% endif %}
-  {% if not inline_studio %}<link rel="stylesheet" href="/assets/text-layout.css">{% endif %}
+  {% if ((home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif)) %}<link data-visual-serif href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">{% endif %}
 </head>
-<body {% if studio_home or motion_demo %}data-studio-home-values="{{ home | dump }}"{% endif %} data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-{{ theme }}{% if motion_demo or studio_page or studio_home or column_page %} motion-demo{% endif %}{% if studio_page %} product-page{% endif %}">
+<body {% if studio_home or motion_demo %}data-studio-home-values="{{ home | dump }}"{% endif %} data-home-canvas-appearance="{{ (home.appearance or {}) | dump }}" data-canvas-appearance="[{{ (site.appearance or {}) | dump }},{{ (navigation.appearance or {}) | dump }},{% if page.url == '/' %}{{ (home.appearance or {}) | dump }}{% else %}{{ (appearance or {}) | dump }}{% endif %}]" data-site-appearance="{{ (site.appearance or {}) | dump }}" class="theme-beagle motion-demo{% if studio_page %} product-page{% endif %}">
 
 <header class="site">
   <div class="wrap-wide">
-    <a class="brand" href="/">{% if theme == 'beagle' %}<img class="brand-horizontal" src="/assets/brand/church-ai-lab-horizontal.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="600" height="202" decoding="async" fetchpriority="high">{% elif theme == 'tesla' or theme == 'claude' or theme == 'notion' %}{{ site.title_tag | oneline }}{% else %}{{ site.name | br | safe }}{% endif %}</a>
+    <a class="brand" href="/"><img class="brand-horizontal" src="/assets/brand/church-ai-lab-horizontal.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="600" height="202" decoding="async" fetchpriority="high"></a>
     <nav data-appearance="{{ (navigation.appearance or {}) | dump }}" aria-label="페이지 안내">
-      {% for item in navigation.items %}{% if item.visible != false %}<a data-nav-index="{{ loop.index0 }}" data-item-appearance="{{ item.appearance | dump }}" href="{% if design_preview and (theme == 'tesla' or theme == 'claude' or theme == 'notion' or theme == 'beagle') and (item.url.startsWith('#') or item.url.startsWith('/#')) %}/{{ theme }}-preview/{{ item.url | replace('/#', '#') }}{% else %}{{ item.url }}{% endif %}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endif %}{% endfor %}
+      {% for item in navigation.items %}{% if item.visible != false %}<a data-nav-index="{{ loop.index0 }}" data-item-appearance="{{ item.appearance | dump }}" href="{{ item.url }}"{% if item.hide_on_mobile %} class="nav-hide"{% endif %}>{{ item.label | br | safe }}</a>{% endif %}{% endfor %}
     </nav>
   </div>
 </header>
 
-{% if design_preview and theme == 'tesla' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Tesla 스타일 미리보기</span><a href="/">현재 홈페이지 ↗</a></aside>{% endif %}
-{% if design_preview and theme == 'claude' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Claude 스타일 미리보기</span><div><a href="/">현재 홈페이지</a><a href="/tesla-preview/">Tesla 디자인 ↗</a></div></aside>{% endif %}
-{% if design_preview and theme == 'notion' %}<aside class="preview-notice" aria-label="로컬 디자인 미리보기"><span>Notion 스타일 미리보기</span><div><a href="/">현재 홈페이지</a><a href="/tesla-preview/">Tesla</a><a href="/claude-preview/">Claude</a></div></aside>{% endif %}
-{% if design_preview and theme == 'beagle' %}<aside class="demo-notice" aria-label="디자인 미리보기"><span>DESIGN STUDY / BEAGLE</span><a href="/">현재 홈페이지 ↗</a></aside>{% endif %}
 <main id="top" data-appearance="{{ (appearance or {}) | dump }}">
 {{ content | safe }}
 </main>
 
 <footer class="site">
   <div class="wrap footer-profile">
-    {% if theme == 'beagle' %}<div class="footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>{% endif %}
+    <div class="footer-logo"><a href="/" aria-label="Church AI Lab 홈"><img src="/assets/brand/church-ai-lab-stacked.webp" alt="Church AI Lab · 교회를 위한 AI 연구소" width="308" height="294" loading="lazy"></a></div>
     <div class="footer-details">
       <p>{{ site.byline | br | safe }}</p>
       <p class="footer-affiliations">{% for l in site.links %}<a data-item-appearance="{{ l.appearance | dump }}" href="{{ l.url }}" rel="noopener">{{ l.label | br | safe }}</a>{% if not loop.last %}<span class="footer-separator"> · </span>{% endif %}{% endfor %}</p>
@@ -111,6 +93,7 @@
 {% if (home | hasAppearance) or (site | hasAppearance) or (navigation | hasAppearance) or appearance %}<script src="/assets/visual-layout.js?v=perf24" defer></script>{% endif %}
 {% if theme == 'beagle' and not studio_home and not motion_demo %}<script src="/assets/showcase.js" defer></script>{% endif %}
 <script src="/assets/text-layout.js" defer></script>
+<script src="/assets/copy-prompts.js" defer></script>
 {% if motion_demo or studio_home %}<script src="/assets/motion-demo.js?v=studio-21" defer></script>{% endif %}
 {% if studio_page %}<script src="/assets/sermon-motion.js?v=studio21" defer></script>{% endif %}
 </body>

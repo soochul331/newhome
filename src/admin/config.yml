@@ -101,25 +101,10 @@ collections:
           - label: 저작권 문구
             name: copyright
             widget: canvastext
-          - label: 화면 테마
+          - label: 공통 디자인
             name: theme
-            widget: canvasselect
+            widget: hidden
             default: beagle
-            required: false
-            options:
-              - label: 기본(브랜드 디자인)
-                value: classic
-              - label: Apple 스타일
-                value: apple
-              - label: Tesla 스타일
-                value: tesla
-              - label: Claude 스타일
-                value: claude
-              - label: Notion 스타일
-                value: notion
-              - label: Beagle 스타일
-                value: beagle
-            hint: 선택하면 오른쪽 미리보기에 반영됩니다. 게시 버튼으로 저장하면 홈페이지에 적용됩니다.
           - label: 링크 공유 이미지(카톡 미리보기)
             name: og_image
             widget: canvasimage
@@ -136,13 +121,8 @@ collections:
             required: false
           - label: 홈페이지 레이아웃
             name: homepage_layout
-            widget: canvasselect
+            widget: hidden
             default: studio
-            options:
-              - label: 모션 스튜디오
-                value: studio
-              - label: 기존 테마 레이아웃
-                value: classic
       - name: navigation
         label: 메뉴
         file: src/_data/navigation.yml
@@ -963,7 +943,7 @@ collections:
       - label: 레이아웃
         name: layout
         widget: canvastext
-        default: page.njk
+        default: document.njk
         required: false
       - label: 스튜디오 소개 페이지
         name: studio_page

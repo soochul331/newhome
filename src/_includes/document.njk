@@ -1,0 +1,12 @@
+---
+layout: base.njk
+---
+<article class="letter-article document-page">
+  <header class="letter-heading">
+    <a href="{% if resource_page %}/resources/{% else %}/{% endif %}">{% if resource_page %}AI 실습 자료실{% else %}Church AI Lab{% endif %}</a>
+    {% if tags and 'posts' in tags and date %}<p><time datetime="{{ date | isoDate }}">{{ date | dateKo }}</time></p>{% endif %}
+    <h1>{{ title | br | safe }}</h1>
+    {% if description or summary %}<p>{{ (description or summary) | br | safe }}</p>{% endif %}
+  </header>
+  <div class="letter-body" data-document-body>{{ content | safe }}</div>
+</article>

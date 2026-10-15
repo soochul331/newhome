@@ -19,6 +19,10 @@ items:
     url: /column/
     visible: true
     hide_on_mobile: false
+  - label: 실습 자료
+    url: /resources/
+    visible: true
+    hide_on_mobile: false
   - label: 문의
     url: /#contact
     visible: true

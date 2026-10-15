@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-content.js",
-    "build": "npm run lint && eleventy",
+    "build": "npm run lint && node scripts/clean-output.js && eleventy && node scripts/check-design.js",
     "dev": "eleventy --serve --port 8080",
-    "cms": "decap-server"
+    "cms": "decap-server",
+    "test:design": "node scripts/check-design.js && node scripts/check-themes.js && node scripts/check-studio.js",
+    "test:copy": "node scripts/check-copy-browser.cjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.0",

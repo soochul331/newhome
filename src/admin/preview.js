@@ -41,14 +41,8 @@
     env.addFilter('dateKo', d => new Date(d).toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', timeZone:'UTC' }));
     return env;
   }
-  function isStudio(context) { return context.site.homepage_layout === 'studio' && context.site.theme === 'beagle'; }
-  function renderHome(env,context) {
-    if(isStudio(context)) return env.render('studio-home.njk',context);
-    return assignTones((context.home.sections || []).filter(s=>s.enabled!==false)).map(s=>{
-      if(s.type==='richtext') s={...s,body:markdown.render(s.body || '')};
-      return env.render('sections/'+s.type+'.njk',{...context,s});
-    }).join('');
-  }
+  function isStudio() { return true; }
+  function renderHome(env, context) { return env.render('studio-home.njk', context); }
   window.HomePreview = { ready, environment, assignTones, isStudio, renderHome };
   function preview(name) {
     return createClass({
@@ -80,7 +74,7 @@
             Object.assign(context, value, { content: markdown.render(value.body || '') });
             if (name === 'columns') context.column_page = true;
             context.page.url = value.permalink || '/preview/';
-            content = env.render(name === 'pages' ? (value.studio_page ? 'sermon-product.njk' : 'page.njk') : (name === 'columns' ? 'column.njk' : 'post.njk'), context);
+            content = env.render(name === 'pages' ? (value.studio_page ? 'sermon-product.njk' : 'document.njk') : (name === 'columns' ? 'column.njk' : 'document.njk'), context);
           } else {
             content = renderHome(env,context);
           }

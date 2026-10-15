@@ -27,32 +27,24 @@ function findIframe(node) {
   }
 }
 const config = yaml.load(fs.readFileSync('src/admin/config.yml', 'utf8'));
-const themeField = config.collections.find(c => c.name === 'settings').files.find(f => f.name === 'site').fields.find(f => f.name === 'theme');
-const themes = ['classic', 'apple', 'tesla', 'claude', 'notion', 'beagle'];
-assert.deepEqual(themeField.options.map(o => o.value), themes);
-for (const theme of themes) {
+const settings = config.collections.find(c => c.name === 'settings').files.find(f => f.name === 'site').fields;
+for (const name of ['theme', 'homepage_layout']) assert.equal(settings.find(f => f.name === name).widget, 'hidden');
+for (const theme of ['classic', 'apple', 'tesla', 'claude', 'notion', 'beagle', undefined]) {
   const site = { ...base.site, theme };
-  const result = registered.site.render.call({
-    state: { base, viewport: 'desktop', overflow: 0 },
-    props: { entry: { get: () => ({ toJS: () => site }) } },
-    fitPreview() {},
-  });
+  const result = registered.site.render.call({state:{base,viewport:'desktop',overflow:0},props:{entry:{get:()=>({toJS:()=>site})}},fitPreview(){}});
   const html = findIframe(result);
-  assert.ok(html, `${theme}: editor preview failed to render`);
-  assert.ok(html.includes(`class="theme-${theme}`), `${theme}: wrong body theme`);
-  assert.ok(!html.includes('class="preview-notice"'), `${theme}: comparison banner leaked`);
-  assert.ok(!html.includes('href="/notion-preview/#'), `${theme}: comparison navigation leaked`);
-  const stylesheet = theme === 'classic' ? 'style.css' : `theme-${theme}.css`;
-  assert.ok(html.includes(`/assets/${stylesheet}`) || (theme === "beagle" && html.includes("data-studio-css")), `${theme}: stylesheet missing`);
-  assert.ok(fs.existsSync(`_site/assets/${stylesheet}`));
-  if (theme === 'notion') {
-    assert.ok(html.includes('notion-workspace'));
-    assert.ok(html.includes('4단계 · 나만의 도구'));
-  }
-  if (theme === 'claude') assert.ok(html.includes('learning-journal'));
-  if (theme === 'tesla') assert.ok(fs.existsSync('_site/assets/tesla/chapel-hero.png'));
-  console.log(`${theme}: administrator preview and assets passed`);
+  assert.ok(html?.includes('class="theme-beagle motion-demo"'));
+  assert.ok(html.includes('data-studio-css'));
+  assert.ok(html.includes('data-lab'));
 }
+for (const name of ['pages', 'posts', 'columns']) {
+  const result = registered[name].render.call({state:{base,viewport:'desktop',overflow:0},props:{entry:{get:()=>({toJS:()=>({title:'일반 문서 확인',body:'새 페이지 본문',date:'2026-10-15'})})}},fitPreview(){}});
+  const html = findIframe(result);
+  assert.ok(html?.includes('data-studio-css'), name + ': common styles missing');
+  assert.ok(html.includes('새 페이지 본문'), name + ': content missing');
+  assert.ok(html.includes('letter-body'), name + ': reading layout missing');
+}
+console.log('CMS: legacy settings cannot restore old themes; new pages/posts/columns share Studio.');
 const published = fs.readFileSync('_site/index.html', 'utf8');
 assert.ok(published.includes('class="theme-beagle motion-demo"'));
 assert.ok(published.includes('data-lab'));

@@ -23,16 +23,20 @@
 npm install          # 처음 한 번
 npm run dev          # 로컬 미리보기 http://localhost:8080
 npm run cms          # 로컬 관리자 테스트용 프록시 (별도 터미널)
-npm run build        # 내용 검사 + 빌드 → _site/
+npm run build        # 내용 검사 + 출력 정리 + 빌드 + 공통 디자인 검사 → _site/
+npm run test:design  # 관리자 미리보기·문서·Studio 회귀 검사
 ```
 
 네티파이는 `npm run build`를 실행하고 `_site/`를 발행합니다.
 
-## 원칙
+## 공통 디자인
 
-- 색은 배경 `#F6F7FB` · 글자 `#141B34` · 강조 `#2747D6` 세 가지만 씁니다.
-- 제목은 Black Han Sans, 본문은 Noto Sans KR입니다.
-- 존댓말, 보통 문장으로 씁니다. 지어낸 수치와 지어낸 후기는 쓰지 않습니다.
+- 공개 화면과 관리자 미리보기는 모두 현재 Studio 디자인을 기본으로 사용합니다.
+- `base.njk`가 공통 스타일을 적용합니다. 페이지별 활성화 플래그를 추가하지 않습니다.
+- 읽기 페이지와 게시글은 `document.njk`를 사용합니다. 칼럼과 제품 소개는 본문 구성만 다릅니다.
+- 이전 일반 템플릿은 제거했고, 과거 테마와 미리보기는 `docs/legacy-designs/`에 보관합니다. 이 폴더는 배포 대상이 아닙니다.
+- 새 페이지를 만들면 `npm run build`와 `npm run test:design`을 실행하고 홈과의 화면 일관성을 확인합니다.
+- 존댓말과 사실에 근거한 설명을 사용합니다. 지어낸 수치와 후기는 쓰지 않습니다.
 
 ## 링크
 
@@ -40,3 +44,7 @@ npm run build        # 내용 검사 + 빌드 → _site/
 - 처치AI랩 블로그: https://blog.naver.com/church_ai_lab
 
 감사합니다.
+
+## 요청문 복사 검증
+
+본문의 코드 상자는 공통 복사 버튼을 자동으로 제공합니다. 로컬 미리보기 서버(8765 포트)를 켠 상태에서 Playwright가 설치된 환경으로 `npm run test:copy`를 실행합니다. 별도 런타임을 쓰면 `PLAYWRIGHT_MODULE`에 Playwright 모듈 경로를 지정합니다. 원문과 실제 클립보드의 일치, 키보드, 모바일, 오류 시 안내를 검사합니다.
