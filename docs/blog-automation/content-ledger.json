@@ -9,7 +9,9 @@
     "approved": false,
     "published_url": null,
     "resource_path": "/resources/pdf-summary/",
-    "resource_live_verified": false
+    "resource_live_verified": true,
+    "resource_url": "https://churchailab.org/resources/pdf-summary/",
+    "resource_verified_on": "2026-10-15"
   },
   {
     "id": "02-meeting-notes",
@@ -21,7 +23,9 @@
     "approved": false,
     "published_url": null,
     "resource_path": "/resources/meeting-notes/",
-    "resource_live_verified": false
+    "resource_live_verified": true,
+    "resource_url": "https://churchailab.org/resources/meeting-notes/",
+    "resource_verified_on": "2026-10-15"
   },
   {
     "id": "03-event-poster",
@@ -33,6 +37,8 @@
     "approved": false,
     "published_url": null,
     "resource_path": "/resources/event-poster/",
-    "resource_live_verified": false
+    "resource_live_verified": true,
+    "resource_url": "https://churchailab.org/resources/event-poster/",
+    "resource_verified_on": "2026-10-15"
   }
 ]
