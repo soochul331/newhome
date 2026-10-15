@@ -1,6 +1,8 @@
 [build]
   command = "npm run build"
   publish = "_site"
+  # 푸시마다 배포하지 않고 하루 1번 예약 배포만 (scripts/netlify-ignore.sh)
+  ignore = "bash scripts/netlify-ignore.sh"
 
 [build.environment]
   NODE_VERSION = "22"

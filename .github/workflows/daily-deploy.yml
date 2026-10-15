@@ -1,0 +1,18 @@
+# 홈페이지 배포 (2026-10-16): Netlify 배포 1번 = 15크레딧이라 하루 1번으로 모은다.
+# - 매일 오전 8:30(한국 시각) 자동: 지난 배포 뒤 바뀐 것이 있을 때만 배포 (없으면 Netlify가 건너뜀)
+# - 급할 때: GitHub 저장소 → Actions → "홈페이지 배포" → Run workflow ("지금 반영")
+name: 홈페이지 배포
+on:
+  schedule:
+    - cron: "30 23 * * *" # UTC 23:30 = 한국 08:30
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Netlify 빌드 훅 호출
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          curl -fsS -X POST -d '{}' "$HOOK?trigger_title=${{ github.event_name == 'schedule' && 'daily-0830' || 'manual-now' }}" > /dev/null
+          echo "Netlify에 배포를 요청했습니다."
