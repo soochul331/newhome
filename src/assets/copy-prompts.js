@@ -4,8 +4,6 @@
     if (pre.closest('.prompt-block')) return;
     const block = document.createElement('div');
     block.className = 'prompt-block';
-    const toolbar = document.createElement('div');
-    toolbar.className = 'prompt-toolbar';
     const status = document.createElement('span');
     status.className = 'prompt-copy-status';
     status.setAttribute('role', 'status');
@@ -13,11 +11,14 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'prompt-copy';
-    button.textContent = '복사';
+    const copyIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>';
+    const doneIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg>';
+    button.innerHTML = copyIcon;
+    button.title = '내용 복사';
+    button.dataset.state = 'idle';
     button.setAttribute('aria-label', `${index + 1}번째 상자 내용 복사`);
-    toolbar.append(status, button);
     pre.before(block);
-    block.append(toolbar, pre);
+    block.append(pre, button, status);
     let reset;
     button.addEventListener('click', async () => {
       clearTimeout(reset);
@@ -43,7 +44,10 @@
       button.disabled = false;
       button.focus({ preventScroll: true });
       if (copied) {
-        button.textContent = '복사됨';
+        button.innerHTML = doneIcon;
+        button.title = '복사했습니다';
+        button.dataset.state = 'copied';
+        status.classList.remove('is-error');
         status.textContent = '상자 내용을 복사했습니다.';
       } else {
         const selection = window.getSelection();
@@ -51,12 +55,17 @@
         range.selectNodeContents(pre);
         selection?.removeAllRanges();
         selection?.addRange(range);
-        button.textContent = '다시 복사';
+        button.innerHTML = copyIcon;
+        button.title = '다시 복사';
+        button.dataset.state = 'error';
+        status.classList.add('is-error');
         status.textContent = '자동 복사가 되지 않았습니다. 선택된 내용을 직접 복사해 주세요.';
       }
       reset = setTimeout(() => {
-        button.textContent = '복사';
-        status.textContent = '';
+        button.innerHTML = copyIcon;
+        button.title = '내용 복사';
+        button.dataset.state = 'idle';
+        if (!status.classList.contains('is-error')) status.textContent = '';
       }, 4000);
     });
   });

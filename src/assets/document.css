@@ -3,11 +3,20 @@
 .letter-article.document-page,.motion-demo .letter-board{color:var(--ink)}
 .letter-body pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:var(--mint);border:1px solid var(--line);border-radius:3px}.letter-body code{font:inherit}.letter-body a{overflow-wrap:anywhere}.letter-body li{margin:.6em 0}.letter-body h2,.letter-body h3{line-height:1.45}.letter-body h2:first-child{margin-top:0}.letter-body :focus-visible{outline:3px solid var(--studio-blue);outline-offset:4px}
 @media(max-width:760px){.motion-demo header.site .wrap-wide{flex-wrap:wrap;gap:12px}.motion-demo header.site nav{width:100%;justify-content:flex-start;gap:8px 14px}.letter-heading h1{font-size:clamp(30px,8vw,48px)}.letter-body pre{padding:16px}}
-/* Copy controls stay outside the text so only the prompt is copied. */
-.prompt-block{margin:24px 0;border:1px solid var(--line);border-radius:4px;background:var(--mint);overflow:hidden}
-.prompt-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:16px;padding:8px 12px;border-bottom:1px solid var(--line)}
-.prompt-copy{flex-shrink:0;min-width:76px;min-height:44px;padding:8px 16px;border:1px solid var(--action);border-radius:4px;background:var(--paper);color:var(--action);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
-.prompt-copy:hover{background:var(--action);color:var(--paper)}.prompt-copy:focus-visible{outline:3px solid var(--studio-blue);outline-offset:3px}.prompt-copy:disabled{opacity:.6;cursor:wait}
-.prompt-copy-status{font-size:14px;line-height:1.6;color:var(--ink);overflow-wrap:anywhere}
-.letter-body .prompt-block pre,.product-prose .prompt-block pre{margin:0;padding:20px;border:0;border-radius:0;white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:transparent}
-@media(max-width:760px){.prompt-toolbar{gap:10px}.letter-body .prompt-block pre,.product-prose .prompt-block pre{padding:16px}}
+/* One small icon in the corner, with an invisible 44px hit area. */
+.prompt-block{position:relative;margin:24px 0;border:1px solid var(--line);border-radius:4px;background:var(--mint);min-width:0}
+.prompt-copy{position:absolute;top:4px;right:4px;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:6px;background:transparent;color:var(--muted);cursor:pointer}
+.prompt-copy svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.prompt-copy:hover,.prompt-copy:focus-visible{background:var(--paper);color:var(--action)}.prompt-copy:focus-visible{outline:2px solid var(--studio-blue);outline-offset:1px}.prompt-copy:disabled{opacity:.5;cursor:wait}.prompt-copy[data-state="copied"]{color:var(--action)}
+.prompt-copy-status:not(.is-error){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.prompt-copy-status.is-error{display:block;padding:0 20px 16px;font-size:14px;color:var(--ink);line-height:1.6}
+.letter-body .prompt-block pre,.product-prose .prompt-block pre{margin:0;padding:20px 60px 20px 20px;border:0;border-radius:0;white-space:pre-wrap;overflow-wrap:break-word;word-break:keep-all;font:inherit;background:transparent}
+@media(max-width:760px){.letter-body .prompt-block pre,.product-prose .prompt-block pre{padding:16px 56px 16px 16px}}
+
+/* Korean prose wraps at word boundaries; long identifiers retain an escape hatch. */
+html:lang(ko) body{word-break:keep-all;overflow-wrap:break-word}
+.motion-demo :is(p,li,dd,dt,blockquote){word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
+.motion-demo :is(h1,h2,h3){word-break:keep-all;overflow-wrap:break-word;text-wrap:balance}
+.motion-demo :is(a,code){overflow-wrap:anywhere}
+/* Article quotations are reading text, not homepage display quotes. */
+.letter-body blockquote{font-family:inherit;font-size:inherit;line-height:inherit;letter-spacing:normal}

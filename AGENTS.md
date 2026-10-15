@@ -9,3 +9,5 @@ Run `npm run build` and `npm run test:design`. For UI changes, compare actual ho
 Keep review drafts and blog publication status distinct from website deployment status. Never claim untested AI tools were personally reviewed.
 
 Boxed text in article bodies inherits copy controls from `copy-prompts.js`. Keep prompt text separate from controls, preserve whitespace, and provide accurate success/failure feedback with keyboard access. Do not add per-page inline copy handlers.
+
+For Korean text wrapping, apply the user-wide `korean-text-layout` skill. Keep Korean words intact, prefer natural wrapping, and never shrink prose or insert viewport-specific breaks to hide defects. Run `npm run test:korean` in the Playwright environment against the local preview before deploying typography changes.

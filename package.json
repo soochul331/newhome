@@ -10,7 +10,8 @@
     "dev": "eleventy --serve --port 8080",
     "cms": "decap-server",
     "test:design": "node scripts/check-design.js && node scripts/check-themes.js && node scripts/check-studio.js",
-    "test:copy": "node scripts/check-copy-browser.cjs"
+    "test:copy": "node scripts/check-copy-browser.cjs",
+    "test:korean": "node scripts/check-korean-browser.cjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.0",

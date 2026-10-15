@@ -48,3 +48,7 @@ npm run test:design  # 관리자 미리보기·문서·Studio 회귀 검사
 ## 요청문 복사 검증
 
 본문의 코드 상자는 공통 복사 버튼을 자동으로 제공합니다. 로컬 미리보기 서버(8765 포트)를 켠 상태에서 Playwright가 설치된 환경으로 `npm run test:copy`를 실행합니다. 별도 런타임을 쓰면 `PLAYWRIGHT_MODULE`에 Playwright 모듈 경로를 지정합니다. 원문과 실제 클립보드의 일치, 키보드, 모바일, 오류 시 안내를 검사합니다.
+
+## 한글 문단 검증
+
+`npm run test:korean`은 로컬 미리보기(8765)에서 320·375·768·1280px 화면의 실제 한글 어절 분리, 가로 넘침, 복사 아이콘 크기와 큰 글자 표시를 검사합니다. Playwright 모듈 경로는 `test:copy`와 동일하게 `PLAYWRIGHT_MODULE`로 지정할 수 있습니다. `SITE_URL`을 지정하면 공개 사이트에서도 같은 검사를 실행합니다.
