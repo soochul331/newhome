@@ -1,0 +1,236 @@
+{
+  "checks": [
+    {
+      "width": 320,
+      "route": "/",
+      "words": 481
+    },
+    {
+      "width": 320,
+      "route": "/resources/",
+      "words": 143
+    },
+    {
+      "width": 320,
+      "route": "/resources/pdf-summary/",
+      "words": 194
+    },
+    {
+      "width": 320,
+      "route": "/resources/meeting-notes/",
+      "words": 199
+    },
+    {
+      "width": 320,
+      "route": "/resources/event-poster/",
+      "words": 181
+    },
+    {
+      "width": 320,
+      "route": "/column/",
+      "words": 145
+    },
+    {
+      "width": 320,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "words": 352
+    },
+    {
+      "width": 320,
+      "route": "/column/gemini-argon-four-rejected-proposals/",
+      "words": 354
+    },
+    {
+      "width": 320,
+      "route": "/sermon-shorts/",
+      "words": 411
+    },
+    {
+      "width": 320,
+      "route": "/thanks.html",
+      "words": 12
+    },
+    {
+      "width": 320,
+      "route": "/proposal-thanks.html",
+      "words": 17
+    },
+    {
+      "width": 375,
+      "route": "/",
+      "words": 481
+    },
+    {
+      "width": 375,
+      "route": "/resources/",
+      "words": 143
+    },
+    {
+      "width": 375,
+      "route": "/resources/pdf-summary/",
+      "words": 194
+    },
+    {
+      "width": 375,
+      "route": "/resources/meeting-notes/",
+      "words": 199
+    },
+    {
+      "width": 375,
+      "route": "/resources/event-poster/",
+      "words": 181
+    },
+    {
+      "width": 375,
+      "route": "/column/",
+      "words": 145
+    },
+    {
+      "width": 375,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "words": 352
+    },
+    {
+      "width": 375,
+      "route": "/column/gemini-argon-four-rejected-proposals/",
+      "words": 354
+    },
+    {
+      "width": 375,
+      "route": "/sermon-shorts/",
+      "words": 411
+    },
+    {
+      "width": 375,
+      "route": "/thanks.html",
+      "words": 12
+    },
+    {
+      "width": 375,
+      "route": "/proposal-thanks.html",
+      "words": 17
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "words": 481
+    },
+    {
+      "width": 768,
+      "route": "/resources/",
+      "words": 143
+    },
+    {
+      "width": 768,
+      "route": "/resources/pdf-summary/",
+      "words": 194
+    },
+    {
+      "width": 768,
+      "route": "/resources/meeting-notes/",
+      "words": 199
+    },
+    {
+      "width": 768,
+      "route": "/resources/event-poster/",
+      "words": 181
+    },
+    {
+      "width": 768,
+      "route": "/column/",
+      "words": 145
+    },
+    {
+      "width": 768,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "words": 352
+    },
+    {
+      "width": 768,
+      "route": "/column/gemini-argon-four-rejected-proposals/",
+      "words": 354
+    },
+    {
+      "width": 768,
+      "route": "/sermon-shorts/",
+      "words": 411
+    },
+    {
+      "width": 768,
+      "route": "/thanks.html",
+      "words": 12
+    },
+    {
+      "width": 768,
+      "route": "/proposal-thanks.html",
+      "words": 17
+    },
+    {
+      "width": 1280,
+      "route": "/",
+      "words": 481
+    },
+    {
+      "width": 1280,
+      "route": "/resources/",
+      "words": 143
+    },
+    {
+      "width": 1280,
+      "route": "/resources/pdf-summary/",
+      "words": 194
+    },
+    {
+      "width": 1280,
+      "route": "/resources/meeting-notes/",
+      "words": 199
+    },
+    {
+      "width": 1280,
+      "route": "/resources/event-poster/",
+      "words": 181
+    },
+    {
+      "width": 1280,
+      "route": "/column/",
+      "words": 145
+    },
+    {
+      "width": 1280,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "words": 352
+    },
+    {
+      "width": 1280,
+      "route": "/column/gemini-argon-four-rejected-proposals/",
+      "words": 354
+    },
+    {
+      "width": 1280,
+      "route": "/sermon-shorts/",
+      "words": 411
+    },
+    {
+      "width": 1280,
+      "route": "/thanks.html",
+      "words": 12
+    },
+    {
+      "width": 1280,
+      "route": "/proposal-thanks.html",
+      "words": 17
+    }
+  ],
+  "samples": [
+    {
+      "text": "공유 권한이 있는 짧은 문서로 시작합니다. 아래 가상 안내문을 편집기에 넣고 PDF로 저장해 보세요.",
+      "lines": 1,
+      "wordBreak": "keep-all"
+    },
+    {
+      "text": "질문은 재사용할 수 있지만 결과는 문서마다 다시 확인해야 합니다. 스캔 품질이나 표 구조에 따라 추출 결과가 달라질 수 있습니다.",
+      "lines": 2,
+      "wordBreak": "keep-all"
+    }
+  ]
+}

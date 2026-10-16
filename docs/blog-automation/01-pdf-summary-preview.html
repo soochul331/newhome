@@ -1,0 +1,132 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NotebookLM 실제 사용 리뷰 · 검토본</title><style>*{box-sizing:border-box}body{margin:0;background:#f7f9fc;color:#102858;font:18px/1.85 system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;word-break:keep-all;overflow-wrap:break-word}main{max-width:780px;margin:0 auto;padding:56px 24px 100px}h1{font-size:40px;line-height:1.3;letter-spacing:-.03em}h2{font-size:27px;line-height:1.45;margin:52px 0 16px}p,li{text-wrap:pretty}img{display:block;width:100%;height:auto;border:1px solid #ccd8e9}p:has(>img){margin:32px 0 8px}p:has(>em){font-size:14px;color:#52647f;margin:8px 0 36px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eaf0f9;padding:24px;font:inherit}a{color:#244f91;overflow-wrap:anywhere}table{display:block;max-width:100%;overflow:auto;border-collapse:collapse;font-size:16px}th,td{border:1px solid #ccd8e9;padding:12px;min-width:110px}.notice{font-size:14px;border-bottom:1px solid #ccd8e9;padding-bottom:20px;color:#52647f}@media(max-width:600px){main{padding:24px 20px 64px}h1{font-size:30px}h2{font-size:24px}body{font-size:17px}}h1,h2{text-wrap:balance}pre{position:relative;padding-right:56px}.copy{position:absolute;right:4px;top:4px;width:44px;height:44px;border:0;background:transparent;color:#244f91;cursor:pointer;border-radius:8px}.copy:hover{background:#dce5f5}.copy:focus-visible{outline:2px solid #244f91}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}</style></head><body><main><p class="notice">검토용 원고 · 실제 화면 5장 · 실습 완료 / 원고 승인 완료 · 미발행</p><h1>NotebookLM PDF 요약, 교회 안내문으로 직접 확인해 봤습니다</h1>
+<p>PDF를 읽고 보호자에게 보낼 안내문까지 만들 수 있을까요? 이번 실습에서 NotebookLM은 교육안내문의 핵심 정보를 표로 정리하고, 이를 6문장 안내 메시지로 바꿨습니다. 참가비가 미정이라는 조건도 유지했습니다. 답변의 인용을 눌러 PDF 원문을 확인할 수 있었습니다.</p>
+<p>이번에는 가상의 <strong>무명AI교회</strong> 교육안내문으로 직접 시험했습니다. 실제 교회나 모집 행사가 아닙니다. 자료 준비와 화면 캡처는 Codex가 도왔고, 사용자가 로그인한 계정에서 세 질문을 직접 제출했습니다. 아래 이미지는 그 과정의 실제 서비스 화면입니다.</p>
+<p>실습일은 2026년 10월 16일입니다. 사용한 화면에는 <strong>Gemini Notebook</strong>이라는 이름과 PRO 표시가 있었습니다. 이 글에서는 검색에 익숙한 NotebookLM이라는 이름을 함께 씁니다. 무료 계정의 기능이나 사용 한도를 이번 결과로 단정하지 않습니다.</p>
+<h2>1. 어떤 PDF로 시작했나요?</h2>
+<p>일정과 미정 사항이 함께 있는 1페이지 교육안내문을 준비했습니다. 문서가 짧아 사람이 원문과 답변을 비교하기 쉽습니다.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>안내문에 적은 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>교육</td>
+<td>청소년과 보호자가 함께하는 AI 미디어 교실</td>
+</tr>
+<tr>
+<td>일시</td>
+<td>2026년 11월 1일 일요일 오후 1시 30분~3시 30분</td>
+</tr>
+<tr>
+<td>장소·대상</td>
+<td>교육관 2층 교육실 / 중·고등학생과 보호자</td>
+</tr>
+<tr>
+<td>신청 마감</td>
+<td>2026년 10월 28일 수요일 오후 6시</td>
+</tr>
+<tr>
+<td>참가비</td>
+<td>미정, 10월 26일 별도 안내 예정</td>
+</tr>
+<tr>
+<td>모집 인원</td>
+<td>20명 내외, 선착순 확정 조건 없음</td>
+</tr>
+<tr>
+<td>기기 대여</td>
+<td>아직 정하지 않음</td>
+</tr>
+<tr>
+<td>연락처·신청 링크</td>
+<td>안내문에 없음</td>
+</tr>
+</tbody>
+</table>
+<p>목회 행정에서는 이런 조건을 놓치면 안내를 다시 보내야 합니다. 일반 독자도 학교·지역 모임·회사 행사 안내문으로 같은 방식의 연습을 할 수 있습니다.</p>
+<h2>2. 새 노트북에 PDF를 올렸습니다</h2>
+<p>홈 화면에서 새 노트북을 만들고, 파일 업로드로 안내문 PDF를 추가했습니다. 처리 후 출처 목록에 파일명과 소스 1개가 나타났습니다. 노트북 이름은 ‘무명AI교회 | 교회교육 안내문 PDF 실습’으로 정했습니다.</p>
+<p><img src="practice/mumyeong-ai-church/screenshots/01-add-source.jpg" alt="새 노트북의 실제 파일 업로드 화면"></p>
+<p><em>화면 1. 파일 업로드에서 실습용 안내문 PDF를 추가했습니다.</em></p>
+<p>이번 연습에는 가상 자료만 사용했습니다. 직접 따라 하실 때도 공개하거나 업로드할 수 있는 짧은 문서로 시작해 보세요.</p>
+<h2>3. 요약표를 요청하면 미정 사항도 남을까요?</h2>
+<p>이번 응답에서는 남았습니다. 행사명부터 신청·문의까지 8개 항목을 비교했으며, 날짜·시간·대상·비용 조건이 원문과 일치했습니다.</p>
+<pre><code class="language-text">이 PDF만 근거로 교육안내문을 요약해 주세요.
+행사명, 일시, 장소, 대상, 신청 마감, 참가비, 준비물,
+신청·문의 방법을 표로 정리하고 각 항목에 출처 인용을 붙여 주세요.
+문서에 없는 정보는 추측하지 말고 “안내문에 없음”,
+아직 정하지 않은 내용은 “미정”이라고 표시해 주세요.
+</code></pre>
+<p><img src="practice/mumyeong-ai-church/screenshots/03-summary-answer.jpg" alt="실제 PDF 요약표 응답"></p>
+<p><em>화면 2. 참가비는 미정으로, 연락처와 신청 링크는 안내문에 없음으로 표시했습니다.</em></p>
+<p>좋았던 점은 요약의 모양을 먼저 지정할 수 있다는 것입니다. 교회 교육 담당자라면 날짜·장소·마감·준비물처럼 반복해서 확인하는 항목을 요청문에 넣어 둘 수 있습니다.</p>
+<p>이 결과는 문서 한 건에서 관찰한 것입니다. 모든 PDF에서 같은 정확도가 나온다는 의미는 아닙니다.</p>
+<h2>4. 인용 번호를 누르면 무엇이 보이나요?</h2>
+<p>참가비 옆의 인용 번호를 누르자 PDF 본문이 열렸습니다. 원문에는 참가비가 미정이며 무료로 확정하지 않았다고 적혀 있었고, 요약표도 이를 유지했습니다.</p>
+<p><img src="practice/mumyeong-ai-church/screenshots/04-citation-check.jpg" alt="요약표의 인용을 열어 PDF 근거를 비교한 실제 화면"></p>
+<p><em>화면 3. 요약과 원문을 같은 화면에서 비교했습니다.</em></p>
+<p>다만 여러 항목이 같은 인용 번호를 사용했고, 넓은 본문 구간이 표시됐습니다. 번호가 붙었다고 검토가 끝나지는 않습니다. 날짜와 조건이 적힌 문장을 직접 찾아 비교해야 했습니다.</p>
+<p>Google 공식 도움말도 인용을 선택해 원문 문맥을 검토하는 방법을 안내합니다. <a href="https://support.google.com/gemininotebook/answer/16179559?hl=ko">공식 채팅·인용 안내</a></p>
+<h2>5. 보호자 안내 메시지로 바꿔 봤습니다</h2>
+<p>두 번째 질문에서는 요약표를 보호자용 안내 메시지로 바꿨습니다. 6문장으로 작성됐고, 첫 문장에 가상 실습이라는 점을 밝혔습니다. 행사 일시와 신청 마감, 참가비 미정 조건이 유지됐습니다.</p>
+<pre><code class="language-text">이 PDF만 근거로 보호자에게 보낼 안내 메시지를 5~7문장으로 작성해 주세요.
+가상 교회의 실습용 안내임을 첫 문장에 밝히고,
+행사 일시·장소·대상·신청 마감을 포함해 주세요.
+참가비는 미정이며 10월 26일 별도 안내 예정이라고 써 주세요.
+연락처나 신청 링크를 만들지 말고,
+발송 전에 담당자가 보완할 정보를 메시지 아래에 따로 정리해 주세요.
+</code></pre>
+<p><img src="practice/mumyeong-ai-church/screenshots/05-parent-message.jpg" alt="보호자 안내 메시지와 담당자 보완 항목의 실제 답변"></p>
+<p><em>화면 4. 안내 메시지 아래에 연락처·참가비·기기 대여·사진 공개 동의 등 보완할 사항을 분리했습니다.</em></p>
+<p>안내문 초안을 만드는 데는 도움이 됐습니다. 실제 발송은 하지 않았습니다. 연락처와 접수 방법을 채우고, 담당자가 일정과 조건을 확인한 뒤 공유해야 합니다.</p>
+<p>응답 끝에는 원문에 없는 ‘간식 안내’를 다음 작업으로 제안하기도 했습니다. 간식이 제공된다고 답한 것은 아니지만, 제안을 그대로 따라가면 자료 밖의 내용으로 흐를 수 있습니다. 핵심 답변과 후속 제안을 구분해 읽는 편이 좋겠습니다.</p>
+<h2>6. 잘못된 홍보 문구도 걸러낼까요?</h2>
+<p>마지막에는 일부러 근거 없는 표현 세 가지를 넣었습니다. 이번 응답은 세 표현 모두 그대로 사용하면 안 된다고 판단하고, 원문에 맞는 대체 문구를 제시했습니다.</p>
+<pre><code class="language-text">이 안내문을 근거로 “참가비 무료, 선착순 20명 확정, 노트북 대여 가능”이라고
+홍보해도 되나요? 세 표현을 각각 판단하고,
+원문에 근거한 이유와 출처 인용을 붙여 주세요.
+확정할 수 없는 경우 그 이유를 밝히고,
+대신 사용할 수 있는 정확한 안내 문구를 제안해 주세요.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>시험한 표현</th>
+<th>실제 응답의 판단·대안</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>참가비 무료</td>
+<td>사용 불가 → 미정, 10월 26일 별도 안내 예정</td>
+</tr>
+<tr>
+<td>선착순 20명 확정</td>
+<td>사용 불가 → 20명 내외, 신청자가 많으면 담당자 조정</td>
+</tr>
+<tr>
+<td>노트북 대여 가능</td>
+<td>사용 불가 → 개인 기기는 있는 경우 지참, 대여 여부 미정</td>
+</tr>
+</tbody>
+</table>
+<p><img src="practice/mumyeong-ai-church/screenshots/06-unsupported-claims.jpg" alt="선착순 확정과 노트북 대여 표현을 거절한 실제 답변"></p>
+<p><em>화면 5. 세 표현 중 선착순·대여 판단이 보이는 부분입니다. 위 표는 실제 전체 응답을 확인해 정리했습니다.</em></p>
+<p>이런 질문은 교육 행사뿐 아니라 수련회·봉사 모집·지역 모임 홍보물을 검토할 때도 응용할 수 있습니다. 최종 조건을 결정하는 사람은 담당자입니다.</p>
+<h2>써 보니 어디에 도움이 됐나요?</h2>
+<p>자료를 표로 정리하고, 전달용 문장으로 바꾸며, 단정하면 안 되는 조건을 다시 점검하는 흐름에 도움이 됐습니다. 특히 요약에서 원문 인용으로 돌아갈 수 있어 확인할 근거를 찾기 편했습니다.</p>
+<p>불편한 점도 있었습니다. 인용 범위가 넓어 해당 문장을 직접 찾아야 했고, 화면의 출처·채팅·스튜디오 세 영역 때문에 긴 답변은 스크롤하면서 읽었습니다. 후속 제안에는 원문 밖 주제가 끼어들었습니다.</p>
+<p>이번 시험은 텍스트 PDF 1페이지와 질문 3개입니다. 스캔 PDF, 복잡한 표, 여러 문서, 모바일 앱은 시험하지 않았습니다. 작업 시간이나 절약률도 측정하지 않았습니다. 원문을 확인할 수 없는 중요한 안내문을 자동으로 확정하는 용도로는 권하기 어렵습니다.</p>
+<h2>자주 묻는 질문</h2>
+<p><strong>NotebookLM으로 PDF 요약이 가능한가요?</strong> 이번 실습에서는 PDF를 소스로 올리고 8개 항목 요약표를 받았습니다. 답변의 인용으로 원문도 확인했습니다.</p>
+<p><strong>교회 사역에는 어떻게 쓸 수 있나요?</strong> 교육·행사 안내문의 핵심 항목 정리, 보호자 전달용 초안, 미정 사항 점검에 적용해 볼 수 있습니다. 실제 교인에게 보내기 전 담당자가 검토해야 합니다.</p>
+<p><strong>무료 계정도 이번 화면과 같나요?</strong> 이번 화면에는 PRO 표시가 있었습니다. 무료 계정의 기능·한도는 별도로 시험하지 않았으므로 동일하다고 말할 수 없습니다.</p>
+<p><strong>성경공부 자료에도 적용할 수 있나요?</strong> 자료의 문장을 찾고 정리하는 작업으로 응용해 볼 수 있습니다. 이번 실습에서 성경 해석의 타당성을 검증한 것은 아닙니다.</p>
+<h2>함께 연습해 보세요</h2>
+<p><a href="https://churchailab.org/resources/pdf-summary/">Church AI Lab 무료 PDF 실습 페이지</a>에는 복사용 요청문과 점검표가 있습니다. 공개 페이지의 기존 예시와 이번 무명AI교회 실습 파일은 서로 다른 자료입니다. 이번 실습용 PDF는 발행 시 이 글의 첨부파일로 제공할 예정입니다.</p>
+<p><a href="https://churchailab.org/">Church AI Lab 홈페이지</a>에서 다른 활용 자료도 살펴보세요. 다음 도구의 실제 사용 과정을 받아보시려면 처치AI랩 블로그를 이웃으로 추가해 주세요.</p>
+<p>공식 참고 자료: <a href="https://support.google.com/gemininotebook/answer/16179559?hl=ko">Google 채팅·인용 안내</a>. 공식 안내와 실제 화면 확인일: 2026년 10월 16일. 계정과 시점에 따라 화면·기능이 달라질 수 있습니다.</p>
+<p class="notice">2026년 10월 16일 사용자 원고 승인 완료. 네이버 예약과 발행은 아직 하지 않았습니다.</p></main><div id="copy-status" class="sr-only" role="status" aria-live="polite"></div><script>document.querySelectorAll('pre').forEach(pre=>{const text=pre.textContent;const b=document.createElement('button');b.className='copy';b.type='button';b.setAttribute('aria-label','요청문 복사');b.title='요청문 복사';b.innerHTML='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V4H4v11h4"/></svg>';b.onclick=async()=>{try{await navigator.clipboard.writeText(text);document.getElementById('copy-status').textContent='요청문을 복사했습니다';}catch{document.getElementById('copy-status').textContent='복사하지 못했습니다. 요청문을 직접 선택해 복사해 주세요.';}};pre.append(b);});</script></body></html>

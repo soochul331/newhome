@@ -1,0 +1,31 @@
+{
+  "captured_on": "2026-10-16",
+  "actual_product_screenshots": true,
+  "fictional_input": true,
+  "files": [
+    {
+      "file": "01-add-source.jpg",
+      "bytes": 85947
+    },
+    {
+      "file": "02-ready-to-ask.jpg",
+      "bytes": 132340
+    },
+    {
+      "file": "03-summary-answer.jpg",
+      "bytes": 105288
+    },
+    {
+      "file": "04-citation-check.jpg",
+      "bytes": 168968
+    },
+    {
+      "file": "05-parent-message.jpg",
+      "bytes": 176953
+    },
+    {
+      "file": "06-unsupported-claims.jpg",
+      "bytes": 168362
+    }
+  ]
+}

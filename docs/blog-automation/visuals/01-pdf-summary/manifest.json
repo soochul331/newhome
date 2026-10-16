@@ -1,0 +1,42 @@
+[
+  {
+    "step": 1,
+    "file": "01-prepare.png",
+    "alt": "짧은 PDF를 준비합니다 — 실제 교인 정보 없이 가상 안내문으로 시작합니다.",
+    "caption": "실제 교인 정보 없이 가상 안내문으로 시작합니다.",
+    "type": "explanatory_diagram",
+    "actual_product_screenshot": false
+  },
+  {
+    "step": 2,
+    "file": "02-add-source.png",
+    "alt": "PDF를 소스로 추가합니다 — 메뉴 위치와 명칭은 실제 계정 화면에서 확인합니다.",
+    "caption": "메뉴 위치와 명칭은 실제 계정 화면에서 확인합니다.",
+    "type": "explanatory_diagram",
+    "actual_product_screenshot": false
+  },
+  {
+    "step": 3,
+    "file": "03-ask.png",
+    "alt": "요약과 근거를 함께 요청합니다 — 전체 요청문은 본문과 실습 자료에서 복사할 수 있습니다.",
+    "caption": "전체 요청문은 본문과 실습 자료에서 복사할 수 있습니다.",
+    "type": "explanatory_diagram",
+    "actual_product_screenshot": false
+  },
+  {
+    "step": 4,
+    "file": "04-check-citation.png",
+    "alt": "인용을 열어 원문과 비교합니다 — 가상 비교 예시입니다. 실제 서비스의 실행 결과가 아닙니다.",
+    "caption": "가상 비교 예시입니다. 실제 서비스의 실행 결과가 아닙니다.",
+    "type": "explanatory_diagram",
+    "actual_product_screenshot": false
+  },
+  {
+    "step": 5,
+    "file": "05-review.png",
+    "alt": "빠진 조건과 미정 정보를 확인합니다 — 원문과 다른 표현은 수정한 뒤 공유합니다.",
+    "caption": "원문과 다른 표현은 수정한 뒤 공유합니다.",
+    "type": "explanatory_diagram",
+    "actual_product_screenshot": false
+  }
+]

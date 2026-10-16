@@ -1,0 +1,145 @@
+{
+  "checks": [
+    {
+      "width": 375,
+      "route": "/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/resources/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/resources/pdf-summary/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/resources/meeting-notes/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/resources/event-poster/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/column/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/sermon-shorts/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/thanks.html",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 375,
+      "route": "/proposal-thanks.html",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/resources/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/resources/pdf-summary/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/resources/meeting-notes/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/resources/event-poster/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/column/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/column/presbytery-ai-seminar-solo-pastor/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/sermon-shorts/",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/thanks.html",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    },
+    {
+      "width": 1280,
+      "route": "/proposal-thanks.html",
+      "status": 200,
+      "overflow": false,
+      "sharedStyle": true
+    }
+  ],
+  "errors": []
+}

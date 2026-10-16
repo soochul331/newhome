@@ -1,17 +1,44 @@
 [
   {
     "id": "01-pdf-summary",
-    "title": "NotebookLM으로 PDF 요약하기: 인용으로 원문까지 확인하는 방법",
+    "title": "NotebookLM PDF 요약, 교회 안내문으로 직접 확인해 봤습니다",
     "keyword": "NotebookLM PDF 요약",
     "search_volume": null,
     "demand_status": "unmeasured",
-    "status": "draft_needs_test_and_review",
-    "approved": false,
+    "status": "approved",
+    "approved": true,
     "published_url": null,
     "resource_path": "/resources/pdf-summary/",
     "resource_live_verified": true,
     "resource_url": "https://churchailab.org/resources/pdf-summary/",
-    "resource_verified_on": "2026-10-15"
+    "resource_verified_on": "2026-10-15",
+    "last_prepared_on": "2026-10-16",
+    "official_sources_verified_on": "2026-10-16",
+    "preparation_version": 4,
+    "needs_user_review": false,
+    "actual_tool_test_completed": true,
+    "proposed_publish_at": null,
+    "scheduled_at": null,
+    "search_intent_evidence": "검색 결과에 PDF 요약·인용 확인 가이드 존재. 검색량 미측정.",
+    "official_source_urls": [
+      "https://support.google.com/gemininotebook/answer/16179559?hl=ko"
+    ],
+    "resource_download_verified": true,
+    "last_review_notice_on": "2026-10-15",
+    "visuals": {
+      "count": 6,
+      "manifest": "practice/mumyeong-ai-church/screenshots/manifest.json",
+      "type": "actual_product_screenshots",
+      "actual_product_screenshots": true,
+      "preview": "01-pdf-summary-preview.html",
+      "body_count": 5
+    },
+    "actual_tool_test_record": "practice/mumyeong-ai-church/session.json",
+    "actual_tool_test_scope": "텍스트 PDF 1페이지, 질문 3개 각각 1회, 참가비 인용 직접 확인",
+    "approved_on": "2026-10-16",
+    "approval_evidence": "사용자가 이 채팅에서 원고 승인이라고 명시",
+    "approved_version": 4,
+    "approved_content_sha256": "c9bd879eab094aa5222c6bce771c234b74359e13b6b647bb79d913ed755f9d50"
   },
   {
     "id": "02-meeting-notes",
