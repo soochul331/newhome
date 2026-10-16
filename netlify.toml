@@ -18,6 +18,11 @@
   [headers.values]
     X-Robots-Tag = "noindex"
 
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
 # 2026-10-14: 뉴스레터 → 칼럼 「AI와 교회 사이」 이름·주소 변경. 옛 주소는 새 주소로 보냅니다.
 [[redirects]]
   from = "/newsletter/*"

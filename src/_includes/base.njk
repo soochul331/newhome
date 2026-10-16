@@ -7,6 +7,7 @@
   <title>{% if title %}{{ title | oneline }} · {{ site.name | oneline }}{% else %}{{ site.title_tag | oneline }}{% endif %}</title>
   <meta name="description" content="{{ (description or site.description) | oneline }}">
   <meta name="author" content="{{ site.name | oneline }}">
+  <link rel="describedby" href="{{ site.url }}/llms.txt" type="text/plain">
   {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
   {% if page.url == '/' %}{% set share_title = home.studio.hero_line1 ~ ' ' ~ home.studio.hero_line2 ~ ' · Church AI Lab' %}{% else %}{% set share_title = (title or site.title_tag) | oneline %}{% endif %}
   <meta property="og:title" content="{{ share_title | oneline }}">
