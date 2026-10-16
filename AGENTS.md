@@ -12,6 +12,10 @@ Boxed text in article bodies inherits copy controls from `copy-prompts.js`. Keep
 
 For Korean text wrapping, apply the user-wide `korean-text-layout` skill. Keep Korean words intact, prefer natural wrapping, and never shrink prose or insert viewport-specific breaks to hide defects. Run `npm run test:korean` in the Playwright environment against the local preview before deploying typography changes.
 
+## Blog drafts and Aside publishing (2026-10-16)
+
+Naver blog drafts for 처치AI랩 (the daily 16:00 Codex automation `ai`, and any Aside publishing run) follow `.agents/skills/aside-blog-autopublish/SKILL.md`. Codex and Antigravity both discover it from that path. Keep `docs/blog-automation/content-ledger.json` as the single status ledger, and keep the review rules in `docs/blog-automation/README.md`. The churchailab.org column (`src/columns/`, `docs/column/`) is published by Claude scheduled tasks only; this skill never writes there.
+
 ## Deployment cadence (2026-10-16)
 
 Pushing to `main` no longer deploys. Netlify charges 15 credits per production deploy and the team (Personal, 1,000 credits/month) is shared with sermonshorts. `scripts/netlify-ignore.sh` skips every build except the build hook. `.github/workflows/daily-deploy.yml` calls the hook every day at 08:30 KST, and Netlify only builds if `main` changed since the last deploy. For an urgent change, run the "홈페이지 배포" workflow manually (Actions → Run workflow). Do not deploy with the Netlify CLI or the "Trigger deploy" button, and do not tell the owner a change is live until the next scheduled or manual deploy has finished.

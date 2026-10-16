@@ -35,6 +35,21 @@ content-ledger.json을 단일 대장으로 사용합니다. draft_needs_test_and
 
 Codex 채팅 자동화 ID: ai. 매일 오후 4시 실행으로 활성화했습니다. 실행이 완료되거나 검토가 필요하면 이 채팅에서 알립니다. 홈페이지 자료실과 원고는 현재 검토용 로컬 파일이며 네이버 게시와 홈페이지 배포는 완료하지 않았습니다.
 
+### 원고 형식 변경 (2026-10-16)
+
+원고 작성 규칙은 `.agents/skills/aside-blog-autopublish/SKILL.md`(신수철 목사 · Church AI Lab 판)로 통일합니다. Codex와 Antigravity(Aside)가 같은 파일을 읽습니다. 이 운영안의 검토 규칙(첫 5편 검토, 미승인은 대기, 대장 상태 전이, 실습하지 않은 기능은 미검증 표시)은 그대로 유지하고, 스킬은 그 위에 원고 형식·이미지 명세·SEO/AEO/GEO 메타데이터·Aside 실행 지시서를 얹습니다. 발행 방식 기본값은 "임시저장"이며, 사용자가 검토한 뒤 네이버에서 직접 예약 발행합니다.
+
+Codex 자동화 `ai`의 프롬프트는 아래 문안으로 바꿉니다.
+
+```
+매일 이 시각에 처치AI랩 네이버 블로그의 다음 날 원고 한 편을 준비합니다.
+1. docs/blog-automation/README.md의 운영 규칙과 content-ledger.json의 현재 상태를 읽습니다. approved 이전 상태의 원고가 3편 이상 쌓여 있으면 새 원고를 만들지 않고 검토가 필요하다고 알립니다.
+2. .agents/skills/aside-blog-autopublish/SKILL.md를 읽고 그 형식대로 발행 패키지를 만듭니다. 플랫폼은 네이버 블로그 처치AI랩, 발행 방식은 임시저장입니다. 주제는 실무 문제 하나를 고르고, 홈페이지 자료실(/resources/)에 연결할 실습 자료가 있으면 내부 링크로 넣습니다.
+3. 수치·기능·가격은 공식 자료를 직접 열어 확인한 것만 쓰고 확인일을 적습니다. 실습하지 않은 기능은 미검증으로 표시하고 '써 보니' 같은 경험 서술을 넣지 않습니다. 경험·경력은 .claude/skills/my-homepage/SKILL.md 2.5절 증거표 안의 것만 씁니다.
+4. 발행 패키지를 docs/blog-automation/NN-<슬러그>.md로 저장하고 content-ledger.json에 draft_needs_test_and_review 상태로 한 줄 추가합니다. 다른 파일은 고치지 않습니다. src/columns/와 docs/column/은 손대지 않습니다.
+5. 품질 게이트(스킬 10장) 결과와 검토가 필요한 점을 이 채팅에 한 단락으로 보고합니다. 네이버에 직접 올리지 않습니다.
+```
+
 ## 검증 결과
 
 - `npm run build`: 내용 검사 경고 0개, Eleventy 빌드 성공.
