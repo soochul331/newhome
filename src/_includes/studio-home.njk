@@ -2,10 +2,13 @@
 {% for s in home.sections %}{% if s.id == 'top' %}{% set _ = heroes.push(s) %}{% endif %}{% if s.id == 'about' %}{% set _ = bios.push(s) %}{% endif %}{% if s.id == 'for-whom' %}{% set _ = courses.push(s) %}{% endif %}{% endfor %}
 {% set tools = home.tools %}{% set studio = home.studio %}{% set hero = heroes[0] %}{% set about = bios[0] %}{% set learning = courses[0] %}
 {% if motion_demo %}<aside class="motion-toolbar" aria-label="모션 데모 설정"><span>처치AI랩 · 디자인 데모</span><div><button type="button" data-motion-toggle aria-pressed="true">모션 켜짐</button><button type="button" data-motion-replay>처음부터 보기</button><a href="/">현재 홈페이지</a></div></aside>{% endif %}
-<section class="studio-intro studio-wrap" id="intro">
+<section class="studio-intro has-hero-video" id="intro">
+  <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="/media/hero-poster.webp"><img class="hero-bg-poster" src="/media/hero-poster.jpg" alt="" width="1280" height="720" decoding="async"></picture><video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="/media/hero-poster.jpg" src="/media/hero-bg.mp4" width="1280" height="720"></video><div class="hero-shade"></div></div>
+  <div class="studio-wrap">
   <div class="intro-top"><p>목회자를 위한 AI 활용 교육</p><span>Church AI Lab</span></div>
   <h1><span class="title-line"><span>{{ studio.hero_line1 | br | safe }}</span></span><span class="title-line"><span>{{ studio.hero_line2 | br | safe }}</span></span></h1>
   <div class="intro-bottom"><span class="scroll-cue" aria-hidden="true">↓</span><p>설교준비, 목회행정, 교회교육, 나만의 AI 도구.<br>지금 필요한 사역부터 함께 연습합니다.</p><a class="studio-link" href="#lab">어떻게 활용하나요? <span aria-hidden="true">↘</span></a></div>
+  </div>
 </section>
 <section class="lab-section" id="lab" aria-labelledby="lab-heading">
   <div class="studio-wrap lab-head"><h2 id="lab-heading">{{ studio.lab_heading | br | safe }}</h2><p>네 가지 활용 장면을 눌러 보세요.</p></div>
