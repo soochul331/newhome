@@ -1,0 +1,23 @@
+{
+  "tested_on": "2026-10-17",
+  "service": "클로바노트 개인용",
+  "note_url": "https://clovanote.naver.com/w/GLzeosPcwHNLXGZFti8w/note-detail/a30ed63a-8f84-4e41-8884-23ed4977b22an",
+  "input": "macOS 내장 Yuna 및 Eddy 한국어 합성음성. 실제 회의 녹음 아님.",
+  "input_duration_seconds": 199.7,
+  "test_count": 1,
+  "observed_speaker_labels": [
+    "참석자 1",
+    "참석자 2"
+  ],
+  "observed_error": "00:48 구간에서 10월 30일이 10월 3일로 인식됨",
+  "correction": "입력 대본과 대조해 해당 구간의 날짜를 10월 30일로 수정. 다른 오인식 문장은 미수정.",
+  "summary_observation": "맞춤 요약의 다음 할 일에 대본에서 확정하지 않은 의견 수렴 제안 포함. 시간대별 요약은 구체적 날짜·마감일을 제공하지 않음.",
+  "playback_checked": "00:48 클릭 후 재생 시간 이동과 일시정지 버튼 확인",
+  "audio_listening_claim": false,
+  "accuracy_rate_measured": false,
+  "time_saving_measured": false,
+  "extra_payment": false,
+  "screenshots_actual": true,
+  "plan_pricing_verified": false,
+  "publication_authorization": "사용자가 실제 쓰기 시험과 품질 게이트 통과 후 발행까지 지시함"
+}

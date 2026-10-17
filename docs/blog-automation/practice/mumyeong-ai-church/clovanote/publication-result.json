@@ -1,0 +1,29 @@
+{
+  "url": "https://blog.naver.com/church_ai_lab/224444420967",
+  "verified_at": "2026-10-17T08:20:08.483810+09:00",
+  "category": "AI 도구 리뷰",
+  "image_count": 4,
+  "all_images_loaded_nonblur": true,
+  "public_image_alt_values": [
+    "",
+    "",
+    "",
+    ""
+  ],
+  "attachments_visible": [
+    "meeting-transcript.txt",
+    "mumyeong-meeting-synthetic.wav"
+  ],
+  "attachment_download_verified": false,
+  "prepared_quality_gate_passed": 9,
+  "public_quality_gate_passed": 7,
+  "unmet": [
+    "SEO alt keyword: public alt empty",
+    "Image alt: public alt empty"
+  ],
+  "write_test": {
+    "normal_sandbox_write": false,
+    "escalated_write_read_delete": true,
+    "automation_write_permission_verified": false
+  }
+}
