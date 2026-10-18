@@ -21,7 +21,9 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       for(const match of node.textContent.matchAll(/[가-힣]{2,}/g)){
        const range=document.createRange();range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
        const rects=[...range.getClientRects()].filter(box=>box.width&&box.height);
-       words++;if(rects.length>1)broken.push(match[0]);
+       // Line clamping can emit duplicate rectangles on the same baseline.
+       const lines=new Set(rects.map(box=>Math.round(box.top)));
+       words++;if(lines.size>1)broken.push(match[0]);
       }
      }
     }
