@@ -1029,34 +1029,3 @@ collections:
         name: appearance
         widget: canvasvisualappearance
         required: false
-
-  - name: columns
-    label: 칼럼
-    label_singular: 칼럼
-    description: '칼럼 「AI와 교회 사이」에 올릴 글을 작성합니다. AI·교회 소식 기사를 골라 요약하고 리뷰하는 형식입니다. 공개를 끄면 홈페이지에 노출되지 않습니다.'
-    folder: src/columns
-    create: true
-    delete: true
-    extension: md
-    format: frontmatter
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    preview_path: 'column/{{slug}}'
-    summary: '{{date}} · {{title}}'
-    sortable_fields: [date, title]
-    fields:
-      - {label: 제목, name: title, widget: string, hint: 기사 제목을 그대로 쓰지 않고, 리뷰의 관점이 드러나는 제목을 씁니다.}
-      - label: 발행일
-        name: date
-        widget: datetime
-        date_format: YYYY-MM-DD
-        time_format: false
-        format: YYYY-MM-DD
-      - {label: 공개, name: published, widget: boolean, default: true}
-      - {label: 요약, name: summary, widget: text, hint: 목록과 공유 미리보기에 표시할 짧은 소개입니다.}
-      - {label: 다룬 기사 매체, name: source_name, widget: string, required: false, hint: 예) 기독신문, 국민일보}
-      - {label: 다룬 기사 제목, name: source_title, widget: string, required: false}
-      - {label: 다룬 기사 링크, name: source_url, widget: string, required: false, hint: 원문 주소. 글 머리와 끝에 링크로 표시됩니다.}
-      - {label: 기사 날짜, name: source_date, widget: string, required: false, hint: 예) 2026-10-14}
-      - {label: 대표 이미지, name: cover, widget: image, required: false}
-      - {label: 이미지 설명, name: cover_alt, widget: string, required: false}
-      - {label: 본문, name: body, widget: markdown}

@@ -5,3 +5,5 @@ _site/
 .claude/launch.json
 .netlify/
 scripts/og/fonts/
+
+node_modules

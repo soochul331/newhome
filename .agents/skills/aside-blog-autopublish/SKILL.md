@@ -3,6 +3,10 @@ name: "aside-blog-autopublish"
 description: "Aside 브라우저 에이전트로 처치AI랩 블로그(네이버 기본, 워드프레스·티스토리 지원)에 글을 자동발행할 때, 신수철 목사의 목소리로 쓴 본문·이미지 명세·SEO/AEO/GEO 메타데이터·Aside 실행 지시서를 한 번에 만든다. churchailab.org 칼럼을 블로그용으로 다시 싣는 일도 맡는다. 트리거: 어사이드, Aside 블로그, 블로그 자동발행, 처치AI랩 블로그에 올려줘, 칼럼 블로그로 옮겨줘."
 ---
 
+## 최신 사용자 결정 (2026-10-19, 과거 역할 분담보다 우선)
+
+홈페이지·블로그는 Codex가 전담합니다. 홈페이지 칼럼 자동발행은 종료했습니다. AI 관련 기사 리뷰(20번)는 docs/blog-automation/article-review.md에 따라 Codex가 자동 공개 발행합니다. AI 도구 리뷰(18번)는 기존 검토 방식입니다. 폐지한 /resources/·/column/ 링크는 새 원고에 넣지 않습니다.
+
 # Aside 블로그 자동발행 스킬 (신수철 목사 · Church AI Lab 판)
 
 Aside 브라우저 에이전트가 로그인된 블로그 편집기에서 그대로 붙여넣고 발행할 수 있도록,

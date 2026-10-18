@@ -4,7 +4,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 (async()=>{
  const browser=await chromium.launch({channel:'chrome',headless:true});
  const page=await browser.newPage({reducedMotion:'reduce'});const origin=process.env.SITE_URL||'http://127.0.0.1:8765';
- const routes=['/','/resources/','/resources/pdf-summary/','/resources/meeting-notes/','/resources/event-poster/','/column/','/column/presbytery-ai-seminar-solo-pastor/','/column/gemini-argon-four-rejected-proposals/','/sermon-shorts/','/thanks.html','/proposal-thanks.html'];
+ const routes=['/','/sermon-shorts/','/thanks.html','/proposal-thanks.html'];
  const results=[];
  for(const width of [320,375,768,1280]){
   await page.setViewportSize({width,height:900});
@@ -31,14 +31,12 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
    assert.deepEqual(result.broken,[],`${width} ${route}: Korean words split`);
    assert.equal(result.toolbars,0);for(const icon of result.icons){assert.equal(icon.icon,18);assert.ok(icon.hit>=44);}
    results.push({width,route,words:result.words});
-   if(route==='/resources/pdf-summary/'&&[375,1280].includes(width))await page.screenshot({path:`docs/blog-automation/typography-${width}.png`,fullPage:true});
+   if(route==='/'&&[375,1280].includes(width)) { await page.locator('#posts').scrollIntoViewIfNeeded(); await page.locator('.blog-card').last().scrollIntoViewIfNeeded(); await page.waitForFunction(()=>[...document.querySelectorAll('.blog-cover img')].every(i=>i.complete&&i.naturalWidth>0)); await page.locator('#posts').screenshot({path:`docs/blog-automation/cards-${width}.png`}); }
   }
  }
- await page.setViewportSize({width:1280,height:900});await page.goto(origin+'/resources/pdf-summary/');
- const samples=await page.evaluate(()=>[...document.querySelectorAll('.letter-body>p')].filter(p=>p.textContent.includes('공유 권한')||p.textContent.includes('질문은 재사용')).map(p=>({text:p.textContent,lines:Math.round(p.getBoundingClientRect().height/parseFloat(getComputedStyle(p).lineHeight)),wordBreak:getComputedStyle(p).wordBreak})));
- assert.equal(samples[0].lines,1,'Intro should fit at the supplied desktop size');
- await page.setViewportSize({width:375,height:900});await page.addStyleTag({content:'body p,body li{font-size:150%!important}'});
+ await page.setViewportSize({width:375,height:900});await page.goto(origin+'/');
+ await page.addStyleTag({content:'body p,body li,.blog-card h3{font-size:150%!important}'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Larger text must not clip');
- fs.writeFileSync('docs/blog-automation/typography-verification.json',JSON.stringify({checks:results,samples},null,2)+'\n');
- await browser.close();console.log(`PASS: ${results.length} route/viewport checks, intact Korean words, no dedicated copy row, 18px icon/44px hit area, larger text.`,samples);
+ fs.writeFileSync('docs/blog-automation/typography-verification.json',JSON.stringify({checks:results},null,2)+'\n');
+ await browser.close();console.log(`PASS: ${results.length} route/viewport checks, intact Korean words, no dedicated copy row, 18px icon/44px hit area, larger text.`);
 })().catch(e=>{console.error(e);process.exit(1)});

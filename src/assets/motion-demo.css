@@ -84,3 +84,23 @@
 
 /* Keep the first viewport's large text immediately visible for LCP. */
 .motion-demo .studio-intro .title-line>span{animation:none!important;transform:none!important}
+
+/* Naver feed: image-led posts retain the shared Studio palette and type. */
+.blog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.blog-card{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.blog-card>a{display:flex;flex-direction:column;height:100%;color:var(--ink);text-decoration:none}
+.blog-card>a:focus-visible{outline:3px solid var(--action);outline-offset:-4px}
+.blog-cover{aspect-ratio:1;background:var(--mint);overflow:hidden}
+.blog-cover img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .25s ease-out}
+.blog-card>a:hover .blog-cover img{transform:scale(1.025)}
+.blog-card-copy{padding:24px;display:flex;flex:1;flex-direction:column;gap:16px}
+.blog-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);line-height:1.5}
+.motion-demo .blog-card h3{font-size:22px;line-height:1.5;letter-spacing:-.025em;margin:0;word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
+.blog-card-copy p{font-size:16px;line-height:1.75;color:var(--muted);margin:0;word-break:keep-all;overflow-wrap:break-word;text-wrap:pretty}
+.blog-read{display:flex;justify-content:space-between;gap:20px;margin-top:auto;padding-top:8px;font-size:14px}
+@media(max-width:1000px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}}
+@media(max-width:600px){.blog-grid{grid-template-columns:minmax(0,1fr);gap:28px}.blog-card-copy{padding:22px}.studio-posts .section-intro{align-items:start;gap:16px;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.blog-cover img{transition:none}.blog-card>a:hover .blog-cover img{transform:none}}
+
+/* Grid children may shrink when the reader enlarges Korean text. */
+.learning-steps>li{min-width:0;overflow-wrap:break-word}

@@ -32,7 +32,6 @@
   {% set studio_home = page.url == '/' %}
   {% if (home | hasSerif) or (site | hasSerif) or (navigation | hasSerif) or (appearance | hasSerif) %}<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{% endif %}
   <style data-studio-css="theme-beagle.css motion-demo.css text-layout.css document.css">{{ inlineStyles.studio | safe }}</style>
-  <link rel="stylesheet" href="/assets/column.css?v=3">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

@@ -26,6 +26,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "node_modules/markdown-it/dist/markdown-it.min.js": "admin/vendor/markdown-it.min.js" });
   eleventyConfig.addPassthroughCopy({ "node_modules/turndown/lib/turndown.browser.umd.js": "admin/vendor/turndown.js" });
   eleventyConfig.ignores.add("src/admin/**");
+  // Retired public sections remain in Git history; never rebuild their routes.
+  for (const route of ["src/columns/**", "src/column.njk", "src/pages/resource*.md", "src/assets/resources/**"])
+    eleventyConfig.ignores.add(route);
 
   const toDate = (d) => (d instanceof Date ? d : new Date(d));
   eleventyConfig.addFilter("dateKo", (d) => {
