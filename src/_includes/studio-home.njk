@@ -42,9 +42,9 @@
   <div class="section-intro"><h2>블로그에 남긴 기록.</h2><a class="studio-link" href="https://blog.naver.com/church_ai_lab" target="_blank" rel="noopener">블로그 더 보기 ↗</a></div>
   <div class="blog-grid">
   {% for post in blogFeed.posts %}
-    <article class="blog-card"><a href="{{ post.url | escape }}" target="_blank" rel="noopener" aria-label="{{ post.title | escape }} · 네이버 블로그에서 읽기">
+    <article class="blog-card"><a href="{{ post.url | escape }}" target="_blank" rel="noopener" aria-label="{{ post.title | escape }} · 처치AI랩 블로그에서 읽기">
       <div class="blog-cover"><img src="{{ post.image | escape }}" alt="{{ post.image_alt | escape }}" width="600" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>
-      <div class="blog-card-copy"><div class="blog-meta"><span>{{ post.category | escape }}</span><time datetime="{{ post.date | escape }}">{{ post.display_date | dateKo }}</time></div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | escape }}</p><span class="blog-read">네이버에서 읽기 <span aria-hidden="true">↗</span></span></div>
+      <div class="blog-card-copy"><div class="blog-meta"><span>{{ post.category | escape }}</span><time datetime="{{ post.date | escape }}">{{ post.display_date | dateKo }}</time></div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | escape }}</p><span class="blog-read">처치AI랩 블로그에서 읽기 <span aria-hidden="true">↗</span></span></div>
     </a></article>
   {% else %}<p>새 글은 네이버 블로그에서 확인하실 수 있습니다.</p>{% endfor %}
   </div>
