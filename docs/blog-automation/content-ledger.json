@@ -82,7 +82,18 @@
     "representative_image": "docs/blog-automation/migration/presbytery-ai-seminar-solo-pastor/cover.jpg",
     "source_verified_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-gemini-argon-four-rejected-proposals",
@@ -98,7 +109,18 @@
     "migration_authorized_on": "2026-10-19",
     "source_verified_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-church-member-data-before-ai-tools",
@@ -114,7 +136,18 @@
     "migration_authorized_on": "2026-10-19",
     "source_verified_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-character-ai-bankruptcy-youth-ministry",
@@ -130,7 +163,18 @@
     "migration_authorized_on": "2026-10-19",
     "source_verified_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-ai-essay-grading-church-school-rubric",
@@ -146,7 +190,18 @@
     "representative_image": "docs/blog-automation/migration/ai-essay-grading-church-school-rubric/cover.jpg",
     "migration_authorized_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-swiss-churches-ai-guidelines-transparency",
@@ -162,7 +217,18 @@
     "representative_image": "docs/blog-automation/migration/swiss-churches-ai-guidelines-transparency/cover.jpg",
     "migration_authorized_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-pisa-ai-generation-reading-church-school",
@@ -178,7 +244,18 @@
     "representative_image": "docs/blog-automation/migration/pisa-ai-generation-reading-church-school/cover.jpg",
     "migration_authorized_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
   },
   {
     "id": "migrated-ai-slop-youth-short-form-church",
@@ -194,6 +271,80 @@
     "representative_image": "docs/blog-automation/migration/ai-slop-youth-short-form-church/cover.jpg",
     "migration_authorized_on": "2026-10-19",
     "public_image_count": 1,
-    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained"
+    "public_image_alt_status": "Naver removes image alt on published output; explanatory caption retained",
+    "last_edited_on": "2026-10-19",
+    "layout_revision": "feedback-v4",
+    "layout_revision_notes": [
+      "기사 카드 다음에 짧은 리뷰 배치",
+      "제작 도식은 한 가지 생각할 점 앞",
+      "겁니다를 것입니다로 수정",
+      "활용 분야·문의·관련 글·실습·행동 유도 FAQ 삭제",
+      "기사 해석과 출처로 마무리",
+      "최초 작성일·이관 안내 삭제, 기사 확인일 유지",
+      "기사 근거·용어 설명 FAQ 2문답 복원"
+    ],
+    "layout_verification": "docs/blog-automation/migration/ai-slop-youth-short-form-church/feedback-v4-checks.json",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "reference_blank_line": true,
+      "faq_retained": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
+  },
+  {
+    "id": "article-review-2026-10-19-am",
+    "kind": "article_review",
+    "slot": "2026-10-19-am",
+    "date": "2026-10-19",
+    "status": "published",
+    "title": "AI로 만든 교회 신청 도구, 배포 전에 실패를 시험합니다",
+    "category_no": 20,
+    "source_url": "https://www.aitimes.com/news/articleView.html?idxno=216367",
+    "source_published_at": "2026-10-17T19:27:01+09:00",
+    "source_verified_on": "2026-10-19",
+    "official_source_urls": [
+      "https://antithesis.com/docs/resources/deterministic_simulation_testing/"
+    ],
+    "published_at": "2026-10-19T08:10:15+09:00",
+    "published_url": "https://blog.naver.com/church_ai_lab/224446160925",
+    "image_path": "docs/blog-automation/runs/2026-10-19-am/cover.jpg",
+    "image_source": "직접 제작한 HTML 도식",
+    "public_image_count": 1,
+    "public_image_alt_status": "Naver removes image alt; explanatory caption retained",
+    "mobile_review": "docs/blog-automation/runs/2026-10-19-am/editor-mobile.png",
+    "duplicate_check": "RSS 12 posts before publication, ledger, archived columns checked; editor header showed no scheduled-post list indicator. Only saved draft: NotebookLM PDF summary. Dedicated empty scheduled list not exposed.",
+    "verification": "docs/blog-automation/runs/2026-10-19-am/public-check.json",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    }
+  },
+  {
+    "id": "existing-review-ai-digital-university-what-church-teaches",
+    "kind": "article_review",
+    "status": "published",
+    "title": "신학교가 AI 학과를 여는 날, 교회는 무엇을 가르쳐야 할까요",
+    "source_url": "https://www.goodnews1.com/news/articleView.html?idxno=465222",
+    "published_url": "https://blog.naver.com/church_ai_lab/224444434482",
+    "editorial_revision": {
+      "version": "2026-10-19-all-posts",
+      "verified_at": "2026-10-19T08:50:15+09:00",
+      "source_card_at_top": true,
+      "source_card_target": "_blank",
+      "faq_retained": true,
+      "reference_blank_line": true,
+      "promotional_cta_removed": true,
+      "original_creation_date_removed": true,
+      "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
+    },
+    "image_path": "docs/blog-automation/revisions/2026-10-19/university-cover.jpg"
   }
 ]
