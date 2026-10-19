@@ -38,5 +38,15 @@
 </div></section>
 <section class="learning-section studio-wrap" id="for-whom" data-lower-motion><div class="section-intro"><h2>{{ studio.learning_heading | br | safe }}</h2><p>네 가지 활용 영역에서 필요한 일을 고르고,<br>질문부터 결과물까지 함께 연습합니다.</p></div><ol class="learning-steps">{% for item in learning.items %}<li data-reveal><span>0{{ loop.index }}</span><h3>{{ item.title }}</h3><p>{{ item.body }}</p></li>{% endfor %}</ol></section>
 <section class="about-section studio-wrap" id="about" data-lower-motion><div><span class="small-label">함께하는 사람</span><h2>{{ studio.about_heading | br | safe }}</h2><div class="about-portrait-frame"><img class="about-portrait" src="{{ studio.profile_image }}" alt="신수철 목사 프로필" width="180" height="239" loading="lazy"></div><p class="about-name">{{ studio.profile_name | br | safe }} <span>{{ studio.profile_title | br | safe }}</span><span>{{ studio.profile_role | br | safe }}</span></p></div><div class="about-copy"><p>{{ about.lead | br | safe }}</p><dl>{% for item in about.items %}<div><dt>{{ item.kind }}</dt><dd>{% if item.link_url and item.link_label %}{{ item.body | replace(item.link_label, '<a href="' ~ item.link_url ~ '" rel="noopener">' ~ item.link_label ~ '</a>') | safe }}{% else %}{{ item.body }}{% endif %}</dd></div>{% endfor %}</dl></div></section>
-<section class="studio-posts studio-wrap" id="posts" data-lower-motion><div class="section-intro"><h2>{{ studio.posts_heading | br | safe }}</h2><a class="studio-link" href="https://blog.naver.com/church_ai_lab">블로그 더 보기 ↗</a></div><ul>{% for post in collections.posts %}<li><a href="{{ post.data.external_url or post.url }}">{{ post.data.title }}<span aria-hidden="true">↗</span></a></li>{% endfor %}</ul></section>
+<section class="studio-posts studio-wrap" id="posts" data-lower-motion>
+  <div class="section-intro"><h2>블로그에 남긴 기록.</h2><a class="studio-link" href="https://blog.naver.com/church_ai_lab" target="_blank" rel="noopener">블로그 더 보기 ↗</a></div>
+  <div class="blog-grid">
+  {% for post in blogFeed.posts %}
+    <article class="blog-card"><a href="{{ post.url | escape }}" target="_blank" rel="noopener" aria-label="{{ post.title | escape }} · 처치AI랩 블로그에서 읽기">
+      <div class="blog-cover"><img src="{{ post.image | escape }}" alt="{{ post.image_alt | escape }}" width="600" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>
+      <div class="blog-card-copy"><div class="blog-meta"><span>{{ post.category | escape }}</span><time datetime="{{ post.date | escape }}">{{ post.display_date | dateKo }}</time></div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | escape }}</p><span class="blog-read">처치AI랩 블로그에서 읽기 <span aria-hidden="true">↗</span></span></div>
+    </a></article>
+  {% else %}<p>새 글은 네이버 블로그에서 확인하실 수 있습니다.</p>{% endfor %}
+  </div>
+</section>
 <section class="studio-contact" id="contact" data-lower-motion><div class="studio-wrap"><p>설교준비 · 목회행정 · 교회교육 · 나만의 AI 도구</p><h2>{{ studio.contact_heading | br | safe }}</h2>{% include "contact-choices.njk" %}</div></section>

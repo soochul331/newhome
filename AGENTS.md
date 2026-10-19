@@ -1,3 +1,7 @@
+## 최신 사용자 결정 (2026-10-19, 아래 과거 분담보다 우선)
+
+홈페이지·네이버 블로그 작업은 Codex 전담입니다. 홈페이지 /resources/와 /column/은 운영 종료했습니다. 해당 경로를 복원하거나 새 칼럼을 작성하지 마세요. 네이버 AI 관련 기사 리뷰(20번) 자동 발행은 docs/blog-automation/article-review.md를 따릅니다. AI 도구 리뷰(18번)는 기존 ai 자동화의 검토·실습 규칙을 유지합니다. 홈페이지 최근 글은 src/_data/blogFeed.json을 예약 배포 직전 scripts/sync-naver-blog.py로 갱신합니다.
+
 # Homepage changes
 
 Read `.claude/skills/my-homepage/SKILL.md` before changing this site. The 2026-10-15 common design decision supersedes older theme instructions.

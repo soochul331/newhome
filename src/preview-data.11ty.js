@@ -13,7 +13,7 @@ export default class {
       }
     }
     read("src/_includes");
-    return JSON.stringify({ templates, inlineStyles:data.inlineStyles, site: data.site, home: data.home, navigation: data.navigation,
+    return JSON.stringify({ templates, blogFeed:data.blogFeed, inlineStyles:data.inlineStyles, site: data.site, home: data.home, navigation: data.navigation,
       collections: { posts: data.collections.posts.map(p => ({ data: { title:p.data.title, external_url:p.data.external_url }, date: p.date, url: p.url })) }
     });
   }
