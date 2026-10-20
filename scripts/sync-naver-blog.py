@@ -17,6 +17,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/_data/blogFeed.json'
+COVERS = ROOT / 'src/_data/blogCovers.json'
 
 class Content(HTMLParser):
     def __init__(self):
@@ -58,6 +59,7 @@ def cache_image(url, post):
     return '/media/blog-covers/'+name
 
 def main():
+    overrides = json.loads(COVERS.read_text()) if COVERS.exists() else {}
     source = Path(sys.argv[1]).read_bytes() if len(sys.argv)>1 else urlopen(Request('https://rss.blog.naver.com/church_ai_lab.xml', headers={'User-Agent':'ChurchAILab-PublicFeed/1.0'}), timeout=25).read()
     root = ET.fromstring(source)
     posts = []
@@ -72,10 +74,17 @@ def main():
         if not title: continue
         parser = Content(); parser.feed(html.unescape(item.findtext('description', '')))
         excerpt = re.sub(r'\s+', ' ', ''.join(parser.text)).strip().rstrip('.')
-        excerpt = excerpt[:110].rstrip() + ('…' if len(excerpt)>110 else '')
+        # Some older posts retain a plain source URL above their native link card.
+        excerpt = re.sub(r'https?://[^\s]+', '', excerpt).strip()
+        excerpt = excerpt[:240].rstrip() + ('…' if len(excerpt)>240 else '')
         post = dict(id=match[1],title=title,url=url,date=date.isoformat(),display_date=date.strftime('%Y-%m-%d'),category=' '.join(item.findtext('category','블로그').split()),excerpt=excerpt,image_alt=title+' 대표 이미지')
         remote_image = next((safe_image(x) for x in parser.images if safe_image(x)), None)
-        if remote_image:
+        curated = overrides.get(post['id'])
+        if curated and (ROOT / 'src' / curated['image'].lstrip('/')).is_file():
+            post['image'] = curated['image']
+            post['image_alt'] = curated['alt']
+            post['image_label'] = curated.get('label', '')
+        elif remote_image:
             try: post['image'] = cache_image(remote_image, post)
             except Exception as error:
                 print(f'Image unavailable for {post["id"]}; using topic cover: {error}', file=sys.stderr)

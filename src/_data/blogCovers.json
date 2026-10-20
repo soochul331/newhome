@@ -1,0 +1,44 @@
+{
+  "224448001480": {
+    "image": "/media/blog-covers/agent-permissions-photo.jpg",
+    "alt": "노트북과 작은 열쇠로 AI 작업 권한을 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  },
+  "224447340491": {
+    "image": "/media/blog-covers/translation-arrival-photo.jpg",
+    "alt": "교회 입구 앞에서 스마트폰 지도를 보는 방문자를 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  },
+  "224446160925": {
+    "image": "/media/blog-covers/registration-testing-photo.jpg",
+    "alt": "노트북에서 신청 화면을 점검하는 장면을 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  },
+  "224446122140": {
+    "image": "/media/blog-covers/teacher-conversation-photo.jpg",
+    "alt": "스마트폰을 함께 보며 대화하는 교사와 청소년을 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  },
+  "224446121830": {
+    "image": "/media/blog-covers/sustained-reading-photo.jpg",
+    "alt": "태블릿을 곁에 두고 성경을 읽는 장면을 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  },
+  "224446121594": {
+    "image": "/media/blog-covers/transparent-ai-photo.jpg",
+    "alt": "문서와 노트북을 함께 검토하는 교회 담당자들을 표현한 생성 이미지",
+    "label": "AI 생성 이미지",
+    "source": "OpenAI image_gen",
+    "generated_on": "2026-10-20"
+  }
+}
