@@ -1,5 +1,5 @@
-{% set heroes = [] %}{% set bios = [] %}{% set courses = [] %}
-{% for s in home.sections %}{% if s.id == 'top' %}{% set _ = heroes.push(s) %}{% endif %}{% if s.id == 'about' %}{% set _ = bios.push(s) %}{% endif %}{% if s.id == 'for-whom' %}{% set _ = courses.push(s) %}{% endif %}{% endfor %}
+{% set heroes = [] %}{% set bios = [] %}{% set courses = [] %}{% set postSettings = [] %}
+{% for s in home.sections %}{% if s.id == 'top' %}{% set _ = heroes.push(s) %}{% endif %}{% if s.id == 'about' %}{% set _ = bios.push(s) %}{% endif %}{% if s.id == 'for-whom' %}{% set _ = courses.push(s) %}{% endif %}{% if s.type == 'posts' %}{% set _ = postSettings.push(s) %}{% endif %}{% endfor %}
 {% set tools = home.tools %}{% set studio = home.studio %}{% set hero = heroes[0] %}{% set about = bios[0] %}{% set learning = courses[0] %}
 {% if motion_demo %}<aside class="motion-toolbar" aria-label="모션 데모 설정"><span>처치AI랩 · 디자인 데모</span><div><button type="button" data-motion-toggle aria-pressed="true">모션 켜짐</button><button type="button" data-motion-replay>처음부터 보기</button><a href="/">현재 홈페이지</a></div></aside>{% endif %}
 <section class="studio-intro has-hero-video" id="intro">
@@ -7,7 +7,7 @@
   <div class="studio-wrap">
   <div class="intro-top"><p>목회자를 위한 AI 활용 교육</p><span>Church AI Lab</span></div>
   <h1><span class="title-line"><span>{{ studio.hero_line1 | br | safe }}</span></span><span class="title-line"><span>{{ studio.hero_line2 | br | safe }}</span></span></h1>
-  <div class="intro-bottom"><span class="scroll-cue" aria-hidden="true">↓</span><p>설교준비, 목회행정, 교회교육, 나만의 AI 도구.<br>지금 필요한 사역부터 함께 연습합니다.</p><a class="studio-link" href="#lab">어떻게 활용하나요? <span aria-hidden="true">↘</span></a></div>
+  <div class="intro-bottom"><span class="scroll-cue" aria-hidden="true">↓</span><p>설교준비, 목회행정, 교회교육, 나만의 AI 도구.<br>지금 필요한 사역부터 함께 연습합니다.</p><div class="intro-actions"><a class="intro-primary" href="{{ hero.primary.url }}">{{ hero.primary.label }} <span aria-hidden="true">↗</span></a><a class="studio-link" href="#lab">어떻게 활용하나요? <span aria-hidden="true">↘</span></a></div></div>
   </div>
 </section>
 <section class="lab-section" id="lab" aria-labelledby="lab-heading">
@@ -41,7 +41,7 @@
 <section class="studio-posts studio-wrap" id="posts" data-lower-motion>
   <div class="section-intro"><h2>블로그에 남긴 기록.</h2><a class="studio-link" href="https://blog.naver.com/church_ai_lab" target="_blank" rel="noopener">블로그 더 보기 ↗</a></div>
   <div class="blog-grid">
-  {% for post in blogFeed.posts %}
+  {% for post in blogFeed.posts.slice(0, postSettings[0].count or 6) %}
     <article class="blog-card"><a href="{{ post.url | escape }}" target="_blank" rel="noopener" aria-label="{{ post.title | escape }} · 처치AI랩 블로그에서 읽기">
       <div class="blog-cover"><img src="{{ post.image | escape }}" alt="{{ post.image_alt | escape }}" width="900" height="600" loading="lazy" decoding="async" referrerpolicy="no-referrer">{% if post.image_label %}<span class="blog-image-label" role="img" aria-label="{{ post.image_label | escape }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c1.2 5.3 3.7 7.8 9 9-5.3 1.2-7.8 3.7-9 9-1.2-5.3-3.7-7.8-9-9 5.3-1.2 7.8-3.7 9-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>{% endif %}</div>
       <div class="blog-card-copy"><div class="blog-meta"><span>{{ post.category | escape }}</span><time datetime="{{ post.date | escape }}">{{ post.display_date | dateKo }}</time></div><h3>{{ post.title | escape }}</h3><p>{{ post.excerpt | escape }}</p><span class="blog-read">처치AI랩 블로그에서 읽기 <span aria-hidden="true">↗</span></span></div>

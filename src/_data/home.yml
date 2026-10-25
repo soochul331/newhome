@@ -155,7 +155,7 @@ sections:
     enabled: true
     heading: 어떤 자료를 나누고 있나요?
     lead: 설교준비, 목회행정, 교회교육과 AI 도구를 활용하며 배운 내용을 블로그에 기록합니다.
-    count: 3
+    count: 6
     more_label: 활용 글 더 보기
     more_url: https://blog.naver.com/church_ai_lab
   - type: contact
