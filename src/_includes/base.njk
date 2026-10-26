@@ -9,23 +9,28 @@
   <meta name="author" content="{{ site.name | oneline }}">
   <link rel="describedby" href="{{ site.url }}/llms.txt" type="text/plain">
   {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
-  {% if page.url == '/' %}{% set share_title = home.studio.hero_line1 ~ ' ' ~ home.studio.hero_line2 ~ ' · Church AI Lab' %}{% else %}{% set share_title = (title or site.title_tag) | oneline %}{% endif %}
-  <meta property="og:title" content="{{ share_title | oneline }}">
-  <meta property="og:description" content="{{ (description or site.description) | oneline }}">
+  {% set share_title = og_title or (title ~ ' · ' ~ site.organization if title else site.title_tag) %}
+  {% set share_description = og_description or description or site.description %}
+  {% set share_image_alt = og_image_alt or site.og_image_alt or site.title_tag %}
+  <meta property="og:title" content="{{ share_title | oneline | escape }}">
+  <meta property="og:description" content="{{ share_description | oneline | escape }}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
-  <meta property="og:site_name" content="{{ site.title_tag | oneline }}">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.organization | oneline | escape }}">
+  <meta property="og:url" content="{{ (site.url ~ page.url) | escape }}">
   {%- set ogimg = og_image or site.og_image or '/assets/og.png' %}
-  <meta property="og:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}{% else %}{{ site.url }}{{ ogimg }}{% endif %}">
+  {% if ogimg.startsWith('https://') %}{% set share_image_url = ogimg %}{% elif ogimg.startsWith('http://') %}{% set share_image_url = 'https://' ~ ogimg.slice(7) %}{% else %}{% set share_image_url = site.url ~ ogimg %}{% endif %}
+  <meta property="og:image" content="{{ share_image_url | escape }}">
+  <meta property="og:image:secure_url" content="{{ share_image_url | escape }}">
+  <meta property="og:image:type" content="{{ ogimg | imageMime }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="{{ (site.og_image_alt or site.title_tag) | oneline }}">
+  <meta property="og:image:alt" content="{{ share_image_alt | oneline | escape }}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ share_title | oneline }}">
-  <meta name="twitter:description" content="{{ (description or site.description) | oneline }}">
-  <meta name="twitter:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}{% else %}{{ site.url }}{{ ogimg }}{% endif %}">
-  <meta property="og:image:type" content="image/png">
+  <meta name="twitter:title" content="{{ share_title | oneline | escape }}">
+  <meta name="twitter:description" content="{{ share_description | oneline | escape }}">
+  <meta name="twitter:image" content="{{ share_image_url | escape }}">
+  <meta name="twitter:image:alt" content="{{ share_image_alt | oneline | escape }}">
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   {# Studio is the default shell for every page, including CMS-created pages. #}
   {% set theme = 'beagle' %}

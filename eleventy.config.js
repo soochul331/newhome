@@ -16,6 +16,10 @@ export default function (eleventyConfig) {
     studio: ["theme-beagle.css", "motion-demo.css", "text-layout.css", "document.css"].map(name => fs.readFileSync("src/assets/" + name, "utf8").replace(/\/\*[\s\S]*?\*\//g, "")).join("\n")
   }));
   eleventyConfig.addFilter("hasSerif", hasSerif);
+  eleventyConfig.addFilter("imageMime", value => {
+    const extension = String(value).split(/[?#]/)[0].split('.').pop().toLowerCase();
+    return ({png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'})[extension] || 'image/png';
+  });
   eleventyConfig.addFilter("hasAppearance", hasAppearance);
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });

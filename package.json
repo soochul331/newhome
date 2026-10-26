@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "lint": "node scripts/lint-content.js",
-    "build": "npm run lint && node scripts/clean-output.js && eleventy && node scripts/check-design.js",
+    "build": "npm run lint && node scripts/clean-output.js && eleventy && node scripts/check-design.js && node scripts/check-og.js",
     "dev": "eleventy --serve --port 8080",
     "cms": "decap-server",
     "test:design": "node scripts/check-design.js && node scripts/check-themes.js && node scripts/check-studio.js",
+    "test:og": "node scripts/check-og.js",
     "test:copy": "node scripts/check-copy-browser.cjs",
     "test:korean": "node scripts/check-korean-browser.cjs"
   },

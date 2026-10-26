@@ -32,6 +32,10 @@
     const env = new nunjucks.Environment(new Loader(), { autoescape: true });
     const esc = v => String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     env.addFilter('hasSerif',hasSerif);
+    env.addFilter('imageMime',value=>{
+      const extension=String(value).split(/[?#]/)[0].split('.').pop().toLowerCase();
+      return ({png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif'})[extension]||'image/png';
+    });
     env.addFilter('hasAppearance',hasAppearance);
     env.addFilter('br', v => esc(String(v == null ? '' : v).replace(/\r\n?/g, '\n').trim()).replace(/\n/g, '<br>'));
     env.addFilter('oneline', v => String(v == null ? '' : v).replace(/\s*[\r\n]+\s*/g, ' ').trim());
