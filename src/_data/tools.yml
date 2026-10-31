@@ -8,3 +8,11 @@ items:
     intro_url: /sermon-shorts/
     app_url: https://sermonshorts.churchailab.org
     visual: shorts
+  - name: 설교준비 도우미
+    category: 설교 준비
+    tagline: 본문과 묵상에서, 원고 초안까지.
+    description: 설교 본문과 나의 묵상을 적으면 AI가 설교 방향·개요·본문연구·예화·적용을 차례로 써 주고 원고 초안까지 이어집니다. 주석과 인용은 실제로 확인한 것만 출처로 남깁니다.
+    intro_url: /sermon-helper/
+    app_url: /sermon-helper/download
+    app_label: 내려받기
+    visual: page

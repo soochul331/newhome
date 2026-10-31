@@ -41,3 +41,8 @@
   to = "https://blog.naver.com/church_ai_lab"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/sermon-helper/download"
+  to = "/assets/downloads/sermon-helper-20261031-v0.1.5.zip"
+  status = 302
