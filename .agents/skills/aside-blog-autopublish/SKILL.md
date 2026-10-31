@@ -5,7 +5,7 @@ description: "Aside 브라우저 에이전트로 처치AI랩 블로그(네이버
 
 ## 최신 사용자 결정 (2026-10-19, 과거 역할 분담보다 우선)
 
-홈페이지·블로그는 Codex가 전담합니다. 홈페이지 칼럼 자동발행은 종료했습니다. AI 관련 기사 리뷰(20번)는 docs/blog-automation/article-review.md에 따라 Codex가 자동 공개 발행합니다. AI 도구 리뷰(18번)는 기존 검토 방식입니다. 폐지한 /resources/·/column/ 링크는 새 원고에 넣지 않습니다.
+홈페이지·블로그는 Codex가 전담합니다. 홈페이지 칼럼 자동발행은 종료했습니다. AI 관련 기사 리뷰(20번)는 docs/blog-automation/article-review.md에 따라 Codex가 자동 공개 발행합니다. AI 도구 리뷰(18번)는 기존 검토 방식입니다. 폐지한 /resources/·/column/ 링크는 새 원고에 넣지 않습니다. 2026-11-01 추가: Codex의 사용 한도가 차 있거나 응답하지 않을 때는 Claude(cys master·worker)가 이 스킬과 같은 규칙으로 블로그 원고·발행 준비를 이어서 하고, 발행은 사용자 확인 뒤에만 합니다.
 
 # Aside 블로그 자동발행 스킬 (신수철 목사 · Church AI Lab 판)
 

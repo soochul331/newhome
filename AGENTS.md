@@ -1,6 +1,6 @@
 ## 최신 사용자 결정 (2026-10-19, 아래 과거 분담보다 우선)
 
-홈페이지·네이버 블로그 작업은 Codex 전담입니다. 홈페이지 /resources/와 /column/은 운영 종료했습니다. 해당 경로를 복원하거나 새 칼럼을 작성하지 마세요. 네이버 AI 관련 기사 리뷰(20번) 자동 발행은 docs/blog-automation/article-review.md를 따릅니다. AI 도구 리뷰(18번)는 기존 ai 자동화의 검토·실습 규칙을 유지합니다. 홈페이지 최근 글은 src/_data/blogFeed.json을 예약 배포 직전 scripts/sync-naver-blog.py로 갱신합니다.
+홈페이지·네이버 블로그 작업은 Codex 전담입니다. Codex의 사용 한도가 차 있거나 응답하지 않을 때는 Claude(cys master·worker)가 같은 규칙(이 문서, docs/blog-automation, .agents/skills/aside-blog-autopublish)을 따라 이어서 진행하며, 네이버 발행과 홈페이지 배포는 사용자 확인 뒤에만 합니다(2026-11-01 사용자 결정). 홈페이지 /resources/와 /column/은 운영 종료했습니다. 해당 경로를 복원하거나 새 칼럼을 작성하지 마세요. 네이버 AI 관련 기사 리뷰(20번) 자동 발행은 docs/blog-automation/article-review.md를 따릅니다. AI 도구 리뷰(18번)는 기존 ai 자동화의 검토·실습 규칙을 유지합니다. 홈페이지 최근 글은 src/_data/blogFeed.json을 예약 배포 직전 scripts/sync-naver-blog.py로 갱신합니다.
 
 # Homepage changes
 

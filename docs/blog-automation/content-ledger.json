@@ -346,5 +346,21 @@
       "evidence_dir": "docs/blog-automation/revisions/2026-10-19"
     },
     "image_path": "docs/blog-automation/revisions/2026-10-19/university-cover.jpg"
+  },
+  {
+    "id": "blog-sermon-helper-2026-11-01",
+    "kind": "resource_post",
+    "date": "2026-11-01",
+    "status": "draft_needs_test_and_review",
+    "title": "설교준비 도우미, 본문과 묵상에서 원고 초안까지",
+    "category_no": 14,
+    "category": "자료실",
+    "package": "docs/blog-automation/04-sermon-helper.md",
+    "image_path": "docs/blog-automation/visuals/04-sermon-helper/cover.png",
+    "download_url": "https://churchailab.org/sermon-helper/download",
+    "resource_live_verified": true,
+    "resource_live_verified_evidence": "master curl 2026-11-01",
+    "published_url": null,
+    "approved": false
   }
 ]
