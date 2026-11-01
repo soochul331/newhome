@@ -351,7 +351,7 @@
     "id": "blog-sermon-helper-2026-11-01",
     "kind": "resource_post",
     "date": "2026-11-01",
-    "status": "draft_needs_test_and_review",
+    "status": "published",
     "title": "설교준비 도우미, 본문과 묵상에서 원고 초안까지",
     "category_no": 14,
     "category": "자료실",
@@ -360,7 +360,16 @@
     "download_url": "https://churchailab.org/sermon-helper/download",
     "resource_live_verified": true,
     "resource_live_verified_evidence": "master curl 2026-11-01",
-    "published_url": null,
-    "approved": false
+    "published_url": "https://blog.naver.com/church_ai_lab/224460818640",
+    "published_at": "2026-11-01T08:26:25+09:00",
+    "publisher": "uplika",
+    "uplika_post_id": "post_e52d6f64bdf2bbbd",
+    "attachment": "none (owner chose link only)",
+    "category_actual": "자료실 (categoryNo 14; measured 2026-11-02: listed in categoryNo=14, absent from categoryNo=11, RSS category 자료실)",
+    "category_fix": "done",
+    "public_image_count": 2,
+    "approved": true,
+    "approved_by": "owner (chat, 1번 승인)",
+    "approved_on": "2026-11-01"
   }
 ]
