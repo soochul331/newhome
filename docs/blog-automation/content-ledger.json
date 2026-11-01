@@ -370,6 +370,7 @@
     "public_image_count": 2,
     "approved": true,
     "approved_by": "owner (chat, 1번 승인)",
-    "approved_on": "2026-11-01"
+    "approved_on": "2026-11-01",
+    "known_issue": "참고 자료 줄의 블로그 주소 밑줄이 기울임 표시로 처리되어 화면에는 ai가 기울임인 blog.naver.com/churchailab 으로 보임(옮겨 적으면 404). 링크 대상 https://blog.naver.com/church_ai_lab 은 정상. 수정은 사용자 결정 대기(update_post, 밑줄 없는 링크 글자)."
   }
 ]
