@@ -371,6 +371,6 @@
     "approved": true,
     "approved_by": "owner (chat, 1번 승인)",
     "approved_on": "2026-11-01",
-    "known_issue": "참고 자료 줄의 블로그 주소 밑줄이 기울임 표시로 처리되어 화면에는 ai가 기울임인 blog.naver.com/churchailab 으로 보임(옮겨 적으면 404). 링크 대상 https://blog.naver.com/church_ai_lab 은 정상. 수정은 사용자 결정 대기(update_post, 밑줄 없는 링크 글자)."
+    "known_issue": "resolved 2026-11-02 16:04 KST: 사용자 승인 후 master가 update_post로 참고 자료 줄의 블로그 주소를 [처치AI랩 블로그](https://blog.naver.com/church_ai_lab) 링크로 교체(밑줄 기울임으로 주소가 blog.naver.com/churchailab 으로 보이던 문제). 16:05 KST 공개 글 확인: 링크 글자 처치AI랩 블로그, 링크 대상 정상, 기울임 흔적 없음, 제목·카테고리(14)·이미지 변경 없음."
   }
 ]
