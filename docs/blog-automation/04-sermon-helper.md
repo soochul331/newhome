@@ -108,7 +108,7 @@ zip 파일을 풀고, 안에 든 스킬 폴더 9개를 내 컴퓨터의 Claude �
 
 ---
 
-참고 자료. 설교준비 도우미 소개 페이지 https://churchailab.org/sermon-helper/ · 설교준비 도우미 내려받기(언제나 최신 판) https://churchailab.org/sermon-helper/download · Node.js 공식 사이트 https://nodejs.org/ · 처치AI랩 블로그 https://blog.naver.com/church_ai_lab · 기준일 2026년 11월 1일.
+참고 자료. 설교준비 도우미 소개 페이지 https://churchailab.org/sermon-helper/ · 설교준비 도우미 내려받기(언제나 최신 판) https://churchailab.org/sermon-helper/download · Node.js 공식 사이트 https://nodejs.org/ · [처치AI랩 블로그](https://blog.naver.com/church_ai_lab) · 기준일 2026년 11월 1일.
 
 신수철 목사 (Church AI Lab 디렉터) · 늘푸른진건교회 교육목사 · 대한예수교장로회(합동) · 총신대학교 신학대학원 M.Div. · AI융합 박사과정 재학 · churchailab.org
 
