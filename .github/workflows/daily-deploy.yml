@@ -1,7 +1,7 @@
 name: 홈페이지 배포
 on:
   schedule:
-    - cron: "30 23 * * *" # 매일 08:30 KST, 기존 예약 배포 시각 유지
+    - cron: "30 23 */2 * *" # 이틀에 한 번 08:30 KST (UTC 홀수일 23:30). 급할 때는 Actions에서 Run workflow
   workflow_dispatch:
 permissions:
   contents: write
