@@ -23,6 +23,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("hasAppearance", hasAppearance);
   eleventyConfig.addDataExtension("yml,yaml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy({ "src/media": "media" });
+  // 셀라 워십 콘티 앱(별도 Vite 빌드 결과물, 원본은 worship-conti-app). /selah/ 아래 그대로 복사한다.
+  eleventyConfig.addPassthroughCopy({ "selah": "selah" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico", "src/site.webmanifest": "site.webmanifest" });

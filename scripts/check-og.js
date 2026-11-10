@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 function walk(dir) {
   return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>entry.isDirectory()?walk(path.join(dir,entry.name)):[path.join(dir,entry.name)]);
 }
-const pages=walk('_site').filter(file=>file.endsWith('.html')&&!file.startsWith('_site/admin/'));
+const pages=walk('_site').filter(file=>file.endsWith('.html')&&!file.startsWith('_site/admin/')&&!file.startsWith('_site/selah/'));
 for(const file of pages) {
   const html=fs.readFileSync(file,'utf8'),head=html.split('</head>')[0];
   const tags={};
