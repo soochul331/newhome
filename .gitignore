@@ -7,3 +7,7 @@ _site/
 scripts/og/fonts/
 
 node_modules
+
+# Cloudflare 로컬 시험
+.wrangler/
+.dev.vars

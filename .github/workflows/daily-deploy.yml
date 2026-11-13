@@ -1,15 +1,25 @@
 name: 홈페이지 배포
+# Cloudflare Pages 이사 뒤 교체안 (2026-11-14 시제품)
+# - Pages는 GitHub 연동이라 main에 푸시하면 자동 빌드·배포된다(무료, 월 500회 빌드).
+#   그래서 Netlify 빌드 훅 단계와 scripts/netlify-ignore.sh 는 필요 없다.
+# - 이 작업은 네이버 블로그 카드 동기화만 하고, 바뀐 것이 있을 때만 커밋·푸시 → 그 푸시가 배포를 부른다.
+# - 바뀐 것이 없어도 배포를 강제하고 싶으면 workflow_dispatch에서 force=true (Pages 배포 훅 호출).
 on:
   schedule:
-    - cron: "30 23 */2 * *" # 이틀에 한 번 08:30 KST (UTC 홀수일 23:30). 급할 때는 Actions에서 Run workflow
+    - cron: "30 23 * * *" # 매일 08:30 KST — 배포가 무료라 이틀 간격을 매일로 당긴다
   workflow_dispatch:
+    inputs:
+      force:
+        description: "바뀐 것이 없어도 다시 배포"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
   group: homepage-deploy
   cancel-in-progress: false
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +30,7 @@ jobs:
           python-version: '3.12'
       - name: 공개된 네이버 글과 대표 이미지 동기화
         run: python3 scripts/sync-naver-blog.py
-      - name: 바뀐 블로그 카드 저장
+      - name: 바뀐 블로그 카드 저장 (푸시하면 Cloudflare Pages가 자동 배포)
         run: |
           git add src/_data/blogFeed.json src/media/blog-covers/
           if ! git diff --cached --quiet; then
@@ -28,11 +38,15 @@ jobs:
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git commit -m 'Sync published Naver blog cards'
             git push origin HEAD:main
+            echo "블로그 카드가 바뀌어 푸시했습니다. Cloudflare Pages가 곧 배포합니다."
+          else
+            echo "바뀐 블로그 카드가 없습니다."
           fi
-      - name: Netlify 예약 배포 요청
+      - name: (수동) 강제 재배포
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
         env:
-          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+          HOOK: ${{ secrets.CF_PAGES_DEPLOY_HOOK }}
         run: |
           test -n "$HOOK"
-          curl --fail-with-body --retry 2 -sS -X POST -d '{}' "$HOOK?trigger_title=blog-sync-0830" > /dev/null
-          echo "네이버 최신 글을 동기화하고 배포를 요청했습니다."
+          curl --fail-with-body --retry 2 -sS -X POST "$HOOK" > /dev/null
+          echo "Cloudflare Pages 재배포를 요청했습니다."

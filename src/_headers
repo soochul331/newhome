@@ -1,0 +1,10 @@
+# netlify.toml [[headers]] 변환 (newhome 저장소 src/_headers 로 두고 Eleventy가 _site/_headers 로 복사)
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/admin/*
+  X-Robots-Tag: noindex
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8

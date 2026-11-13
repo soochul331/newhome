@@ -2,6 +2,9 @@ backend:
   name: github
   repo: soochul331/newhome
   branch: main
+  # GitHub 로그인 중계: functions/api/auth.js, callback.js (Netlify 인증 대행 대체, 2026-11-14)
+  base_url: https://churchailab.org
+  auth_endpoint: api/auth
   commit_messages:
     create: '관리자: {{collection}} "{{slug}}" 추가'
     update: '관리자: {{collection}} "{{slug}}" 수정'

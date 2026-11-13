@@ -1,0 +1,19 @@
+# 홈페이지 Cloudflare Pages 설정 예시 (newhome 저장소 루트에 둘 파일)
+# Git 연동 빌드: 빌드 명령 npm run build, 출력 폴더 _site, 환경 변수 NODE_VERSION=22
+name = "churchailab-home"
+pages_build_output_dir = "_site"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "churchailab-forms"
+database_id = "<wrangler d1 create 뒤 나오는 id>"
+
+# 네임서버 이사와 Email Routing 설정 뒤에 켠다(그 전에는 저장만 하고 알림은 건너뜀).
+# [[services]]
+# binding = "MAILER"
+# service = "churchailab-mailer"
+
+# 비밀값은 파일에 쓰지 않는다: Pages 설정 → 환경 변수(암호화)
+#   GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, ALLOWED_GITHUB_USERS=soochul331
+#   (선택) TURNSTILE_SECRET

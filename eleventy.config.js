@@ -26,6 +26,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico", "src/site.webmanifest": "site.webmanifest" });
+  // Cloudflare Pages 헤더·리다이렉트 규칙 (netlify.toml 대체, 2026-11-14)
+  eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers", "src/_redirects": "_redirects" });
   eleventyConfig.addWatchTarget("src/assets");
   eleventyConfig.addPassthroughCopy({ "node_modules/nunjucks/browser/nunjucks.min.js": "admin/vendor/nunjucks.min.js" });
   eleventyConfig.addPassthroughCopy({ "node_modules/markdown-it/dist/markdown-it.min.js": "admin/vendor/markdown-it.min.js" });

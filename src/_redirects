@@ -1,0 +1,7 @@
+# netlify.toml [[redirects]] 변환 (newhome 저장소 src/_redirects → _site/_redirects)
+# Cloudflare Pages는 _redirects를 파일보다 먼저 적용하므로 Netlify의 force = true와 같은 동작이다.
+/newsletter/*  https://blog.naver.com/church_ai_lab  301
+/column/*      https://blog.naver.com/church_ai_lab  301
+/resources/*   https://blog.naver.com/church_ai_lab  301
+/sermon-helper/download  /assets/downloads/sermon-helper-20261031-v0.1.5.zip  302
+# 이사 뒤 옛 Netlify 주소에서 오는 관리자 북마크는 Netlify 쪽에서 처리하므로 여기 둘 필요 없다.

@@ -2,7 +2,7 @@
   {% for s in home.sections %}{% if s.id == 'contact' and s.form_enabled %}
   <details class="contact-choice" name="contact-choice" id="lecture-inquiry">
     <summary class="contact-link">강의·컨설팅 문의하기 <span aria-hidden="true">↗</span></summary>
-    <div class="contact-drawer"><form class="contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+    <div class="contact-drawer"><form class="contact" name="contact" method="POST" action="/api/contact">
       <input type="hidden" name="form-name" value="contact">
       <p class="hidden"><label>사람이시면 비워 두세요 <input name="bot-field"></label></p>
       <p class="form-intro">교육 대상과 배우고 싶은 내용, 희망 일정을 알려 주세요.</p>
@@ -16,7 +16,7 @@
   {% endif %}{% endfor %}
   <details class="contact-choice" name="contact-choice" id="tool-proposal">
     <summary class="contact-link">나만의 AI 도구 제작 제안하기 <span aria-hidden="true">↗</span></summary>
-    <div class="contact-drawer"><form class="contact" name="tool-proposal" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/proposal-thanks.html">
+    <div class="contact-drawer"><form class="contact" name="tool-proposal" method="POST" action="/api/contact">
       <input type="hidden" name="form-name" value="tool-proposal">
       <p class="hidden"><label>사람이시면 비워 두세요 <input name="bot-field"></label></p>
       <p class="form-intro">사역 현장에서 필요한 도구의 아이디어를 들려주세요. 아직 구체적이지 않아도 괜찮습니다.</p>

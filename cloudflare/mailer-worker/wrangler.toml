@@ -1,0 +1,13 @@
+# 문의 알림 메일 Worker — 배포는 오너 승인 뒤: npx wrangler deploy
+name = "churchailab-mailer"
+main = "index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false   # 공개 주소를 만들지 않는다(서비스 연결 전용)
+
+[vars]
+MAIL_FROM = "forms@churchailab.org"
+
+# 받는 주소(오너 Gmail)는 공개 저장소에 쓰지 않는다: npx wrangler secret put MAIL_TO
+# Email Routing에서 확인을 마친 주소로만 보낼 수 있다.
+[[send_email]]
+name = "NOTIFY"
